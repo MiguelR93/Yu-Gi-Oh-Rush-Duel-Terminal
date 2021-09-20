@@ -3,7 +3,7 @@ import random
 
 player1 = [ 
     8000, # "lp"
-    [["011", "Monstruo", "Dragón", 4000, 4000], ["011", "Monstruo", "Dragón", 4000, 4000], ["011", "Monstruo", "Dragón", 4000, 4000],["010", "Monstruo", "Trueno", 4000, 4000], ["010", "Monstruo", "Trueno", 4000, 4000], ["010", "Monstruo", "Trueno", 4000, 4000], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"]], # "deck"
+    [["011", "Monstruo", "Dragón", 2000, 4000], ["011", "Monstruo", "Dragón", 4000, 3000], ["011", "Monstruo", "Dragón", 3000, 4000],["010", "Monstruo", "Trueno", 4000, 2000], ["010", "Monstruo", "Trueno", 1000, 4000], ["010", "Monstruo", "Trueno", 4000, 1000], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"]], # "deck"
     [], # "extraDeck"
     [], # "hand"
     [], # "gy"
@@ -18,7 +18,7 @@ player1 = [
 ]    
 player2 = [ 
     8000, # "lp"
-    [["011", "Monstruo", "Dragón", 4000, 4000], ["011", "Monstruo", "Dragón", 4000, 4000], ["011", "Monstruo", "Dragón", 4000, 4000],["010", "Monstruo", "Trueno", 4000, 4000], ["010", "Monstruo", "Trueno", 4000, 4000], ["010", "Monstruo", "Trueno", 4000, 4000], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"]], # "deck"
+    [["011", "Monstruo", "Dragón", 2000, 4000], ["011", "Monstruo", "Dragón", 4000, 3000], ["011", "Monstruo", "Dragón", 3000, 4000],["010", "Monstruo", "Trueno", 4000, 2000], ["010", "Monstruo", "Trueno", 1000, 4000], ["010", "Monstruo", "Trueno", 4000, 1000], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['002', "Magia"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"], ['001', "Trampa"]], # "deck"
     [], # "extraDeck"
     [], # "hand"
     [], # "gy"
@@ -97,8 +97,13 @@ def run():
                     print(f"\n\nmano: {player1[3]}")
         # Main Phase
         activatingAnEff()
-        # for i in player1[3]:
-        #     if "Monstruo" in player1[3]
+        for i,a in enumerate(player1[3]):
+            if "Monstruo" in player1[3][i]:
+                print("Es un monstruo!")
+            elif "Magia" in player1[3][i]:
+                print("Es una Magia!")
+            elif "Trampa" in player1[3][i]:
+                print("Es una Trampa!")
         
         
         print(f"\n\nmano: {player1[3]}")
