@@ -102,7 +102,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
         # if type(i) == dict:
         #     print(i['name'], end="   ")
         if len(i) > 0:
-            print(i['name'], end="   ")
+            print(i['name'], f"Nivel: {i['level']}/ATK/{i['attack']}/DEF/{i['defense']}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n")
@@ -169,6 +169,25 @@ def drawPhase():
 mainPhaseOptions = "\n\n\nQué quieres hacer?\n1: Invocar un monstruo\n2: Colocar un monstruo\n3: Activar una Magia de tu mano\n4: Activar una Magia del campo\n5: Colocar una Trampa de tu mano\n6: Activar una trampa del campo\n7: Cambiar la posición de ataque a defensa\n8: cambiar la posición de defensa boca-abajo a ataque\n9: Cambiar la posición de defensa boca-arriba a ataque\n10: Ir a la Battle Phase\n11: Ir a la End Phase\n"
 
 
+def summoningAMonster():
+    summonAMonster = int(input("ingresa el índice del monstruo: "))
+    while True:
+        monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
+        if len(player1[monsterZonePosition+6]) != 0:
+            ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+            if ocupado == 1:
+                continue
+            elif ocupado == 2:
+                break
+        else:
+            choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
+            if choosePosition == 1:
+                player1[3][summonAMonster]['position'] = 'Attack'
+            player1[monsterZonePosition+6] = player1[3][summonAMonster]
+            player1[3].remove(player1[3][summonAMonster])
+            break
+
+
 def mainPhase():
     activatingAnEff()
     # for i,a in enumerate(player1[3]):
@@ -184,19 +203,18 @@ def mainPhase():
         duelStatus()
         actionInMP = int(input(mainPhaseOptions))
         if actionInMP == 1:
-            summonAMonster = int(input("ingresa el índice del monstruo: "))
-            while True:
-                monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
-                if len(player1[monsterZonePosition+6]) != 0:
-                    ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
-                    if ocupado == 1:
-                        continue
-                    elif ocupado == 2:
-                        break
-                else:
-                    player1[monsterZonePosition+6] = player1[3][summonAMonster]
-                    player1[3].remove(player1[3][summonAMonster])
-                    break
+            summoningAMonster()
+            # while True:
+            #     if len(player1[7]) == 0:
+            #         print("No puedes invocar este")
+            #         break
+            #     elif int(player1[3][summonAMonster]['level']) >= 5:
+            #         print("Debes sacrificar 1 monstruo")
+            #         tributado = int(input("Escribe el índice del monstruo a tributar:\n7: izquierda\n8: centro\n9: derecha\n0: Cancelar\n"))
+            #         if tributado != 0:
+            #             player1.remove(player1[tributado])
+            #         else:
+            #             break
         elif actionInMP == 2:
             pass
         elif actionInMP == 3:
