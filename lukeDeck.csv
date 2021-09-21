@@ -1,0 +1,23 @@
+id,name,attribute,type,level,attack,defense,frontier,text,effect,
+1,Rush Dragon Dragears,DARK,Dragon,7,2500,1500,[effect],"[Requirement]: You can send the top card of your Deck to the GY.
+[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.",none,
+2,Gravity Press Dragon,EARTH,Dragon,6,1500,1000,[effect],"[Requirement] You can send 1 card from your hand to the GY.
+[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.",none,
+3,Fire Guardian,FIRE,Dragon,6,2100,400,[normal],The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.,,
+4,Dragon Knight of Darkness,DARK,Dragon,5,1600,1100,[normal],"A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.",,
+5,Dragolite,EARTH,Dragon,4,1500,0,[normal],It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!,,
+6,Twin-Edge Dragon,LIGHT,Dragon,3,1000,0,[effect],"[Requirement]: You can send 1 card from your hand to the GY.
+[Effect]: This card can make a second attack this turn.",none,
+7,Dragon's Priestess,WATER,Dragon,3,1100,100,[normal],A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.,,
+8,Dragon Bat,DARK,Dragon,3,1000,400,[normal],"A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.",,
+9,Phoenix Dragon,FIRE,Dragon,2,500,500,[effect],"[Requirement]: You can send 1 card from your hand to the GY.
+[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.",none,
+10,Palm-Sized Drago,WIND,Dragon,1,0,1400,[normal],A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.,,
+11,Dragonic Pressure,SPELL,normal,"[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.
+[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.",none,,,,,
+12,Fire Dragon's Heatflash,SPELL,normal,"[Requirement]: If you control a face-up monster (Dragon).
+[Effect]: Destroy 1 Spell/Trap your opponent controls.",none,,,,,
+13,Dragon Encounter,TRAP,normal,"[Requirement] When your opponent Normal or Special Summons a monster(s).
+[Effect] Special Summon 1 monster (Dragon) from your hand.",none,,,,,
+14,Counteroffensive Dragonstrike,TRAP,normal,"[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.
+[Effect] Destroy 1 monster your opponent controls.",none,,,,,
