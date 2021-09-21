@@ -21,13 +21,13 @@ player1 = [
     [], # 3 = "hand"
     [], # 4 = "gy"
     [], # 5 = "excavated"
-    [], # 6 = "fieldSpellCardZone"
-    [], # 7 = "leftMonsterCardZone"
-    [], # 8 = "centerMonsterCardZone"
-    [], # 9 = "rightMonsterCardZone"
-    [], # 10 = "leftSTCardZone"
-    [], # 11 = "centerSTCardZone"
-    [] # 12 = "rightSTCardZone"
+    {}, # 6 = "fieldSpellCardZone"
+    {}, # 7 = "leftMonsterCardZone"
+    {}, # 8 = "centerMonsterCardZone"
+    {}, # 9 = "rightMonsterCardZone"
+    {}, # 10 = "leftSTCardZone"
+    {}, # 11 = "centerSTCardZone"
+    {} # 12 = "rightSTCardZone"
 ]    
 player2 = [ 
     8000, # "lp"
@@ -47,13 +47,13 @@ player2 = [
     [], # "hand"
     [], # "gy"
     [], # "excavated"
-    [], # "fieldSpellCardZone"
-    [], # "leftMonsterCardZone"
-    [], # "centerMonsterCardZone"
-    [], # "rightMonsterCardZone"
-    [], # "leftSTCardZone"
-    [], # "centerleftSTCardZone"
-    [] # "rightleftSTCardZone"
+    {}, # "fieldSpellCardZone"
+    {}, # "leftMonsterCardZone"
+    {}, # "centerMonsterCardZone"
+    {}, # "rightMonsterCardZone"
+    {}, # "leftSTCardZone"
+    {}, # "centerleftSTCardZone"
+    {} # "rightleftSTCardZone"
 ]
 players = [player1, player2]
 
@@ -99,7 +99,12 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
     print("\n\nTu campo:")
     # monstruos
     for i in player1[7:10]:
-        print(i,end="   ")
+        # if type(i) == dict:
+        #     print(i['name'], end="   ")
+        if len(i) > 0:
+            print(i['name'], end="   ")
+        else:
+            print(i, end="   ")
     print("\n")
     # s/t
     for i in player1[10:13]:
