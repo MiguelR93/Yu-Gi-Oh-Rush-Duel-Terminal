@@ -82,8 +82,19 @@ def activatingAnEff():
     pass
 
 
+def ocupiedZones(): # convertir en anónima
+    COUNTER = 0
+    for i in player1[7:10]:
+        if len(i) > 0:
+            COUNTER += 1
+    return COUNTER
+
+
 def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
     os.system("clear")
+    
+    print(f"Zonas de Monstruo ocupadas: {ocupiedZones()}")
+    
     print(f"Turn: {TURNSCOUNTER}")
     print(f"Rival LP: {player2[0]}")
     print(f"Deck rival: {len(player2[1])}") # deck
@@ -169,8 +180,7 @@ def drawPhase():
 mainPhaseOptions = "\n\n\nQué quieres hacer?\n1: Invocar un monstruo\n2: Colocar un monstruo\n3: Activar una Magia de tu mano\n4: Activar una Magia del campo\n5: Colocar una Trampa de tu mano\n6: Activar una trampa del campo\n7: Cambiar la posición de ataque a defensa\n8: cambiar la posición de defensa boca-abajo a ataque\n9: Cambiar la posición de defensa boca-arriba a ataque\n10: Ir a la Battle Phase\n11: Ir a la End Phase\n"
 
 
-def summoningAMonster():
-    summonAMonster = int(input("ingresa el índice del monstruo: "))
+def summonLoop(summonAMonster):
     while True:
         monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
         if len(player1[monsterZonePosition+6]) != 0:
@@ -187,6 +197,33 @@ def summoningAMonster():
             player1[3].remove(player1[3][summonAMonster])
             break
 
+
+def summoningAMonster():
+    summonAMonster = int(input("ingresa el índice del monstruo: "))
+
+    print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
+
+    if int(player1[3][summonAMonster]['level']) <= 4:
+        print("sí, Nvl 4 o menor")
+        summonLoop(summonAMonster)
+    elif int(player1[3][summonAMonster]['level']) < 7:
+    # else:
+        print("Necesitas sacrificar 1 monstruo")
+        if ocupiedZones() < 1:
+            print("No cuentas con monstruos suficines")
+        input() # solo para mostrar la respuesta
+        # if int(ocupiedZones()) >= 1:
+        #     print(f"Cuentas con monstruos suficientes: {ocupiedZones()}")
+        # else:
+        #     print("no puedes, man")
+    elif int(player1[3][summonAMonster]['level']) >= 7:
+        print("Necesitas sacrificar 2 monstruos")
+        if ocupiedZones() < 2:
+            print("No cuentas con monstruos suficines")
+        input() # solo para mostrar la respuesta
+            
+
+    
 
 def mainPhase():
     activatingAnEff()
