@@ -8,22 +8,8 @@ deckResult = []
 
 if __name__ == '__main__':
     for i in deckOrigin:
-        if "normal" in i[7]:
+        if "normal" in i[8]:
             newObject = monsterNormal.MonsterNormal(
-                i[0],
-                i[1],
-                i[2],
-                i[3],
-                i[4],
-                i[5],
-                i[6],
-                i[7],
-                i[8]
-            )
-            deckResult.append(newObject)
-
-        if "effect" in i[7]:
-            newObject = monsterEffect.MonsterEffect(
                 i[0],
                 i[1],
                 i[2],
@@ -36,7 +22,23 @@ if __name__ == '__main__':
                 i[9]
             )
             deckResult.append(newObject)
-        if ("SPELL" in i[2]) or ("trap" in i[2]):
+
+        if "effect" in i[8]:
+            newObject = monsterEffect.MonsterEffect(
+                i[0],
+                i[1],
+                i[2],
+                i[3],
+                i[4],
+                i[5],
+                i[6],
+                i[7],
+                i[8],
+                i[9],
+                i[10]
+            )
+            deckResult.append(newObject)
+        if ("SPELL" in i[2]) or ("TRAP" in i[2]):
             newObject = spellTrap.SpellTrap(
                 i[0],
                 i[1],
@@ -50,4 +52,4 @@ if __name__ == '__main__':
     
     print(deckResult)
     for i in deckResult:
-        print(vars(i))
+        print(vars(i), end=',\n')

@@ -9,8 +9,8 @@ class Monster(card.Card):
     defense = int
     frontier = list
     
-    def __init__(self, id, name, attribute, type, level, attack, defense, frontier, text):
-        super().__init__(id, name, text)
+    def __init__(self, id, name, cardType, attribute, type, level, attack, defense, frontier, text):
+        super().__init__(id, name, cardType, text)
         self.attribute = attribute
         self.type = type
         self.level = level
