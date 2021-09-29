@@ -101,7 +101,7 @@ def activatingAnEff():
     pass
 
 
-def ocupiedZones(): # convertir en anónima
+def ocupiedMonsterZones(): # convertir en anónima
     COUNTER = 0
     for i in player1[7:10]:
         if len(i) > 0:
@@ -112,7 +112,7 @@ def ocupiedZones(): # convertir en anónima
 def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
     os.system("clear")
     
-    print(f"Zonas de Monstruo ocupadas: {ocupiedZones()}")
+    print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones()}")
     
     print(f"Turn: {TURNSCOUNTER}")
     print(f"Rival LP: {player2[0]}")
@@ -248,25 +248,25 @@ def summoningAMonster():
         elif int(player1[3][summonAMonster]['level']) < 7:
         # else:
             print("Necesitas sacrificar 1 monstruo")
-            if ocupiedZones() < 1:
-                print("No cuentas con monstruos suficines")
+            if ocupiedMonsterZones() < 1:
+                print("No cuentas con monstruos suficientes")
                 input() # solo para mostrar la respuesta
             else:
                 print("Elige los monstruos para sacrificar:\n")
                 sacrifice1()
-            # if int(ocupiedZones()) >= 1:
-            #     print(f"Cuentas con monstruos suficientes: {ocupiedZones()}")
+            # if int(ocupiedMonsterZones()) >= 1:
+            #     print(f"Cuentas con monstruos suficientes: {ocupiedMonsterZones()}")
             # else:
             #     print("no puedes, man")
         elif int(player1[3][summonAMonster]['level']) >= 7:
             print("Necesitas sacrificar 2 monstruos")
-            if ocupiedZones() < 2:
-                print("No cuentas con monstruos suficines")
+            if ocupiedMonsterZones() < 2:
+                print("No cuentas con monstruos suficientes")
                 input() # solo para mostrar la respuesta
             
 
 def evalLevelMonsterInHand():
-    summonAMonster = int(input("ingresa el índice del monstruo: "))
+    summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
     if 'MONSTER' not in player1[3][summonAMonster]['cardType']:
         print('Eso no es un monstruo')
         input()
@@ -275,8 +275,8 @@ def evalLevelMonsterInHand():
         print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
         summonLoop(summonAMonster)
     elif int(player1[3][summonAMonster]['level']) <=6:
-        if ocupiedZones() < 1:
-            print("No cuentas con monstruos suficines")
+        if ocupiedMonsterZones() < 1:
+            print("No cuentas con monstruos suficientes")
             input()
         else:
             # mostrar los monstruos a sacrificar
@@ -288,16 +288,8 @@ def evalLevelMonsterInHand():
 
 def mainPhase():
     activatingAnEff()
-    # for i,a in enumerate(player1[3]):
-    #     if "Monstruo" in player1[3][i]:
-    #         print("\nEs un monstruo!")
-    #     elif "Magia" in player1[3][i]:
-    #         print("\nEs una Magia!")
-    #     elif "Trampa" in player1[3][i]:
-    #         print("\nEs una Trampa!")
-    # Acciones en Main Phase
+
     while True:
-    # Mostrando el campo???
         duelStatus()
         actionInMP = int(input(mainPhaseOptions))
         if actionInMP == 1:
@@ -309,17 +301,6 @@ def mainPhase():
                 evalLevelMonsterInHand()
             else:
                 print("no tienes monstruos:")
-            # while True:
-            #     if len(player1[7]) == 0:
-            #         print("No puedes invocar este")
-            #         break
-            #     elif int(player1[3][summonAMonster]['level']) >= 5:
-            #         print("Debes sacrificar 1 monstruo")
-            #         tributado = int(input("Escribe el índice del monstruo a tributar:\n7: izquierda\n8: centro\n9: derecha\n0: Cancelar\n"))
-            #         if tributado != 0:
-            #             player1.remove(player1[tributado])
-            #         else:
-            #             break
         elif actionInMP == 2:
             pass
         elif actionInMP == 3:
