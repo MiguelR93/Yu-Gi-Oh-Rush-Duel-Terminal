@@ -196,8 +196,20 @@ def drawPhase():
             drawACard()
 
 
-mainPhaseOptions = "\n\n\nQué quieres hacer?\n1: Invocar un monstruo\n2: Colocar un monstruo\n3: Activar una Magia de tu mano\n4: Activar una Magia del campo\n5: Colocar una Trampa de tu mano\n6: Activar una trampa del campo\n7: Cambiar la posición de ataque a defensa\n8: cambiar la posición de defensa boca-abajo a ataque\n9: Cambiar la posición de defensa boca-arriba a ataque\n10: Ir a la Battle Phase\n11: Ir a la End Phase\n"
-
+mainPhaseOptions = [
+'\nQué quieres hacer?', 
+'1: Invocar un monstruo', 
+'2: Colocar un monstruo', 
+'3: Activar una Magia de tu mano', 
+'4: Activar una Magia del campo', 
+'5: Colocar una Trampa de tu mano', 
+'6: Activar una trampa del campo', 
+'7: Cambiar la posición de ataque a defensa', 
+'8: cambiar la posición de defensa boca-abajo a ataque', 
+'9: Cambiar la posición de defensa boca-arriba a ataque', 
+'10: Ir a la Battle Phase', 
+'11: Ir a la End Phase'
+]
 
 def summonLoop(summonAMonster):
     while True:
@@ -285,22 +297,29 @@ def evalLevelMonsterInHand():
             sacrifice1(summonAMonster)
 
 
+def isThereMonstersInHand():
+    COUNTER = 0
+    for i in player1[3]:
+        if 'MONSTER' in i['cardType']:
+            COUNTER += 1
+    if COUNTER >= 1:
+        # evalLevelMonsterInHand()
+        return mainPhaseOptions[1]
+    # else:
+    #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
 
 def mainPhase():
     activatingAnEff()
 
     while True:
         duelStatus()
-        actionInMP = int(input(mainPhaseOptions))
-        if actionInMP == 1:
-            COUNTER = 0
-            for i in player1[3]:
-                if 'MONSTER' in i['cardType']:
-                    COUNTER += 1
-            if COUNTER >= 1:
-                evalLevelMonsterInHand()
-            else:
-                print("no tienes monstruos:")
+        # for i in mainPhaseOptions:
+        #     print(i)
+        print(f'\n{isThereMonstersInHand()}')
+        actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
+
+        if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
+            pass
         elif actionInMP == 2:
             pass
         elif actionInMP == 3:
