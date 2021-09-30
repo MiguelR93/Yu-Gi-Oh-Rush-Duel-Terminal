@@ -198,16 +198,16 @@ def drawPhase():
 
 mainPhaseOptions = [
 '\nQué quieres hacer?', 
-'1: Invocar un monstruo', 
-'2: Colocar un monstruo', 
-'3: Activar una Magia de tu mano', 
-'4: Activar una Magia del campo', 
-'5: Colocar una Trampa de tu mano', 
-'6: Activar una trampa del campo', 
-'7: Cambiar la posición de ataque a defensa', 
-'8: cambiar la posición de defensa boca-abajo a ataque', 
-'9: Cambiar la posición de defensa boca-arriba a ataque', 
-'10: Ir a la Battle Phase', 
+isThereMonstersInHand(), 
+# '2: Colocar un monstruo', 
+# '3: Activar una Magia de tu mano', 
+# '4: Activar una Magia del campo', 
+# '5: Colocar una Trampa de tu mano', 
+# '6: Activar una trampa del campo', 
+# '7: Cambiar la posición de ataque a defensa', 
+# '8: cambiar la posición de defensa boca-abajo a ataque', 
+# '9: Cambiar la posición de defensa boca-arriba a ataque', 
+# '10: Ir a la Battle Phase', 
 '11: Ir a la End Phase'
 ]
 
@@ -304,7 +304,8 @@ def isThereMonstersInHand():
             COUNTER += 1
     if COUNTER >= 1:
         # evalLevelMonsterInHand()
-        return mainPhaseOptions[1]
+        # return mainPhaseOptions[1]
+        return '1: Invocar un monstruo'
     # else:
     #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
 
@@ -315,7 +316,9 @@ def mainPhase():
         duelStatus()
         # for i in mainPhaseOptions:
         #     print(i)
-        print(f'\n{isThereMonstersInHand()}')
+        # print(f'\n{isThereMonstersInHand()}')
+        for i in mainPhaseOptions:
+            print(i)
         actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
         if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
