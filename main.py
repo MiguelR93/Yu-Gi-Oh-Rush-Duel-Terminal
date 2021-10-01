@@ -14,22 +14,23 @@ player1 = [
         {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
         {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
         {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
-        {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+
+        # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-         {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        #  {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-         {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        #  {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
        ], # 1 = "deck"
@@ -132,7 +133,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
         # if type(i) == dict:
         #     print(i['name'], end="   ")
         if len(i) > 0:
-            print(i['name'], f"Nivel: {i['level']}/ATK/{i['attack']}/DEF/{i['defense']}",sep="//", end="   ")
+            print(i['name'], f"Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n")
@@ -147,7 +148,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
     print(f"Tu mano: {len(player1[3])}")
     for i,a in enumerate(player1[3]):
         if 'level' in player1[3][i]:
-            print(f"{i}: {player1[3][i]['name'], player1[3][i]['level']}")
+            print(f"{i}: {player1[3][i]['name']}| Nvl: {player1[3][i]['level']} ATK/{player1[3][i]['attack']} DEF/{player1[3][i]['defense']}")
         else:
             print(f"{i}: {player1[3][i]['name'], player1[3][i]['cardType'], player1[3][i]['icon']}")
 
@@ -198,35 +199,45 @@ def drawPhase():
 
 mainPhaseOptions = [
 '\nQué quieres hacer?', 
-isThereMonstersInHand(), 
-# '2: Colocar un monstruo', 
-# '3: Activar una Magia de tu mano', 
-# '4: Activar una Magia del campo', 
-# '5: Colocar una Trampa de tu mano', 
-# '6: Activar una trampa del campo', 
-# '7: Cambiar la posición de ataque a defensa', 
-# '8: cambiar la posición de defensa boca-abajo a ataque', 
-# '9: Cambiar la posición de defensa boca-arriba a ataque', 
-# '10: Ir a la Battle Phase', 
+'1: Invocar un monstruo', 
+'2: Colocar un monstruo', 
+'3: Activar una Magia de tu mano', 
+'4: Activar una Magia del campo', 
+'5: Colocar una Trampa de tu mano', 
+'6: Activar una trampa del campo', 
+'7: Cambiar la posición de ataque a defensa', 
+'8: cambiar la posición de defensa boca-abajo a ataque', 
+'9: Cambiar la posición de defensa boca-arriba a ataque', 
+'10: Ir a la Battle Phase', 
 '11: Ir a la End Phase'
 ]
 
 def summonLoop(summonAMonster):
-    while True:
-        monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
-        if len(player1[monsterZonePosition+6]) != 0:
-            ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
-            if ocupado == 1:
-                continue
-            elif ocupado == 2:
+    monsterZoneCounter = 0
+    for i in player1[7:10]:
+        if len(i) > 0:
+            monsterZoneCounter += 1
+    if monsterZoneCounter > 2:
+        print("No hay zonas disponibles")
+        input("Presiona Enter para continuar")
+    else:
+        while True:
+            monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
+            if len(player1[monsterZonePosition+6]) != 0:
+                ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+                if ocupado == 1:
+                    continue
+                elif ocupado == 2:
+                    break
+            else:
+                choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
+                if choosePosition == 1:
+                    player1[3][summonAMonster]['position'] = 'Ataque'
+                elif choosePosition == 2:
+                    player1[3][summonAMonster]['position'] = 'Defensa Boca-Abajo'
+                player1[monsterZonePosition+6] = player1[3][summonAMonster]
+                player1[3].remove(player1[3][summonAMonster])
                 break
-        else:
-            choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
-            if choosePosition == 1:
-                player1[3][summonAMonster]['position'] = 'Attack'
-            player1[monsterZonePosition+6] = player1[3][summonAMonster]
-            player1[3].remove(player1[3][summonAMonster])
-            break
 
 
 def sacrifice1(summonAMonster):
@@ -281,19 +292,27 @@ def evalLevelMonsterInHand():
     summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
     if 'MONSTER' not in player1[3][summonAMonster]['cardType']:
         print('Eso no es un monstruo')
-        input()
-        pass
+        input("Presiona enter para continuar")
     elif int(player1[3][summonAMonster]['level']) <=4:
         print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
         summonLoop(summonAMonster)
     elif int(player1[3][summonAMonster]['level']) <=6:
         if ocupiedMonsterZones() < 1:
             print("No cuentas con monstruos suficientes")
-            input()
+            input("Presiona Enter para continuar")
         else:
             # mostrar los monstruos a sacrificar
             print("entramos a sacrificar")
             input()
+            sacrifice1(summonAMonster)
+    elif int(player1[3][summonAMonster]['level']) >= 7:
+        if ocupiedMonsterZones() < 2:
+            print("No cuentas con monstruos suficientes")
+            input("Presiona Enter para continuar")
+        else:
+            # mostrar los monstruos a sacrificar
+            # print("entramos a sacrificar")
+            # input()
             sacrifice1(summonAMonster)
 
 
@@ -304,8 +323,9 @@ def isThereMonstersInHand():
             COUNTER += 1
     if COUNTER >= 1:
         # evalLevelMonsterInHand()
-        # return mainPhaseOptions[1]
-        return '1: Invocar un monstruo'
+        print(mainPhaseOptions[1])
+    else:
+        pass
     # else:
     #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
 
@@ -316,13 +336,15 @@ def mainPhase():
         duelStatus()
         # for i in mainPhaseOptions:
         #     print(i)
-        # print(f'\n{isThereMonstersInHand()}')
-        for i in mainPhaseOptions:
-            print(i)
+
+        # Main Phas Opctions
+        print(mainPhaseOptions[0])
+        isThereMonstersInHand()
+        print(mainPhaseOptions[11])
         actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
         if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
-            pass
+            evalLevelMonsterInHand()
         elif actionInMP == 2:
             pass
         elif actionInMP == 3:
