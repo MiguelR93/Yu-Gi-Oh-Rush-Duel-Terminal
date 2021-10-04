@@ -243,20 +243,21 @@ def summonLoop(summonAMonster, summonKind, position):
             print(player1[monsterZonePosition+6])
             littleSleep
             if len(player1[monsterZonePosition+6]) != 0:
-                ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
-                if ocupado == 1:
+                if summonKind == 'tribute Summon':
+                    print("Zona ocupada, elige otra")
+                    littleSleep()
                     continue
-                elif ocupado == 2:
-                    break
+                else:
+                    ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+                    if ocupado == 1:
+                        continue
+                    elif ocupado == 2:
+                        break
             else:
-                # choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
-                # if choosePosition == 1:
                 player1[3][summonAMonster]['position'], player1[3][summonAMonster]['summonKind'], player1[3][summonAMonster]['summoned this turn?'] = position, summonKind, 'yes'
-                print(player1[3][summonAMonster])
-                # elif choosePosition == 2:
-                #     player1[3][summonAMonster]['position'] = 'Defensa Boca-Abajo'
-                player1[monsterZonePosition+6] = player1[3][summonAMonster]
-                player1[3].remove(player1[3][summonAMonster])
+                print(player1[3][summonAMonster]) # imprime el estado del monstruo
+                player1[monsterZonePosition+6] = player1[3][summonAMonster] # pone el monstruo de la mano en el campo
+                player1[3].remove(player1[3][summonAMonster]) # quita de la mano al monstruo invocado
                 break
 
 
