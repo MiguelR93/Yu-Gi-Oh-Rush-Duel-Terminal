@@ -243,11 +243,16 @@ def summonLoop(summonAMonster, summonKind, position):
             print(player1[monsterZonePosition+6])
             littleSleep
             if len(player1[monsterZonePosition+6]) != 0:
-                ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
-                if ocupado == 1:
+                if summonKind == 'tribute Summon':
+                    print("Zona ocupada, elige otra")
+                    littleSleep()
                     continue
-                elif ocupado == 2:
-                    break
+                else:
+                    ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+                    if ocupado == 1:
+                        continue
+                    elif ocupado == 2:
+                        break
             else:
                 # choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
                 # if choosePosition == 1:
