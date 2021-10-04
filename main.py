@@ -240,6 +240,8 @@ def summonLoop(summonAMonster, summonKind, position):
     else:
         while True:
             monsterZonePosition = int(input("En dónde quieres ponerlo?\n1: zona Izquierda\n2: zona central\n3: zona derecha\n"))
+            print(player1[monsterZonePosition+6])
+            littleSleep
             if len(player1[monsterZonePosition+6]) != 0:
                 ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
                 if ocupado == 1:
@@ -278,7 +280,8 @@ def sacrifice1(summonAMonster, position):
     except ValueError:
         print('Debes ingresar un número')
         littleSleep()
-    player1.remove(player1[choosed + 7])
+    # player1.remove(player1[choosed + 7])
+    player1[choosed + 7] = []
     summonLoop(summonAMonster, 'tribute Summon', position)
 
 
