@@ -1,13 +1,13 @@
-import random, os
+import random, os, time
 
 
 player1 = [ 
     8000, # 0 = "lp"
     [
         # {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
-        # {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
-        # {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
-        # {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
+        {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
+        {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
+        {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
         
         {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
         {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
@@ -91,6 +91,7 @@ thereIsNoWinner = True
 youWin = "YOU WIN!!!"
 youLose = "Y O U  L O S E"
 TURNSCOUNTER = 0
+def littleSleep(): time.sleep(1.5)
 
 
 def descontadorAleatorioDeLifePoints():
@@ -228,7 +229,7 @@ mainPhaseOptions = [
 '11: Ir a la End Phase'
 ]
 
-def summonLoop(summonAMonster):
+def summonLoop(summonAMonster, summonKind, position):
     monsterZoneCounter = 0
     for i in player1[7:10]:
         if len(i) > 0:
@@ -246,90 +247,76 @@ def summonLoop(summonAMonster):
                 elif ocupado == 2:
                     break
             else:
-                choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
-                if choosePosition == 1:
-                    player1[3][summonAMonster]['position'] = 'Ataque'
-                elif choosePosition == 2:
-                    player1[3][summonAMonster]['position'] = 'Defensa Boca-Abajo'
+                # choosePosition = int(input("Elige la posición:\n1: Ataque\n2: Defensa\n"))
+                # if choosePosition == 1:
+                player1[3][summonAMonster]['position'], player1[3][summonAMonster]['summonKind'], player1[3][summonAMonster]['summoned this turn?'] = position, summonKind, 'yes'
+                print(player1[3][summonAMonster])
+                # elif choosePosition == 2:
+                #     player1[3][summonAMonster]['position'] = 'Defensa Boca-Abajo'
                 player1[monsterZonePosition+6] = player1[3][summonAMonster]
                 player1[3].remove(player1[3][summonAMonster])
                 break
 
 
-def sacrifice1(summonAMonster):
+def sacrifice1(summonAMonster, position):
     summonAMonster
     # debe mostras los monstruos sacrificables y sus índices. Debe dar la opción para realizar cambios o cancelar la invocación y Confirmar la invocación
     print("Monstruos en campo\n")
-    input()
+    # input()
     validValues = []
     for i,a in enumerate(player1[7:10]):
         if len(a) != 0:
             print(f"{i}: {a['name']}")
-            input()
+            # input()
             validValues.append(a)
-    choosed = int(input("Elige el monstruos a sacrificar:"))
+    try:
+        choosed = int(input("Elige el monstruos a sacrificar:"))
+    except IndexError:
+        print('Valor equivocado')
+        # input()
+        littleSleep()
+    except ValueError:
+        print('Debes ingresar un número')
+        littleSleep()
     player1.remove(player1[choosed + 7])
-    summonLoop(summonAMonster)
+    summonLoop(summonAMonster, 'tribute Summon', position)
 
 
-def summoningAMonster():
-    summonAMonster = int(input("ingresa el índice del monstruo: "))
-
-    if 'MONSTER' not in player1[3][summonAMonster]['cardType']:
-        print("no es un monstruo")
-        input()
-    else:
-        print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
-
-        if int(player1[3][summonAMonster]['level']) <= 4:
-            print("sí, Nvl 4 o menor")
-            summonLoop(summonAMonster)
-        elif int(player1[3][summonAMonster]['level']) < 7:
-        # else:
-            print("Necesitas sacrificar 1 monstruo")
+def normalSummon(position):
+    try:
+        summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
+        if 'MONSTER' not in player1[3][summonAMonster]['cardType']: # Cuando lo que se elige no es un monstruo
+            print('Eso no es un monstruo')
+            littleSleep()
+        elif int(player1[3][summonAMonster]['level']) <= 4: # Cuando lo que se elige es un monstruo nvl<=4
+            # print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
+            summonLoop(summonAMonster, 'Normal Summon', position)
+        elif int(player1[3][summonAMonster]['level']) <=6:
             if ocupiedMonsterZones() < 1:
                 print("No cuentas con monstruos suficientes")
-                input() # solo para mostrar la respuesta
+                littleSleep()
+                # input()
             else:
-                print("Elige los monstruos para sacrificar:\n")
-                sacrifice1()
-            # if int(ocupiedMonsterZones()) >= 1:
-            #     print(f"Cuentas con monstruos suficientes: {ocupiedMonsterZones()}")
-            # else:
-            #     print("no puedes, man")
-        elif int(player1[3][summonAMonster]['level']) >= 7:
-            print("Necesitas sacrificar 2 monstruos")
-            if ocupiedMonsterZones() < 2:
-                print("No cuentas con monstruos suficientes")
-                input() # solo para mostrar la respuesta
-            
-
-def normalSummon():
-    summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
-    if 'MONSTER' not in player1[3][summonAMonster]['cardType']: # Cuando lo que se elige no es un monstruo
-        print('Eso no es un monstruo')
-        input("Presiona enter para continuar")
-    elif int(player1[3][summonAMonster]['level']) <= 4: # Cuando lo que se elige es un monstruo nvl<=4
-        # print(f"\nNivel del monstruo: {player1[3][summonAMonster]['level']}\n")
-        summonLoop(summonAMonster)
-    # elif int(player1[3][summonAMonster]['level']) <=6:
-    #     if ocupiedMonsterZones() < 1:
-    #         print("No cuentas con monstruos suficientes")
-    #         input("Presiona Enter para continuar")
-    #     else:
-    #         # mostrar los monstruos a sacrificar
-    #         print("entramos a sacrificar")
-    #         input()
-    #         sacrifice1(summonAMonster)
-    # elif int(player1[3][summonAMonster]['level']) >= 7:
-    #     if ocupiedMonsterZones() < 2:
-    #         print("No cuentas con monstruos suficientes")
-    #         input("Presiona Enter para continuar")
-    #     else:
-    #         # mostrar los monstruos a sacrificar
-    #         # print("entramos a sacrificar")
-    #         # input()
-    #         sacrifice1(summonAMonster)
+                # mostrar los monstruos a sacrificar
+                # print("entramos a sacrificar")
+                # input()
+                sacrifice1(summonAMonster, position)
+        # elif int(player1[3][summonAMonster]['level']) >= 7:
+        #     if ocupiedMonsterZones() < 2:
+        #         print("No cuentas con monstruos suficientes")
+        #         input("Presiona Enter para continuar")
+        #     else:
+        #         # mostrar los monstruos a sacrificar
+        #         # print("entramos a sacrificar")
+        #         # input()
+        #         sacrifice1(summonAMonster)
+    except IndexError:
+        print('Valor equivocado')
+        # input()
+        littleSleep()
+    except ValueError:
+        print('Debes ingresar un número')
+        littleSleep()
 
 
 def isThereMonstersInHand():
@@ -339,7 +326,7 @@ def isThereMonstersInHand():
             COUNTER += 1
     if COUNTER >= 1:
         # normalSummon()
-        print(mainPhaseOptions[1])
+        print(mainPhaseOptions[1],mainPhaseOptions[2],sep='\n')
     else:
         pass
     # else:
@@ -357,31 +344,35 @@ def mainPhase():
         print(mainPhaseOptions[0])
         isThereMonstersInHand()
         print(mainPhaseOptions[11])
-        actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
+        try:
+            actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
-        if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
-            normalSummon()
-        elif actionInMP == 2:
-            pass
-        elif actionInMP == 3:
-            pass
-        elif actionInMP == 4:
-            pass
-        elif actionInMP == 5:
-            pass
-        elif actionInMP == 6:
-            pass
-        elif actionInMP == 7:
-            pass
-        elif actionInMP == 8:
-            pass
-        elif actionInMP == 9:
-            pass
-        elif actionInMP == 10:
-            pass
-        elif actionInMP == 11:
-            # endPhase()
-            break
+            if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
+                normalSummon('Attack')
+            elif actionInMP == 2:
+                normalSummon('Defense Face-Down')
+            elif actionInMP == 3:
+                pass
+            elif actionInMP == 4:
+                pass
+            elif actionInMP == 5:
+                pass
+            elif actionInMP == 6:
+                pass
+            elif actionInMP == 7:
+                pass
+            elif actionInMP == 8:
+                pass
+            elif actionInMP == 9:
+                pass
+            elif actionInMP == 10:
+                pass
+            elif actionInMP == 11:
+                # endPhase()
+                break
+        except ValueError:
+            print('Debes ingresar un número')
+            time.sleep(1.5)
 
 
 def battlePhase():
