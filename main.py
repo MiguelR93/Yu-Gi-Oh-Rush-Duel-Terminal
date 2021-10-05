@@ -4,10 +4,13 @@ import random, os, time
 player1 = [ 
     8000, # 0 = "lp"
     [
-        # {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
-        {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
+        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        
+        # {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
+        # {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
         
         {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
         {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
@@ -128,6 +131,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
     print(f"Rival LP: {player2[0]}")
     print(f"Deck rival: {len(player2[1])}") # deck
     print(f"Cartas en mano rival: {len(player2[3])}") # mano
+    print(f"Cartas en GY rival: {len(player2[4])}")
     print("\nCampo oponente:")
     # s/t
     for i in player2[-1:-4:-1]:
@@ -153,6 +157,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
     print("\n")
     print(f"Tus Lp: {player1[0]}")
     print(f"Tu deck: {len(player1[1])}")
+    print(f"Tu GY: {len(player1[4])}")
     # imprimiendo la mano:
     print(f"Tu mano: {len(player1[3])}")
     for i,a in enumerate(player1[3]):
@@ -274,13 +279,47 @@ def summonLoop(summonAMonster, summonKind, position):
                 continue
 
 
-# def sacrifice2(summonAMonster, position):
-#     pass
-
+def sacrifice2(summonAMonster, position):
+    print("Monstruos en campo\n")
+    for i,a in enumerate(player1[7:10]):
+        if len(a) != 0:
+            print(f"{i}: {a['name']}")
+    try:
+        while True:
+            choosed = int(input("Elige el primer monstruo a sacrificar: "))
+            try:
+                opciones = ["1: Sí", "2: No, cambiar este"]
+                print("Elegir el segundo?")
+                for i in opciones:
+                    print(i)
+                confirmar = int(input("Tu respuesta: "))
+                if confirmar == 1:
+                    choosed2 = int(input("Elige el segundo monstruo a sacrificar: "))
+                    break
+                elif confirmar == 2:
+                    continue
+                elif (confirmar != 1) and (confirmar != 2):
+                    print("Respuesta no válida")
+                    littleSleep()
+            except ValueError:
+                print('Debes ingresar un número')
+        # choosed2 =  int(input("Elige el segundo monstruo a sacrificar: "))
+    except IndexError:
+        print('Valor equivocado')
+        # input()
+        littleSleep()
+    except ValueError:
+        print('Debes ingresar un número')
+        littleSleep()
+    # player1.remove(player1[choosed + 7])
+    player1[4].append(player1[choosed + 7])
+    player1[choosed + 7] = []
+    player1[4].append(player1[choosed2 + 7])
+    player1[choosed2 + 7] = []
+    summonLoop(summonAMonster, 'tribute Summon', position)
 
 
 def sacrifice1(summonAMonster, position):
-    # summonAMonster # No recuerdo por qué esto estaba aquí ._.
     # debe mostras los monstruos sacrificables y sus índices. Debe dar la opción para realizar cambios o cancelar la invocación y Confirmar la invocación
     print("Monstruos en campo\n")
     # input()
@@ -300,6 +339,7 @@ def sacrifice1(summonAMonster, position):
         print('Debes ingresar un número')
         littleSleep()
     # player1.remove(player1[choosed + 7])
+    player1[4].append(player1[choosed + 7])
     player1[choosed + 7] = []
     summonLoop(summonAMonster, 'tribute Summon', position)
 
@@ -323,15 +363,15 @@ def normalSummon(position):
                 # print("entramos a sacrificar")
                 # input()
                 sacrifice1(summonAMonster, position)
-        # elif int(player1[3][summonAMonster]['level']) >= 7:
-        #     if ocupiedMonsterZones() < 2:
-        #         print("No cuentas con monstruos suficientes")
-        #         littleSleep()
-        #     else:
+        elif int(player1[3][summonAMonster]['level']) >= 7:
+            if ocupiedMonsterZones() < 2:
+                print("No cuentas con monstruos suficientes")
+                littleSleep()
+            else:
         #         # mostrar los monstruos a sacrificar
         #         # print("entramos a sacrificar")
         #         # input()
-                # sacrifice2(summonAMonster, position)
+                sacrifice2(summonAMonster, position)
     except IndexError:
         print('Valor equivocado')
         # input()
