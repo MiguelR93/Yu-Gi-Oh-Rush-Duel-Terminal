@@ -244,6 +244,7 @@ def summonLoop(summonAMonster, summonKind, position):
         input("Presiona Enter para continuar")
     else:
         while True:
+            duelStatus()
             try:
                 monstersZones = ["1: zona Izquierda", "2: zona central", "3: zona derecha"]
                 print('En dónde quieres ponerlo?')
@@ -280,42 +281,45 @@ def summonLoop(summonAMonster, summonKind, position):
 
 
 def sacrifice2(summonAMonster, position):
-    print("Monstruos en campo\n")
-    for i,a in enumerate(player1[7:10]):
-        if len(a) != 0:
-            print(f"{i}: {a['name']}")
-    try:
-        while True:
-            choosed = int(input("Elige el primer monstruo a sacrificar: "))
-            try:
-                opciones = ["1: Sí", "2: No, cambiar este"]
-                print("Elegir el segundo?")
-                for i in opciones:
-                    print(i)
-                confirmar = int(input("Tu respuesta: "))
-                if confirmar == 1:
-                    choosed2 = int(input("Elige el segundo monstruo a sacrificar: "))
-                    break
-                elif confirmar == 2:
-                    continue
-                elif (confirmar != 1) and (confirmar != 2):
-                    print("Respuesta no válida")
-                    littleSleep()
-            except ValueError:
-                print('Debes ingresar un número')
-        # choosed2 =  int(input("Elige el segundo monstruo a sacrificar: "))
-    except IndexError:
-        print('Valor equivocado')
-        # input()
-        littleSleep()
-    except ValueError:
-        print('Debes ingresar un número')
-        littleSleep()
-    # player1.remove(player1[choosed + 7])
-    player1[4].append(player1[choosed + 7])
-    player1[choosed + 7] = []
-    player1[4].append(player1[choosed2 + 7])
-    player1[choosed2 + 7] = []
+    while True:
+        duelStatus()
+        print("\nMonstruos en campo:")
+        tributeAble = []
+        for i,a in enumerate(player1[7:10]):
+            if len(a) != 0:
+                print(f"{i}: {a['name']}")
+                tributeAble.append(i)
+        choosed = []
+        tributed = int(input("Elige el primer monstruo a sacrificar: "))
+        if tributed not in tributeAble:
+            print("No es un valor válido")
+            littleSleep()
+            continue
+        choosed.append(tributed)
+        try:
+            print("Elige el segundo monstruo a sacrificar o vuelve a elegir al primero para cambiarlo: ")
+            tributed2 = int(input())
+            if tributed2 == choosed[0]:
+                continue
+            elif tributed2 not in tributeAble:
+                print("No es un valor válido")
+                littleSleep()
+            elif tributed2 != choosed[0]:
+                tributeAble.append(tributed2)
+                break
+                littleSleep()
+        except IndexError:
+            print('Valor equivocado')
+            continue
+            littleSleep()
+        except ValueError:
+            print('Debes ingresar un número')
+            continue
+            littleSleep()
+    player1[4].append(player1[tributed + 7])
+    player1[tributed + 7] = []
+    player1[4].append(player1[tributed2 + 7])
+    player1[tributed2 + 7] = []
     summonLoop(summonAMonster, 'tribute Summon', position)
 
 
