@@ -247,11 +247,11 @@ def summonLoop(summonAMonster, summonKind, position):
             duelStatus()
             try:
                 monstersZones = ["1: zona Izquierda", "2: zona central", "3: zona derecha"]
-                print('En dónde quieres ponerlo?')
+                print('\nEn dónde quieres ponerlo?')
                 for i,a in enumerate(player1[7:10]):
                     if len(a) == 0:
                         print(monstersZones[i])
-                monsterZonePosition = int(input("Escribe el número a la izquierda: "))
+                monsterZonePosition = int(input("\nEscribe el número a la izquierda: "))
                 if len(player1[monsterZonePosition+6]) != 0:
                     if summonKind == 'tribute Summon':
                         print("Zona ocupada, elige otra")
@@ -263,6 +263,10 @@ def summonLoop(summonAMonster, summonKind, position):
                             continue
                         elif ocupado == 2:
                             break
+                elif (monsterZonePosition+6 > 9) or (monsterZonePosition+6 < 7):
+                    print("No es una zona de monstruo")
+                    littleSleep()
+                    continue
                 else:
                     player1[3][summonAMonster]['position'], player1[3][summonAMonster]['summonKind'], player1[3][summonAMonster]['summoned this turn?'] = position, summonKind, 'yes'
                     print(player1[3][summonAMonster]) # imprime el estado del monstruo
