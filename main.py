@@ -4,13 +4,13 @@ import random, os, time
 player1 = [ 
     8000, # 0 = "lp"
     [
-        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '1', 'name': 'Rush Dragon Dragears', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send the top card of your Deck to the GY.\n[Effect]: This turn, this card can make a second attack during the Battle Phase it destroyed a monster by battle.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '7', 'attack': '2500', 'defense': '1500', 'frontier': '[effect]', 'effect': 'none'},
         
-        {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
-        {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
+        # {'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
+        # {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
         
         # {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
         # {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
@@ -402,6 +402,17 @@ def isThereMonstersInHand():
     # else:
     #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
 
+def isThereSpellTrapInHand():
+    COUNTER = 0
+    for i in player1[3]:
+        if ('SPELL' in i['cardType']) or ('TRAP' in i['cardType']):
+            COUNTER += 1
+    if COUNTER >= 1:
+        # normalSummon()
+        print(mainPhaseOptions[3], mainPhaseOptions[4], mainPhaseOptions[5],sep='\n')
+    else:
+        pass
+
 def mainPhase():
     activatingAnEff()
 
@@ -413,9 +424,9 @@ def mainPhase():
         # Main Phas Opctions
         print(mainPhaseOptions[0])
         isThereMonstersInHand()
-        print(mainPhaseOptions[11])
         isThereSpellTrapInHand()
-        print(mainPhaseOptions[5])
+        print(mainPhaseOptions[11])
+
         try:
             actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
