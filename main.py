@@ -32,13 +32,13 @@ player1 = [
         {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-         {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
         {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
         {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
         {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-         {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
         {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
         {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
         {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
@@ -146,13 +146,16 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
         # if type(i) == dict:
         #     print(i['name'], end="   ")
         if len(i) > 0:
-            print(i['name'], f"Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
+            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n")
     # s/t
     for i in player1[10:13]:
-        print(i,end="   ")
+        if len(i) > 0:
+            print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
+        else:
+            print(i,end="   ")
     # Tu campo:
     print("\n")
     print(f"Tus Lp: {player1[0]}")
@@ -164,7 +167,7 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
         if 'level' in player1[3][i]:
             print(f"{i}: {player1[3][i]['name']}| Nvl: {player1[3][i]['level']} ATK/{player1[3][i]['attack']} DEF/{player1[3][i]['defense']}")
         else:
-            print(f"{i}: {player1[3][i]['name'], player1[3][i]['cardType'], player1[3][i]['icon']}")
+            print(f"{i}: {player1[3][i]['name']} | {player1[3][i]['cardType']} | {player1[3][i]['icon']}")
 
 
 def gameStart():
@@ -228,7 +231,7 @@ mainPhaseOptions = [
 '5: Colocar una Trampa o Magia de tu mano', 
 '6: Activar una trampa del campo', 
 '7: Cambiar la posición de ataque a defensa', 
-'8: cambiar la posición de defensa boca-abajo a ataque', 
+'8: Cambiar la posición de defensa boca-abajo a ataque', 
 '9: Cambiar la posición de defensa boca-arriba a ataque', 
 '10: Ir a la Battle Phase', 
 '11: Ir a la End Phase'
@@ -241,7 +244,7 @@ def summonLoop(summonAMonster, summonKind, position):
             monsterZoneCounter += 1
     if monsterZoneCounter > 2:
         print("No hay zonas disponibles")
-        input("Presiona Enter para continuar")
+        littleSleep()
     else:
         while True:
             duelStatus()
@@ -402,6 +405,73 @@ def isThereMonstersInHand():
     # else:
     #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
 
+
+def placeSTLoop(position, placeST):
+    sTZoneCounter = 0
+    for i in player1[10:13]:
+        if len(i) > 0:
+            sTZoneCounter += 1
+    if sTZoneCounter > 2:
+        print("No hay zonas disponibles")
+        littleSleep()
+    else:
+        while True:
+            duelStatus()
+            try:
+                sTZones = ["1: zona Izquierda", "2: zona central", "3: zona derecha"]
+                print('\nEn dónde quieres ponerlo?')
+                for i,a in enumerate(player1[10:13]):
+                    if len(a) == 0:
+                        print(sTZones[i])
+                sTZonePosition = int(input("\nEscribe el número a la izquierda: "))
+                if len(player1[sTZonePosition+9]) != 0:
+                    # print("Zona ocupada, elige otra")
+                    # littleSleep()
+                    # continue
+                    # else:
+                    ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+                    if ocupado == 1:
+                        continue
+                    elif ocupado == 2:
+                        break
+                elif (sTZonePosition + 9 > 12) or (sTZonePosition + 9 < 10):
+                    print("No es una zona de magia/trampa")
+                    littleSleep()
+                    continue
+                else:
+                    player1[3][placeST]['position'] = position
+                    print(player1[3][placeST]) # imprime el estado de la s/t
+                    player1[sTZonePosition + 9] = player1[3][placeST] # pone la s/t
+                    player1[3].remove(player1[3][placeST]) # quita de la mano a la s/t
+                    break
+            except IndexError:
+                print('Valor equivocado')
+                # input()
+                littleSleep()
+                continue
+            except ValueError:
+                print('Debes ingresar un número')
+                littleSleep()
+                continue
+
+
+def setSpellTrap(position):
+    try:
+        placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
+        if 'MONSTER' in player1[3][placeST]['cardType']: # Cuando lo que se elige es un monstruo y no debería serlo
+            print('Eso no es una magia/trampa')
+            littleSleep()
+        else:
+            placeSTLoop(position, placeST)
+    except IndexError:
+        print('Valor equivocado')
+        # input()
+        littleSleep()
+    except ValueError:
+        print('Debes ingresar un número')
+        littleSleep()
+
+
 def isThereSpellTrapInHand():
     COUNTER = 0
     for i in player1[3]:
@@ -409,9 +479,10 @@ def isThereSpellTrapInHand():
             COUNTER += 1
     if COUNTER >= 1:
         # normalSummon()
-        print(mainPhaseOptions[3], mainPhaseOptions[4], mainPhaseOptions[5],sep='\n')
+        print(mainPhaseOptions[3], mainPhaseOptions[5],sep='\n')
     else:
         pass
+
 
 def mainPhase():
     activatingAnEff()
@@ -435,11 +506,11 @@ def mainPhase():
             elif actionInMP == 2:
                 normalSummon('Defense Face-Down')
             elif actionInMP == 3:
-                pass
+                setSpellTrap('active')
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
-                pass
+                setSpellTrap('set')
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:
