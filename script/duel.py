@@ -1,4 +1,4 @@
-import random, copy
+import random, copy, time
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
 player = [ 
@@ -58,29 +58,18 @@ player = [
     [], # 12 = "rightSTCardZone"
 ]    
 
-# jugadores = {'p1': players.player, # el jugador
-#     'p2': players.player} # la computadora
-
-
-# for i,a in jugadores:
-    # print(i)
-# print(jugadores, sep="\n\n\n\n\n")
-
-
-# jugadores = [players.player, # el jugador
-#     players.player] # la computadora
-
-
-# for i in jugadores:
-#     print(i[5])
-
+# Duel tools ----------------
 def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
 # def shuffleDeck(playersDeck):
 #     random.shuffle(playersDeck)
 
+
+def littleSleep(): time.sleep(1)
+
+# Game start! ----------------
 def gameStart():
-    print('\nBienvenido a gameStart\n')
+    print('\nBienvenido a gameStart\n') # borrar :)
     players = {'p1': copy.deepcopy(player), # el jugador
         'p2': copy.deepcopy(player)} # la computadora
     # # print both deck status
@@ -123,7 +112,7 @@ if __name__ == '__main__':
 # TURNSCOUNTER = 0
 
 
-# def littleSleep(): time.sleep(1)
+
 
 
 
