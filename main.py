@@ -1,27 +1,32 @@
+import random, os, time
+from script import duel
+
+
 def run():
     os.system("clear")
-    # Game Start
-    gameStart()
-    while thereIsNoWinner == True:
-        global TURNSCOUNTER
-        TURNSCOUNTER += 1
-        gameStart()
-        checkLP()
+    # # Game Start
+    # duel.gameStart()
+    # while thereIsNoWinner == True:
+    #     global TURNSCOUNTER
+    #     TURNSCOUNTER += 1
+    #     gameStart()
+    #     checkLP()
         
-        duelStatus()
-        # Draw Phase
-        drawPhase()
+    #     duelStatus()
+    #     # Draw Phase
+    #     drawPhase()
         
-        # Main Phase
-        mainPhase()
+    #     # Main Phase
+    #     mainPhase()
         
-        # Battle Phase: Empieza la batalla!
-        # battlePhase()
+    #     # Battle Phase: Empieza la batalla!
+    #     # battlePhase()
 
-        # End Phase
-        endPhase()
+    #     # End Phase
+    #     endPhase()
     
     print("Fin del juego :)")
+
 
 if __name__ == '__main__':
     run()
