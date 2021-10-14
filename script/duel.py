@@ -58,6 +58,10 @@ player = [
     [], # 12 = "rightSTCardZone"
 ]    
 
+players = {'p1': copy.deepcopy(player), # el jugador
+        'p2': copy.deepcopy(player)} # la computadora
+
+
 # Duel tools ----------------
 def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
@@ -67,16 +71,24 @@ def shuffleDeck(playerDeck):
 
 def littleSleep(): time.sleep(1)
 
+
+def printHandAndDeckCards():
+    for i in players:
+        print(f"\n\n\n{i}´s mano: {players[i][3]}\n\n\n")
+        print(f'\n\n\n{i}´s Deck: {players[i][1]}', end="\n\n\n")
+    
+
 # Game start! ----------------
 def gameStart():
     print('\nBienvenido a gameStart\n') # borrar :)
-    players = {'p1': copy.deepcopy(player), # el jugador
-        'p2': copy.deepcopy(player)} # la computadora
+    # players = {'p1': copy.deepcopy(player), # el jugador
+    #     'p2': copy.deepcopy(player)} # la computadora
     # # print both deck status
-    # for i in players:
-    #     print(players[i][1], end="\n\n\n")
+    printHandAndDeckCards()
+    # global players
 
     # Game start ------
+    # shuffle both players' deck
     shuffleDeck(players['p1'][1])
     shuffleDeck(players['p2'][1])
     # # print both deck status
@@ -89,8 +101,10 @@ def gameStart():
         while len(players[i][3]) < 4:
             players[i][3].append(players[i][1][0])
             players[i][1].remove(players[i][1][0])
-        # print(f"\n\nmano: {players[i][3]}\n\n\n")
-        # print(f'{i}´s Deck: {players[i][1]}', end="\n\n\n")
+        # # print both deck status
+        printHandAndDeckCards()
+
+
 
 def run():
     gameStart()
