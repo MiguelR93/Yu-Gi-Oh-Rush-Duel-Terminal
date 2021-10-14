@@ -1,7 +1,8 @@
-import random, copy, time
+import random, copy, time, os
 import script.turn as turn
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
+# Variables ----------------
 player = [ 
     8000, # 0 = "lp"
     [
@@ -59,13 +60,69 @@ player = [
     [], # 12 = "rightSTCardZone"
 ]    
 
+
 players = {'p1': copy.deepcopy(player), # el jugador
         'p2': copy.deepcopy(player)} # la computadora
 
+TURNSCOUNTER = 0
 
 # Duel tools ----------------
 def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
+
+
+def ocupiedMonsterZones(): # convertir en anónima
+    COUNTER = 0
+    for i in players['p1'][7:10]:
+        if len(i) > 0:
+            COUNTER += 1
+    return COUNTER
+
+
+def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
+    os.system("clear")
+    print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones()}")
+    print(f"Turn: {TURNSCOUNTER}")
+    print(f"Rival LP: {players['p2'][0]}")
+    print(f"Deck rival: {len(players['p2'][1])}") # deck
+    print(f"Cartas en mano rival: {len(players['p2'][3])}") # mano
+    print(f"Cartas en GY rival: {len(players['p2'][4])}")
+    print("\nCampo oponente:")
+    # s/t
+    for i in players['p2'][-1:-4:-1]:
+        print(i,end="   ")
+    print("\n")
+    # monstruos
+    for i in players['p2'][-4:-7:-1]:
+        print(i,end="   ")
+    print("\n\nTu campo:")
+    # monstruos
+    for i in players['p1'][7:10]:
+        # if type(i) == dict:
+        #     print(i['name'], end="   ")
+        if len(i) > 0:
+            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
+        else:
+            print(i, end="   ")
+    print("\n")
+    # s/t
+    for i in players['p1'][10:13]:
+        if len(i) > 0:
+            print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
+        else:
+            print(i,end="   ")
+    # Tu campo:
+    print("\n")
+    print(f"Tus Lp: {players['p1'][0]}")
+    print(f"Tu deck: {len(players['p1'][1])}")
+    print(f"Tu GY: {len(players['p1'][4])}")
+    # imprimiendo la mano:
+    print(f"Tu mano: {len(players['p1'][3])}")
+    for i,a in enumerate(players['p1'][3]):
+        if 'level' in players['p1'][3][i]:
+            print(f"{i}: {players['p1'][3][i]['name']}| Nvl: {players['p1'][3][i]['level']} ATK/{players['p1'][3][i]['attack']} DEF/{players['p1'][3][i]['defense']}")
+        else:
+            print(f"{i}: {players['p1'][3][i]['name']} | {players['p1'][3][i]['cardType']} | {players['p1'][3][i]['icon']}")
 
 
 def littleSleep(): time.sleep(1)
@@ -73,8 +130,8 @@ def littleSleep(): time.sleep(1)
 
 def printHandAndDeckCards():
     for i in players:
-        print(f"\n\n\n{i}´s mano: {players[i][3]}\n\n\n")
-        print(f'\n\n\n{i}´s Deck: {players[i][1]}', end="\n\n\n")
+        print(f"\n\n\n{i}'s mano: {players[i][3]}\n\n\n")
+        print(f"\n\n\n{i}'s Deck: {players[i][1]}", end="\n\n\n")
     
 
 # Game start! ----------------
@@ -96,15 +153,17 @@ def gameStart():
             players[i][3].append(players[i][1][0])
             players[i][1].remove(players[i][1][0])
         # # print both deck status
-        printHandAndDeckCards()
+        # printHandAndDeckCards()
 
     while True:
         for i in players:
-            print(i)
-            littleSleep()
+            # littleSleep()
+            # print(f"{i}'s turn")
+            # duelStatus()
             turn.turn(players[i])
 
 
+# zona de prueba ------
 def run():
     gameStart()
 
@@ -122,7 +181,7 @@ if __name__ == '__main__':
 # # deckEmpty = not thereIsNoWinner
 # youWin = "YOU WIN!!!"
 # youLose = "Y O U  L O S E"
-# TURNSCOUNTER = 0
+
 
 
 
@@ -136,68 +195,15 @@ if __name__ == '__main__':
 #     pass
 
 
-# def ocupiedMonsterZones(): # convertir en anónima
-#     COUNTER = 0
-#     for i in player1[7:10]:
-#         if len(i) > 0:
-#             COUNTER += 1
-#     return COUNTER
-
-
-# def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
-#     os.system("clear")
-#     print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones()}")
-#     print(f"Turn: {TURNSCOUNTER}")
-#     print(f"Rival LP: {player2[0]}")
-#     print(f"Deck rival: {len(player2[1])}") # deck
-#     print(f"Cartas en mano rival: {len(player2[3])}") # mano
-#     print(f"Cartas en GY rival: {len(player2[4])}")
-#     print("\nCampo oponente:")
-#     # s/t
-#     for i in player2[-1:-4:-1]:
-#         print(i,end="   ")
-#     print("\n")
-#     # monstruos
-#     for i in player2[-4:-7:-1]:
-#         print(i,end="   ")
-#     print("\n\nTu campo:")
-#     # monstruos
-#     for i in player1[7:10]:
-#         # if type(i) == dict:
-#         #     print(i['name'], end="   ")
-#         if len(i) > 0:
-#             print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
-#         else:
-#             print(i, end="   ")
-#     print("\n")
-#     # s/t
-#     for i in player1[10:13]:
-#         if len(i) > 0:
-#             print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
-#         else:
-#             print(i,end="   ")
-#     # Tu campo:
-#     print("\n")
-#     print(f"Tus Lp: {player1[0]}")
-#     print(f"Tu deck: {len(player1[1])}")
-#     print(f"Tu GY: {len(player1[4])}")
-#     # imprimiendo la mano:
-#     print(f"Tu mano: {len(player1[3])}")
-#     for i,a in enumerate(player1[3]):
-#         if 'level' in player1[3][i]:
-#             print(f"{i}: {player1[3][i]['name']}| Nvl: {player1[3][i]['level']} ATK/{player1[3][i]['attack']} DEF/{player1[3][i]['defense']}")
-#         else:
-#             print(f"{i}: {player1[3][i]['name']} | {player1[3][i]['cardType']} | {player1[3][i]['icon']}")
-
 
 
 
 
 # def checkLP():
-#     if player1[0] <= 0:
+#     if players['p1'][0] <= 0:
 #         print(youLose)
 #         return lifePoint0
-#     elif player2[0] <=0:
+#     elif players['p2'][0] <=0:
 #         print(youWin)
 #         return lifePoint0
 
