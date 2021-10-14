@@ -52,5 +52,5 @@ player = [
     [], # 9 = "rightMonsterCardZone"
     [], # 10 = "leftSTCardZone"
     [], # 11 = "centerSTCardZone"
-    [] # 12 = "rightSTCardZone"
+    [], # 12 = "rightSTCardZone"
 ]    
