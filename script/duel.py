@@ -1,4 +1,5 @@
 import random, copy, time
+# import turn
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
 player = [ 
@@ -65,8 +66,6 @@ players = {'p1': copy.deepcopy(player), # el jugador
 # Duel tools ----------------
 def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
-# def shuffleDeck(playersDeck):
-#     random.shuffle(playersDeck)
 
 
 def littleSleep(): time.sleep(1)
@@ -81,8 +80,6 @@ def printHandAndDeckCards():
 # Game start! ----------------
 def gameStart():
     print('\nBienvenido a gameStart\n') # borrar :)
-    # players = {'p1': copy.deepcopy(player), # el jugador
-    #     'p2': copy.deepcopy(player)} # la computadora
     # # print both deck status
     printHandAndDeckCards()
     # global players
@@ -91,9 +88,6 @@ def gameStart():
     # shuffle both players' deck
     shuffleDeck(players['p1'][1])
     shuffleDeck(players['p2'][1])
-    # # print both deck status
-    # for i in players:
-    #     print(players[i][1], end="\n\n\n")
 
     # Each player draw until have 4 cards in hand
     for i in players:
@@ -104,6 +98,11 @@ def gameStart():
         # # print both deck status
         printHandAndDeckCards()
 
+    while True:
+        for i in players:
+            # turn(players[i])
+            print(i)
+            littleSleep()
 
 
 def run():
