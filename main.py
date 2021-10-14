@@ -1,4 +1,4 @@
-import random, os, time
+import os
 from script import duel
 
 

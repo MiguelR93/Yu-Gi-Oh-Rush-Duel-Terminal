@@ -1,3 +1,4 @@
+import random, copy
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
 player = [ 
@@ -37,10 +38,10 @@ player = [
         {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-        {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
        ], # 1 = "deck"
@@ -73,28 +74,34 @@ player = [
 # for i in jugadores:
 #     print(i[5])
 
+def shuffleDeck(playerDeck):
+    random.shuffle(playerDeck)
+# def shuffleDeck(playersDeck):
+#     random.shuffle(playersDeck)
+
 def gameStart():
     print('\nBienvenido a gameStart\n')
-    players = {'p1': player, # el jugador
-        'p2': player} # la computadora
+    players = {'p1': copy.deepcopy(player), # el jugador
+        'p2': copy.deepcopy(player)} # la computadora
+    # # print both deck status
     # for i in players:
-    #     print(players[i][0])
+    #     print(players[i][1], end="\n\n\n")
 
-# def gameStart():
-    # print(player)
+    # Game start ------
+    shuffleDeck(players['p1'][1])
+    shuffleDeck(players['p2'][1])
+    # # print both deck status
+    # for i in players:
+    #     print(players[i][1], end="\n\n\n")
 
-
-# def gameStart():
-#     shuffleDeck(player1[1])
-#     shuffleDeck(player2[1])
-#     # print(f"Deck player1: {player1[1]}\n\n")
-#     # print(f"Deck player2: {player2[1]}\n\n")
-#     # Each player draw until have 4 cards in hand
-#     for i in players:
-#         while len(i[3]) < 4:
-#             i[3].append(i[1][0])
-#             i[1].remove(i[1][0])
-#         # print(f"\n\nmano: {i[3]}")
+    # Each player draw until have 4 cards in hand
+    for i in players:
+        # print(players[i][1], end="\n\n\n")
+        while len(players[i][3]) < 4:
+            players[i][3].append(players[i][1][0])
+            players[i][1].remove(players[i][1][0])
+        # print(f"\n\nmano: {players[i][3]}\n\n\n")
+        # print(f'{i}´s Deck: {players[i][1]}', end="\n\n\n")
 
 def run():
     gameStart()
@@ -119,8 +126,7 @@ if __name__ == '__main__':
 # def littleSleep(): time.sleep(1)
 
 
-# def shuffleDeck(playersDeck):
-#     random.shuffle(playersDeck)
+
 
 
 # def activatingAnEff():
