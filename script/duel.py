@@ -1,5 +1,5 @@
 import random, copy, time
-# import turn
+import script.turn as turn
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
 player = [ 
@@ -81,7 +81,7 @@ def printHandAndDeckCards():
 def gameStart():
     print('\nBienvenido a gameStart\n') # borrar :)
     # # print both deck status
-    printHandAndDeckCards()
+    # printHandAndDeckCards()
     # global players
 
     # Game start ------
@@ -100,9 +100,9 @@ def gameStart():
 
     while True:
         for i in players:
-            # turn(players[i])
             print(i)
             littleSleep()
+            turn.turn(players[i])
 
 
 def run():
