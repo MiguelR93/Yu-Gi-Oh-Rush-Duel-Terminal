@@ -59,6 +59,7 @@ player = [
     [], # 11 = "centerSTCardZone"
     [], # 12 = "rightSTCardZone"
     [], # 13 = "player's name"
+    True, # 14 = "victory condition" both True == There's no winner; both False == DRAW; one False, that player lose
 ]    
 
 
@@ -70,6 +71,10 @@ TURNSCOUNTER = 0
 # Duel tools ----------------
 def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
+
+
+def victory():
+    return True
 
 
 def ocupiedMonsterZones(): # convertir en anónima
@@ -159,7 +164,7 @@ def gameStart():
         # # print both deck status
         # printHandAndDeckCards()
 
-    while True:
+    while victory():
         for i in players:
             # littleSleep()
             # print(f"{i}'s turn")
