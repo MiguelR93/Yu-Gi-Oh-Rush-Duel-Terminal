@@ -58,6 +58,7 @@ player = [
     [], # 10 = "leftSTCardZone"
     [], # 11 = "centerSTCardZone"
     [], # 12 = "rightSTCardZone"
+    [], # 13 = "player's name"
 ]    
 
 
@@ -140,6 +141,9 @@ def gameStart():
     # # print both deck status
     # printHandAndDeckCards()
     # global players
+
+    players['p1'][13] = "Jugador"
+    players['p2'][13] = "COM"
 
     # Game start ------
     # shuffle both players' deck
