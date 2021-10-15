@@ -29,7 +29,7 @@ def mainPhase(playerTurn):
 
         # Main Phas Opctions
         print(mainPhaseOptions[0])
-        summon.isThereMonstersInHand(playerTurn)
+        summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         # isThereSpellTrapInHand(playerTurn)
         print(mainPhaseOptions[11])
 
@@ -37,9 +37,9 @@ def mainPhase(playerTurn):
             actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
             if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
-                summon.normalSummon('Attack')
+                summon.normalSummon(playerTurn, 'Attack')
             elif actionInMP == 2:
-                summon.normalSummon('Defense Face-Down')
+                summon.normalSummon(playerTurn, 'Defense Face-Down')
             elif actionInMP == 3:
                 # setSpellTrap('active')
                 pass
