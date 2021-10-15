@@ -19,7 +19,10 @@ def checkingLenDeck(playerTurn):
         print("Ya se acabó el juego, ya >>>>:C")
         # thereIsNoWinner = not thereIsNoWinner
     else:
-        print("Wa robar!")
+        if playerTurn[13] == "Jugador":
+            print("Wa robar!")
+        else:
+            print("COM va a robar")
         drawACard(playerTurn)
         # duel.littleSleep()
     duel.littleSleep()
