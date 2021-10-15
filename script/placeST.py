@@ -1,24 +1,27 @@
-def placeSTLoop(position, placeST):
+import script.duel as duel
+
+
+def placeSTLoop(playerTurn, position, placeST):
     sTZoneCounter = 0
-    for i in player1[10:13]:
+    for i in playerTurn[10:13]:
         if len(i) > 0:
             sTZoneCounter += 1
     if sTZoneCounter > 2:
         print("No hay zonas disponibles")
-        littleSleep()
+        duel.littleSleep()
     else:
         while True:
-            duelStatus()
+            duel.duelStatus()
             try:
                 sTZones = ["1: zona Izquierda", "2: zona central", "3: zona derecha"]
                 print('\nEn dónde quieres ponerlo?')
-                for i,a in enumerate(player1[10:13]):
+                for i,a in enumerate(playerTurn[10:13]):
                     if len(a) == 0:
                         print(sTZones[i])
                 sTZonePosition = int(input("\nEscribe el número a la izquierda: "))
-                if len(player1[sTZonePosition+9]) != 0:
+                if len(playerTurn[sTZonePosition+9]) != 0:
                     # print("Zona ocupada, elige otra")
-                    # littleSleep()
+                    # duel.littleSleep()
                     # continue
                     # else:
                     ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
@@ -28,45 +31,45 @@ def placeSTLoop(position, placeST):
                         break
                 elif (sTZonePosition + 9 > 12) or (sTZonePosition + 9 < 10):
                     print("No es una zona de magia/trampa")
-                    littleSleep()
+                    duel.littleSleep()
                     continue
                 else:
-                    player1[3][placeST]['position'] = position
-                    print(player1[3][placeST]) # imprime el estado de la s/t
-                    player1[sTZonePosition + 9] = player1[3][placeST] # pone la s/t
-                    player1[3].remove(player1[3][placeST]) # quita de la mano a la s/t
+                    playerTurn[3][placeST]['position'] = position
+                    print(playerTurn[3][placeST]) # imprime el estado de la s/t
+                    playerTurn[sTZonePosition + 9] = playerTurn[3][placeST] # pone la s/t
+                    playerTurn[3].remove(playerTurn[3][placeST]) # quita de la mano a la s/t
                     break
             except IndexError:
                 print('Valor equivocado')
                 # input()
-                littleSleep()
+                duel.littleSleep()
                 continue
             except ValueError:
                 print('Debes ingresar un número')
-                littleSleep()
+                duel.littleSleep()
                 continue
 
 
-def setSpellTrap(position):
+def setSpellTrap(playerTurn, position):
     try:
         placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
-        if 'MONSTER' in player1[3][placeST]['cardType']: # Cuando lo que se elige es un monstruo y no debería serlo
+        if 'MONSTER' in playerTurn[3][placeST]['cardType']: # Cuando lo que se elige es un monstruo y no debería serlo
             print('Eso no es una magia/trampa')
-            littleSleep()
+            duel.littleSleep()
         else:
-            placeSTLoop(position, placeST)
+            placeSTLoop(playerTurn, position, placeST)
     except IndexError:
         print('Valor equivocado')
         # input()
-        littleSleep()
+        duel.littleSleep()
     except ValueError:
         print('Debes ingresar un número')
-        littleSleep()
+        duel.littleSleep()
 
 
-def isThereSpellTrapInHand():
+def isThereSpellTrapInHand(playerTurn, mainPhaseOptions):
     COUNTER = 0
-    for i in player1[3]:
+    for i in playerTurn[3]:
         if ('SPELL' in i['cardType']) or ('TRAP' in i['cardType']):
             COUNTER += 1
     if COUNTER >= 1:

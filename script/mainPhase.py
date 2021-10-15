@@ -1,6 +1,7 @@
 import random, copy, time
 import script.duel as duel
 import script.summon as summon
+import script.placeST as placeST
 
 
 mainPhaseOptions = [
@@ -30,7 +31,7 @@ def mainPhase(playerTurn):
         # Main Phas Opctions
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
-        # isThereSpellTrapInHand(playerTurn)
+        placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
         print(mainPhaseOptions[11])
 
         try:
@@ -41,12 +42,12 @@ def mainPhase(playerTurn):
             elif actionInMP == 2:
                 summon.normalSummon(playerTurn, 'Defense Face-Down')
             elif actionInMP == 3:
-                # setSpellTrap('active')
+                placeST.setSpellTrap(playerTurn, 'active')
                 pass
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
-                # setSpellTrap('set')
+                placeST.setSpellTrap(playerTurn, 'set')
                 pass
             elif actionInMP == 6:
                 pass
