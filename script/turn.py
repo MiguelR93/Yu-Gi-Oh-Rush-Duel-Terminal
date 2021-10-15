@@ -1,6 +1,7 @@
 # organizar el turno :)
 import script.drawPhase as drawPhase
 import script.duel as duel
+import script.mainPhase as mainPhase
 # import drawPhase
 
 def turn(playerTurn):
@@ -10,6 +11,7 @@ def turn(playerTurn):
     # print('\n\n\n:)\n\n\n')
     drawPhase.drawPhase(playerTurn)
     print("Ahora, la Main Phase")
+    mainPhase.mainPhase(playerTurn)
     duel.littleSleep()
 
 
