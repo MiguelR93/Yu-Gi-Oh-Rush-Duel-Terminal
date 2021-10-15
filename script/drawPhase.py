@@ -33,11 +33,12 @@ def drawPhase(playerTurn):
     # print(f"\nMano del jugador en turno: {playerTurn[3]}\n\n\n")
     duel.littleSleep()
     if len(playerTurn[3]) >= 5:
-        print("doro!!!")
-# #         # print("tenemos 5 o más cartas")
         checkingLenDeck(playerTurn)
     else:
-        print("tenemos menos de 5 cartas")
+        if playerTurn[13] == "Jugador":
+            print("Tengo menos de 5 cartas")
+        else:
+            print("COM tiene menos de 5 cartas")
         while len(playerTurn[3]) < 5:
             checkingLenDeck(playerTurn)
     duel.littleSleep()
