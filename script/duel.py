@@ -164,8 +164,8 @@ def gameStart():
     # printHandAndDeckCards()
     # global players
 
-    players['p1'][13], players['p1'][15] = "Jugador", "COM"
-    players['p2'][13], players['p1'][15] = "COM", "Jugador"
+    players['p1'][13], players['p1'][15] = "Jugador", players['p2']
+    players['p2'][13], players['p1'][15] = "COM", players['p1']
 
     # Game start ------
     # shuffle both players' deck
