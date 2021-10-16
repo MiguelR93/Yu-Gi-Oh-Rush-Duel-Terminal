@@ -81,7 +81,7 @@ def victory():
         return True
 
 
-def ocupiedMonsterZones(): # convertir en anónima
+def ocupiedMonsterZones(pl): # convertir en anónima
     COUNTER = 0
     for i in players['p1'][7:10]:
         if len(i) > 0:
@@ -164,8 +164,8 @@ def gameStart():
     # printHandAndDeckCards()
     # global players
 
-    players['p1'][13], players['p1'][15] = "Jugador", players['p2']
-    players['p2'][13], players['p1'][15] = "COM", players['p1']
+    players['p1'][13], players['p2'][13] = "Jugador", "COM"
+    players['p2'][15], players['p1'][15] = players['p1'], players['p2']
 
     # Game start ------
     # shuffle both players' deck
