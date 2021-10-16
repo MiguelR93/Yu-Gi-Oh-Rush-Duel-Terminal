@@ -2,6 +2,7 @@
 import script.drawPhase as drawPhase
 import script.duel as duel
 import script.mainPhase as mainPhase
+import script.battlePhase as battlePhase
 # import drawPhase
 
 def turn(playerTurn):
@@ -12,6 +13,7 @@ def turn(playerTurn):
     drawPhase.drawPhase(playerTurn)
     # print("Ahora, la Main Phase")
     mainPhase.mainPhase(playerTurn)
+    battlePhase.battlePhase(playerTurn)
     duel.littleSleep()
 
 
