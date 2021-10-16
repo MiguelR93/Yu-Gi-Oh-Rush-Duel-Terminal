@@ -2,11 +2,21 @@ import script.drawPhase as drawPhase
 import script.duel as duel
 import script.mainPhase as mainPhase
 
+
+def declareAttack(playerTurn):
+    pass
+
+    
+
+    
+    chosed = int(input("\nElige un monstruo para atacar:\n"))
+
+
 def battlePhase(playerTurn):
     # activatingAnEff()
     while duel.victory():        
-        for a,i in enumerate(playerTurn[7:10]):
-            if len(i) > 0:
-                print(f"{a + 7}: {i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
-
-        chosed = int(input("\nElige un monstruo para atacar:\n"))
+        for i,a in enumerate(playerTurn[7:10]):            
+            if (len(a) > 0) and ('Attack' in a['position']):
+                print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+        
+        declareAttack(playerTurn)
