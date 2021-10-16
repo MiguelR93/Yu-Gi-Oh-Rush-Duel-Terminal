@@ -10,7 +10,7 @@ def turn(playerTurn):
     # print(f"Turno de: {playerTurn}")
     # print('\n\n\n:)\n\n\n')
     drawPhase.drawPhase(playerTurn)
-    print("Ahora, la Main Phase")
+    # print("Ahora, la Main Phase")
     mainPhase.mainPhase(playerTurn)
     duel.littleSleep()
 
