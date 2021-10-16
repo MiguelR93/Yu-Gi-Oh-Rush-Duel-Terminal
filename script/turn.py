@@ -13,7 +13,7 @@ def turn(playerTurn):
     drawPhase.drawPhase(playerTurn)
     # print("Ahora, la Main Phase")
     mainPhase.mainPhase(playerTurn)
-    battlePhase.battlePhase(playerTurn)
+    # battlePhase.battlePhase(playerTurn)
     duel.littleSleep()
 
 

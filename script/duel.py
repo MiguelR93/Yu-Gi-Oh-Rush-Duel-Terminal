@@ -96,15 +96,28 @@ def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementer
     print(f"Rival LP: {players['p2'][0]}")
     print(f"Deck rival: {len(players['p2'][1])}") # deck
     print(f"Cartas en mano rival: {len(players['p2'][3])}") # mano
+    # ----v OPONENT'S HAND
+    for i,a in enumerate(players['p2'][3]):
+        if 'level' in players['p2'][3][i]:
+            print(f"{i}: {players['p2'][3][i]['name']}| Nvl: {players['p2'][3][i]['level']} ATK/{players['p2'][3][i]['attack']} DEF/{players['p2'][3][i]['defense']}")
+        else:
+            print(f"{i}: {players['p2'][3][i]['name']} | {players['p2'][3][i]['cardType']} | {players['p2'][3][i]['icon']}")
+    # ----^ OPONENT'S HAND
     print(f"Cartas en GY rival: {len(players['p2'][4])}")
     print("\nCampo oponente:")
     # s/t
-    for i in players['p2'][-1:-4:-1]:
-        print(i,end="   ")
+    for i in players['p2'][12:9:-1]:
+        if len(i) > 0:
+            print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
+        else:
+            print(i,end="   ")
     print("\n")
     # monstruos
-    for i in players['p2'][-4:-7:-1]:
-        print(i,end="   ")
+    for i in players['p2'][9:6:-1]:
+        if len(i) > 0:
+            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
+        else:
+            print(i, end="   ")
     print("\n\nTu campo:")
     # monstruos
     for i in players['p1'][7:10]:
