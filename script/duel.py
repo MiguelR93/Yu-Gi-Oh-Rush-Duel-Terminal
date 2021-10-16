@@ -81,17 +81,17 @@ def victory():
         return True
 
 
-def ocupiedMonsterZones(pl): # convertir en anónima
+def ocupiedMonsterZones(playerTurn): # convertir en anónima
     COUNTER = 0
-    for i in players['p1'][7:10]:
+    for i in playerTurn[7:10]:
         if len(i) > 0:
             COUNTER += 1
     return COUNTER
 
 
-def duelStatus(): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
+def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
     os.system("clear")
-    print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones()}")
+    print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones(playerTurn)}")
     print(f"Turn: {TURNSCOUNTER}")
     print(f"Rival LP: {players['p2'][0]}")
     print(f"Deck rival: {len(players['p2'][1])}") # deck
@@ -185,7 +185,7 @@ def gameStart():
         for i in players:
             # littleSleep()
             # print(f"{i}'s turn")
-            # duelStatus()
+            # duelStatus(playerTurn)
             turn.turn(players[i])
             if victory() == False:
                 break
@@ -261,7 +261,7 @@ if __name__ == '__main__':
 #             gameStart()
 #             checkLP()
             
-#             duelStatus()
+#             duelStatus(playerTurn)
 #             # Draw Phase
 #             drawPhase()
             
