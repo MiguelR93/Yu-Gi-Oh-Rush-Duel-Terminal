@@ -23,7 +23,7 @@ mainPhaseOptions = [
 def mainPhase(playerTurn):
     # activatingAnEff()
 
-    while True:
+    while duel.victory():
         duel.duelStatus()
         # for i in mainPhaseOptions:
         #     print(i)
