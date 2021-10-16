@@ -74,7 +74,10 @@ def shuffleDeck(playerDeck):
 
 
 def victory():
-    return True
+    if players['p1'][14] == False:
+        return False
+    else:
+        return True
 
 
 def ocupiedMonsterZones(): # convertir en anónima
