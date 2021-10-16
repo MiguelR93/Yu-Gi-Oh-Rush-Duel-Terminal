@@ -63,7 +63,7 @@ def mainPhase(playerTurn):
                 # endPhase()
                 break
             else:
-                raise ValueError("Debes ingresar un número, galán")
+                raise ValueError
         except ValueError:
-            print('Debes ingresar un número')
+            print('Valor inválido')
             time.sleep(1.5)
