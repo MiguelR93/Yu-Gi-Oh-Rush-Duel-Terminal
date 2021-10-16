@@ -2,6 +2,7 @@ import random, copy, time
 import script.duel as duel
 import script.summon as summon
 import script.placeST as placeST
+import script.battlePhase as battlePhase
 
 
 mainPhaseOptions = [
@@ -32,6 +33,7 @@ def mainPhase(playerTurn):
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
+        print(mainPhaseOptions[10])
         print(mainPhaseOptions[11])
 
         try:
@@ -58,7 +60,7 @@ def mainPhase(playerTurn):
             elif actionInMP == 9:
                 pass
             elif actionInMP == 10:
-                pass
+                battlePhase.battlePhase(playerTurn)
             elif actionInMP == 11:
                 # endPhase()
                 break
