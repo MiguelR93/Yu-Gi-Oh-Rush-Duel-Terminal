@@ -21,17 +21,17 @@ player = [
         # {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
         # {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
 
-        # {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
-        # {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
-        # {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
-        # {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
-        # {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
+        {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
+        {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
+        {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
+        {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
+        {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
         {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
 
-        {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
         # # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
@@ -81,7 +81,7 @@ def victory():
         return True
 
 
-def ocupiedMonsterZones(): # convertir en anónima
+def ocupiedMonsterZones(pl): # convertir en anónima
     COUNTER = 0
     for i in players['p1'][7:10]:
         if len(i) > 0:
@@ -164,8 +164,8 @@ def gameStart():
     # printHandAndDeckCards()
     # global players
 
-    players['p1'][13], players['p1'][15] = "Jugador", players['p2']
-    players['p2'][13], players['p1'][15] = "COM", players['p1']
+    players['p1'][13], players['p2'][13] = "Jugador", "COM"
+    players['p2'][15], players['p1'][15] = players['p1'], players['p2']
 
     # Game start ------
     # shuffle both players' deck
