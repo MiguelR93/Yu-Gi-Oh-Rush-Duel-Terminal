@@ -19,13 +19,23 @@ def directAttack(playerTurn, chosed):
 def declareAttack(playerTurn):
     # print(f"13: {playerTurn[13]}")
     # print(f"15: {playerTurn[15]}")   
-    chosed = int(input("\nElige un monstruo para atacar:\n")) + 7
-    # input('presiona enter')
-
-    if duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
-        print("puedes atacar directo!")
+    try:
+        chosed = int(input("\nElige un monstruo para atacar:\n")) + 7
+        # input('presiona enter')
+        if 'MONSTER' not in playerTurn[chosed]['cardType']: # Cuando lo que se elige no es un monstruo
+            print('Eso no es un monstruo')
+            duel.littleSleep()
+        elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
+            print("puedes atacar directo!")
+            duel.littleSleep()
+            directAttack(playerTurn, chosed)
+    except IndexError:
+        print('Valor equivocado')
+        # input()
         duel.littleSleep()
-        directAttack(playerTurn, chosed)
+    except ValueError:
+        print('Debes ingresar un número')
+        duel.littleSleep()
 
 
 def battlePhase(playerTurn):
