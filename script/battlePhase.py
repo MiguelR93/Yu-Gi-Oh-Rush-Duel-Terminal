@@ -10,22 +10,28 @@ battlePhaseOptions = [
 ]
 
 
+def directAttack(playerTurn, chosed):
+    # print(f"Esto debería ser LP rival: {playerTurn[15][0]}")
+    # print(playerTurn[15][0] - int(playerTurn[chosed]['attack']))
+    playerTurn[15][0] -= int(playerTurn[chosed]['attack'])
+
+
 def declareAttack(playerTurn):
     # print(f"13: {playerTurn[13]}")
     # print(f"15: {playerTurn[15]}")   
-    # chosed = int(input("\nElige un monstruo para atacar:\n"))
+    chosed = int(input("\nElige un monstruo para atacar:\n")) + 7
     # input('presiona enter')
 
-    # if duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
-    #     # directAttack(playerTurn)
-    #     print("puedes atacar directo!")
-    #     littleSleep()
+    if duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
+        print("puedes atacar directo!")
+        duel.littleSleep()
+        directAttack(playerTurn, chosed)
 
 
 def battlePhase(playerTurn):
     # activatingAnEff()
-    duel.duelStatus(playerTurn)
     while duel.victory():
+        duel.duelStatus(playerTurn)
         print("\n\n\nMonstruos que pueden atacar:")        
         for i,a in enumerate(playerTurn[7:10]):            
             if (len(a) > 0) and ('Attack' in a['position']):
