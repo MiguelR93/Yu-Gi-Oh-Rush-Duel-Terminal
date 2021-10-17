@@ -8,12 +8,8 @@ import script.battlePhase as battlePhase
 def turn(playerTurn):
     duel.duelStatus(playerTurn)
     duel.littleSleep()
-    # print(f"Turno de: {playerTurn}")
-    # print('\n\n\n:)\n\n\n')
     drawPhase.drawPhase(playerTurn)
-    # print("Ahora, la Main Phase")
     mainPhase.mainPhase(playerTurn)
-    battlePhase.battlePhase(playerTurn)
     duel.littleSleep()
 
 
