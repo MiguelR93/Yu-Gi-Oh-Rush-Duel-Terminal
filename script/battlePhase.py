@@ -22,13 +22,16 @@ def declareAttack(playerTurn):
     try:
         chosed = int(input("\nElige un monstruo para atacar:\n")) + 7
         # input('presiona enter')
-        if 'MONSTER' not in playerTurn[chosed]['cardType']: # Cuando lo que se elige no es un monstruo
+        if (chosed > 9) or (chosed < 7):
             print('Eso no es un monstruo')
-            duel.littleSleep()
-        elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
-            print("puedes atacar directo!")
-            duel.littleSleep()
-            directAttack(playerTurn, chosed)
+        else:
+            if (len(playerTurn[chosed]) < 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
+                print('Eso no es un monstruo')
+                duel.littleSleep()
+            elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
+                print("puedes atacar directo!")
+                duel.littleSleep()
+                directAttack(playerTurn, chosed)
     except IndexError:
         print('Valor equivocado')
         # input()
@@ -56,7 +59,7 @@ def battlePhase(playerTurn):
         try:
             actionInBP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
-            if actionInBP == 1:
+            if actionInBP == 1 and duel.ocupiedMonsterZones(playerTurn) > 0:
                 declareAttack(playerTurn)
             elif actionInBP == 2:
                 # endPhase()
