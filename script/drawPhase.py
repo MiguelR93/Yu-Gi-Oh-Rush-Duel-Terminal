@@ -16,7 +16,7 @@ def drawACard(playerTurn):
 def checkingLenDeck(playerTurn):
     # global thereIsNoWinner
     if len(playerTurn[1]) <= 0:
-        print("Ya se acabó el juego, ya >>>>:C")
+        # print("Ya se acabó el juego, ya >>>>:C")
         playerTurn[14] = False
     else:
         if playerTurn[13] == "Jugador":

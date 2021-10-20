@@ -77,6 +77,8 @@ def shuffleDeck(playerDeck):
 def victory():
     if players['p1'][14] == False:
         return False
+    elif players['p2'][14] == False:
+        return False
     else:
         return True
 
@@ -93,7 +95,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     os.system("clear")
     print(f"Zonas de Monstruo ocupadas: {ocupiedMonsterZones(playerTurn)}")
     print(f"Turn: {TURNSCOUNTER}")
-    print(f"Rival LP: {players['p2'][0]}")
+    print(f"Rival LP: {max(players['p2'][0],0)}")
     print(f"Deck rival: {len(players['p2'][1])}") # deck
     print(f"Cartas en mano rival: {len(players['p2'][3])}") # mano
     # ----v OPONENT'S HAND
@@ -189,6 +191,13 @@ def gameStart():
             turn.turn(players[i])
             if victory() == False:
                 break
+    
+    if players['p1'][14] == False:
+        print("Perdiste!")
+    elif players['p2'][14] == False:
+        print("Ganaste!")
+    # else:
+    #     return True
 
 
 # zona de prueba ------

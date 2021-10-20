@@ -14,7 +14,10 @@ def directAttack(playerTurn, chosed):
     # print(f"Esto debería ser LP rival: {playerTurn[15][0]}")
     # print(playerTurn[15][0] - int(playerTurn[chosed]['attack']))
     playerTurn[15][0] -= int(playerTurn[chosed]['attack'])
-
+    if playerTurn[0] <= 0:
+        playerTurn[14] = False
+    elif playerTurn[15][0] <= 0:
+        playerTurn[15][14] = False
 
 def declareAttack(playerTurn):
     # print(f"13: {playerTurn[13]}")
