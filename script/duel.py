@@ -148,7 +148,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
             print(f"{i}: {players['p1'][3][i]['name']} | {players['p1'][3][i]['cardType']} | {players['p1'][3][i]['icon']}")
 
 
-def littleSleep(): time.sleep(0)
+def littleSleep(): time.sleep(0.5)
 
 
 def printHandAndDeckCards():
