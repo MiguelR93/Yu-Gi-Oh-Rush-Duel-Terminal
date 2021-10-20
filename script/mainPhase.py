@@ -25,7 +25,7 @@ def mainPhase(playerTurn):
     # activatingAnEff()
 
     while duel.victory():
-        duel.duelStatus()
+        duel.duelStatus(playerTurn)
         # for i in mainPhaseOptions:
         #     print(i)
 
@@ -61,6 +61,7 @@ def mainPhase(playerTurn):
                 pass
             elif actionInMP == 10:
                 battlePhase.battlePhase(playerTurn)
+                break
             elif actionInMP == 11:
                 # endPhase()
                 break
@@ -68,4 +69,4 @@ def mainPhase(playerTurn):
                 raise ValueError
         except ValueError:
             print('Valor inválido')
-            time.sleep(1.5)
+            duel.littleSleep()
