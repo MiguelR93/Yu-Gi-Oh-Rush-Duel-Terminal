@@ -19,6 +19,89 @@ def directAttack(playerTurn, chosed):
     elif playerTurn[15][0] <= 0:
         playerTurn[15][14] = False
 
+
+def damage(playerTurn, chosed, target):
+    print("Aquí calculamos el daño")
+    if playerTurn[15][target]['position'] == 'Attack':
+        if int(playerTurn[chosed]['attack']) == int(playerTurn[15][target]['attack']):
+            print("ambos se destruyen")
+            # mi monstruo se va al GY
+            playerTurn[4].append(playerTurn[chosed])
+            playerTurn[chosed] = []
+            # el monstruo oponente se va al GY
+            playerTurn[15][4].append(playerTurn[15][target])
+            playerTurn[15][target] = []
+        elif int(playerTurn[chosed]['attack']) > int(playerTurn[15][target]['attack']):
+            print("Mi monstruo sigue en pie, el tuyo se va")
+            lp = int(playerTurn[chosed]['attack']) - int(playerTurn[15][target]['attack'])
+            playerTurn[15][0] -= lp
+            # el monstruo oponente se va al GY
+            playerTurn[15][4].append(playerTurn[15][target])
+            playerTurn[15][target] = []
+        elif int(playerTurn[chosed]['attack']) < int(playerTurn[15][target]['attack']):
+            print("Mi monstruo se va, el tuyo sigue en pie")
+            lp = int(playerTurn[15][target]['attack']) - int(playerTurn[chosed]['attack'])
+            playerTurn[0] -= lp
+            # mi monstruo se va al GY
+            playerTurn[4].append(playerTurn[chosed])
+            playerTurn[chosed] = []
+    else:
+        if int(playerTurn[chosed]['attack']) == int(playerTurn[15][target]['defense']):
+            print("ninguno se destruye")
+            print("en defensa >:V")
+            duel.littleSleep()
+        elif int(playerTurn[chosed]['attack']) > int(playerTurn[15][target]['defense']):
+            print("Mi monstruo sigue en pie, el tuyo se va")
+            print("en defensa >:V")
+            # el monstruo oponente se va al GY
+            playerTurn[15][4].append(playerTurn[15][target])
+            playerTurn[15][target] = []
+        elif int(playerTurn[chosed]['attack']) < int(playerTurn[15][target]['defense']):
+            print("Mi monstruo se va, el tuyo sigue en pie")
+            print("en defensa >:V")
+            lp = int(playerTurn[15][target]['defense']) - int(playerTurn[chosed]['attack'])
+            playerTurn[0] -= lp
+    
+
+
+def attackOnMonster(playerTurn, chosed):
+    # debe permitir escoger un monstruo oponente como objetivo. Si lo que se escoge no es un monstruo, debe dar la opción de volver a escoger. También debe dar la opción de cancelar la declaración de ataque
+    while True:
+        print("Debería imprimir monstruos oponentes")
+        for a,i in enumerate(playerTurn[15][7:10]):
+            if len(i) > 0:
+                print(f"{a}: {i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}", end="\n")
+            # else:
+            #     print(i, end="   ")
+            # print(i,end="\n")
+        # duel.littleSleep()
+        # input()
+        try:
+            target = int(input("Elige un objetivo:\n")) + 7
+            if (len(playerTurn[15][target]) == 0) or ('MONSTER' not in playerTurn[15][target]['cardType']):
+                # raise IndexError
+                print("no hay un monstruo aquí")
+                duel.littleSleep()
+            elif playerTurn[15][target]['position'] == 'Defense Face-Down':
+                print("El monstruo en defensa se voltea")
+                playerTurn[15][target]['position'] = 'Defense Face-Up'
+                damage(playerTurn, chosed, target)
+                break
+            else:
+                damage(playerTurn, chosed, target)
+                break
+        except IndexError:
+            print('Valor equivocado')
+            # input()
+            duel.littleSleep()
+        except ValueError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+        except TypeError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+
+
 def declareAttack(playerTurn):
     # print(f"13: {playerTurn[13]}")
     # print(f"15: {playerTurn[15]}")   
@@ -34,6 +117,10 @@ def declareAttack(playerTurn):
             print("puedes atacar directo!")
             duel.littleSleep()
             directAttack(playerTurn, chosed)
+        else:
+            attackOnMonster(playerTurn, chosed)
+
+
     except IndexError:
         print('Valor equivocado')
         # input()

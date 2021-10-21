@@ -6,6 +6,7 @@ import script.battlePhase as battlePhase
 # import drawPhase
 
 def turn(playerTurn):
+    duel.turnStarts()
     duel.duelStatus(playerTurn)
     duel.littleSleep()
     drawPhase.drawPhase(playerTurn)

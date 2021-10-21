@@ -33,7 +33,8 @@ def mainPhase(playerTurn):
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
-        print(mainPhaseOptions[10])
+        if duel.currentlyTurn() > 1:
+            print(mainPhaseOptions[10])
         print(mainPhaseOptions[11])
 
         try:
@@ -60,8 +61,11 @@ def mainPhase(playerTurn):
             elif actionInMP == 9:
                 pass
             elif actionInMP == 10:
-                battlePhase.battlePhase(playerTurn)
-                break
+                if duel.currentlyTurn() <= 1:
+                    raise ValueError
+                else:
+                    battlePhase.battlePhase(playerTurn)
+                    break
             elif actionInMP == 11:
                 # endPhase()
                 break
