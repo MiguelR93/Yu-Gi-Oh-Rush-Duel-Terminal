@@ -34,11 +34,11 @@ def mainPhase(playerTurn):
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
-        if duel.currentlyTurn() > 1:
-            print(mainPhaseOptions[10])
         if (duel.ocupiedMonsterZones(playerTurn) >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
             for i in mainPhaseOptions[7:10]:
                 print(i)
+        if duel.currentlyTurn() > 1:
+            print(mainPhaseOptions[10])
         print(mainPhaseOptions[11])
 
         try:
