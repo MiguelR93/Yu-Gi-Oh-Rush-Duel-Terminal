@@ -74,6 +74,10 @@ def shuffleDeck(playerDeck):
     random.shuffle(playerDeck)
 
 
+def fromFieldToGY(monster, howCameHere):
+    monster['position'], monster['summonKind'], monster['summoned this turn?'], monster['can change its position?'], monster['attacksCounter'], monster['cameHereAs'] = None, None, None, None, None, howCameHere
+
+
 def turnStarts():
     global TURNSCOUNTER
     TURNSCOUNTER += 1

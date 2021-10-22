@@ -94,6 +94,7 @@ def damage(playerTurn, chosed, target):
             playerTurn[4].append(playerTurn[chosed])
             playerTurn[chosed] = []
             # el monstruo oponente se va al GY
+            duel.fromFieldToGY(playerTurn[15][target], 'Destroyed by Battle')
             playerTurn[15][4].append(playerTurn[15][target])
             playerTurn[15][target] = []
         elif int(playerTurn[chosed]['attack']) > int(playerTurn[15][target]['attack']):
@@ -101,6 +102,7 @@ def damage(playerTurn, chosed, target):
             lp = int(playerTurn[chosed]['attack']) - int(playerTurn[15][target]['attack'])
             playerTurn[15][0] -= lp
             # el monstruo oponente se va al GY
+            duel.fromFieldToGY(playerTurn[15][target], 'Destroyed by Battle')
             playerTurn[15][4].append(playerTurn[15][target])
             playerTurn[15][target] = []
 
