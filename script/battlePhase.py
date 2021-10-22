@@ -62,10 +62,15 @@ def changeBattlePosition(playerTurn, changePosition):
             duel.littleSleep()
 
 
+def monsterAttacked(playerTurn, chosed):
+    playerTurn[chosed]['attacksCounter'] -= 1
+
+
 def directAttack(playerTurn, chosed):
     # print(f"Esto debería ser LP rival: {playerTurn[15][0]}")
     # print(playerTurn[15][0] - int(playerTurn[chosed]['attack']))
     playerTurn[15][0] -= int(playerTurn[chosed]['attack'])
+    monsterAttacked(playerTurn, chosed)
     if playerTurn[0] <= 0:
         playerTurn[14] = False
     elif playerTurn[15][0] <= 0:
@@ -90,6 +95,8 @@ def damage(playerTurn, chosed, target):
             # el monstruo oponente se va al GY
             playerTurn[15][4].append(playerTurn[15][target])
             playerTurn[15][target] = []
+
+            monsterAttacked(playerTurn, chosed)
         elif int(playerTurn[chosed]['attack']) < int(playerTurn[15][target]['attack']):
             print("Mi monstruo se va, el tuyo sigue en pie")
             lp = int(playerTurn[15][target]['attack']) - int(playerTurn[chosed]['attack'])
@@ -113,6 +120,7 @@ def damage(playerTurn, chosed, target):
             print("en defensa >:V")
             lp = int(playerTurn[15][target]['defense']) - int(playerTurn[chosed]['attack'])
             playerTurn[0] -= lp
+        monsterAttacked(playerTurn, chosed)
 
 
 def attackOnMonster(playerTurn, chosed):
