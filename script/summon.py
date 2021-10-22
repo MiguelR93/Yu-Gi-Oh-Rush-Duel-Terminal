@@ -35,7 +35,7 @@ def summonLoop(playerTurn, summonAMonster, summonKind, position):
                     duel.littleSleep()
                     continue
                 else:
-                    playerTurn[3][summonAMonster]['position'], playerTurn[3][summonAMonster]['summonKind'], playerTurn[3][summonAMonster]['summoned this turn?'] = position, summonKind, 'yes'
+                    playerTurn[3][summonAMonster]['position'], playerTurn[3][summonAMonster]['summonKind'], playerTurn[3][summonAMonster]['summoned this turn?'], playerTurn[3][summonAMonster]['can change its position?'] = position, summonKind, 'yes', 'no'
                     print(playerTurn[3][summonAMonster]) # imprime el estado del monstruo
                     playerTurn[monsterZonePosition+6] = playerTurn[3][summonAMonster] # pone el monstruo de la mano en el campo
                     playerTurn[3].remove(playerTurn[3][summonAMonster]) # quita de la mano al monstruo invocado

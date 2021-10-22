@@ -35,6 +35,9 @@ def mainPhase(playerTurn):
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
         if duel.currentlyTurn() > 1:
             print(mainPhaseOptions[10])
+        if (duel.ocupiedMonsterZones(playerTurn) >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
+            for i in mainPhaseOptions[7:10]:
+                print(i)
         print(mainPhaseOptions[11])
 
         try:
@@ -55,11 +58,20 @@ def mainPhase(playerTurn):
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:
-                pass
+                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                    raise ValueError
+                else:
+                    battlePhase.changeBattlePosition(playerTurn, 'attackToDefense')
             elif actionInMP == 8:
-                pass
+                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                    raise ValueError
+                else:
+                    battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
             elif actionInMP == 9:
-                pass
+                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                    raise ValueError
+                else:
+                    battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
             elif actionInMP == 10:
                 if duel.currentlyTurn() <= 1:
                     raise ValueError

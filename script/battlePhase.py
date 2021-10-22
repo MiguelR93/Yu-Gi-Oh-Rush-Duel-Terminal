@@ -10,6 +10,56 @@ battlePhaseOptions = [
 ]
 
 
+def canChangeItsPosition(playerTurn):
+    CHANGEABLE = 0
+    for i in playerTurn[7:10]: 
+        if (len(i) > 0) and (i['can change its position?'] == 'yes'):
+            CHANGEABLE += 1
+    return CHANGEABLE
+
+
+def changeBattlePosition(playerTurn, changePosition):
+    while duel.victory():
+        duel.duelStatus(playerTurn)
+        CHANGEABLE = 0
+        if changePosition == 'attackToDefense':
+            print("\n\n\nMonstruos que pueden cambiar su posición de ataque a defensa:")        
+            for i,a in enumerate(playerTurn[7:10]):            
+                if (len(a) > 0) and (('yes' in a['can change its position?']) and ('Attack' in a['position'])):
+                    print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+                    CHANGEABLE += 1
+        elif changePosition != 'attackToDefense':
+            print("\n\n\nMonstruos que pueden cambiar su posición de defensa a ataque :")        
+            for i,a in enumerate(playerTurn[7:10]):            
+                if (len(a) > 0) and (('yes' in a['can change its position?']) and ('Attack' not in a['position'])):
+                    print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+                    CHANGEABLE += 1
+        
+        if CHANGEABLE == 0:
+            break
+        
+        try:
+            chosed = int(input("\nElige un monstruo para cambiar de posición:\n")) + 7
+            if (len(playerTurn[chosed]) == 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
+                raise IndexError
+            else:
+                if changePosition == 'attackToDefense':
+                    playerTurn[chosed]['position'] = 'Defense Face-Up'
+                else:
+                    playerTurn[chosed]['position'] = 'Attack'
+                break
+        except IndexError:
+            print('Valor equivocado')
+            # input()
+            duel.littleSleep()
+        except ValueError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+        except TypeError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+
+
 def directAttack(playerTurn, chosed):
     # print(f"Esto debería ser LP rival: {playerTurn[15][0]}")
     # print(playerTurn[15][0] - int(playerTurn[chosed]['attack']))
@@ -61,7 +111,6 @@ def damage(playerTurn, chosed, target):
             print("en defensa >:V")
             lp = int(playerTurn[15][target]['defense']) - int(playerTurn[chosed]['attack'])
             playerTurn[0] -= lp
-    
 
 
 def attackOnMonster(playerTurn, chosed):
