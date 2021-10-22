@@ -3,6 +3,7 @@ import script.duel as duel
 import script.summon as summon
 import script.placeST as placeST
 import script.battlePhase as battlePhase
+import script.endPhase as endPhase
 
 
 mainPhaseOptions = [
@@ -79,7 +80,7 @@ def mainPhase(playerTurn):
                     battlePhase.battlePhase(playerTurn)
                     break
             elif actionInMP == 11:
-                # endPhase()
+                endPhase.endPhase(playerTurn)
                 break
             else:
                 raise ValueError

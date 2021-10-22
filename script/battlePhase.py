@@ -43,10 +43,12 @@ def changeBattlePosition(playerTurn, changePosition):
             if (len(playerTurn[chosed]) == 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
                 raise IndexError
             else:
-                if changePosition == 'attackToDefense':
+                if (changePosition == 'attackToDefense') and (playerTurn[chosed]['can change its position?'] == 'yes'):
                     playerTurn[chosed]['position'] = 'Defense Face-Up'
-                else:
+                    playerTurn[chosed]['can change its position?'] = 'no'
+                elif (changePosition != 'attackToDefense') and (playerTurn[chosed]['can change its position?'] == 'yes'):
                     playerTurn[chosed]['position'] = 'Attack'
+                    playerTurn[chosed]['can change its position?'] = 'no'
                 break
         except IndexError:
             print('Valor equivocado')
