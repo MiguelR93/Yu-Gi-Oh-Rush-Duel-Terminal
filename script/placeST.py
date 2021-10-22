@@ -11,7 +11,7 @@ def placeSTLoop(playerTurn, position, placeST):
         duel.littleSleep()
     else:
         while True:
-            duel.duelStatus()
+            duel.duelStatus(playerTurn)
             try:
                 sTZones = ["1: zona Izquierda", "2: zona central", "3: zona derecha"]
                 print('\nEn dónde quieres ponerlo?')
@@ -35,6 +35,8 @@ def placeSTLoop(playerTurn, position, placeST):
                     continue
                 else:
                     playerTurn[3][placeST]['position'] = position
+                    if position == 'set':
+                        playerTurn[3][placeST]['set this turn?'] = 'yes'
                     print(playerTurn[3][placeST]) # imprime el estado de la s/t
                     playerTurn[sTZonePosition + 9] = playerTurn[3][placeST] # pone la s/t
                     playerTurn[3].remove(playerTurn[3][placeST]) # quita de la mano a la s/t
@@ -55,6 +57,9 @@ def setSpellTrap(playerTurn, position):
         placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
         if 'MONSTER' in playerTurn[3][placeST]['cardType']: # Cuando lo que se elige es un monstruo y no debería serlo
             print('Eso no es una magia/trampa')
+            duel.littleSleep()
+        elif ('TRAP' in playerTurn[3][placeST]['cardType']) and (position == 'active'):
+            print("No puedes activar una trampa desde tu mano")
             duel.littleSleep()
         else:
             placeSTLoop(playerTurn, position, placeST)
