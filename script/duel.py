@@ -135,7 +135,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
         # if type(i) == dict:
         #     print(i['name'], end="   ")
         if len(i) > 0:
-            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']} | puede cambiar de posición {i['can change its position?']}",sep="//", end="   ")
+            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']} | puede cambiar de posición: {i['can change its position?']} | Veces que puede atacar: {i['attacksCounter']}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n")

@@ -1,6 +1,7 @@
 import script.drawPhase as drawPhase
 import script.duel as duel
 import script.mainPhase as mainPhase
+import script.endPhase as endPhase
 
 
 battlePhaseOptions = [
@@ -181,6 +182,8 @@ def declareAttack(playerTurn):
             duel.littleSleep()
         elif playerTurn[chosed]['attacksCounter'] < 1:
             print("Este monstruo no puede atacar")
+        elif playerTurn[chosed]['position'] != 'Attack':
+            print("Este monstruo no puede atacar")
         elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
             print("puedes atacar directo!")
             duel.littleSleep()
@@ -219,7 +222,7 @@ def battlePhase(playerTurn):
             if actionInBP == 1 and duel.ocupiedMonsterZones(playerTurn) > 0:
                 declareAttack(playerTurn)
             elif actionInBP == 2:
-                # endPhase()
+                endPhase.endPhase(playerTurn)
                 break
             else:
                 raise ValueError
