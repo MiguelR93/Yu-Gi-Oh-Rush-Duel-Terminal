@@ -62,6 +62,13 @@ def changeBattlePosition(playerTurn, changePosition):
             duel.littleSleep()
 
 
+def monsterCanAttack(playerTurn):
+    COUNTER = 0
+    for i in playerTurn[7:10]:
+        if (len(i) > 0) and (i['attacksCounter'] > 0):
+            COUNTER += 1
+    return COUNTER 
+
 def monsterAttacked(playerTurn, chosed):
     playerTurn[chosed]['attacksCounter'] -= 1
 
@@ -172,6 +179,8 @@ def declareAttack(playerTurn):
         if (len(playerTurn[chosed]) == 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
             raise IndexError
             duel.littleSleep()
+        elif playerTurn[chosed]['attacksCounter'] < 1:
+            print("Este monstruo no puede atacar")
         elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
             print("puedes atacar directo!")
             duel.littleSleep()
@@ -195,12 +204,12 @@ def battlePhase(playerTurn):
         duel.duelStatus(playerTurn)
         print("\n\n\nMonstruos que pueden atacar:")        
         for i,a in enumerate(playerTurn[7:10]):            
-            if (len(a) > 0) and ('Attack' in a['position']):
+            if (len(a) > 0) and (('Attack' in a['position']) and (a['attacksCounter'] > 0)):
                 print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
         
 
         print(battlePhaseOptions[0])
-        if duel.ocupiedMonsterZones(playerTurn) > 0:
+        if (duel.ocupiedMonsterZones(playerTurn) > 0) and (monsterCanAttack(playerTurn) > 0):
             print(battlePhaseOptions[1])
         print(battlePhaseOptions[2])
 
