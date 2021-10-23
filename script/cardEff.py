@@ -1,3 +1,7 @@
+
+
+
+
 class DragonicPressure():
     # TEXT: 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'
 
@@ -5,11 +9,14 @@ class DragonicPressure():
     # 2 CONDICIÓN: A) haber destruido al menos un monstruo con este efecto; B) ver si hay algún monstruo de nvl <= 4 en GY del jugador; RESULTADO: el jugador elige un monstruo nvl <= 4 de su GY y lo invoca en posición de defensa boca arriba
 
     def __init__(self):
-        pass
+        self.mIF = int(input("Monstruos en Campo: "))
+        self.dIH = int(input("Monstruos en Mano: "))
+        self.mD = int(input("Monstruos destruidos: "))
+        self.mIGY = int(input("Monstruos nvl <=4 en GY: "))
 
 
 
-    def effect(self, mIF=1, dIH=3, mD=1, mIGY=1):
+    def effect(self, mIF, dIH, mD, mIGY):
         self._counterMonsterInField(mIF)
         self._counterDragonInHand(dIH)
         if (self._counterMonsterInField(mIF) > 0) and (self._counterDragonInHand(dIH) >= 3):
@@ -52,4 +59,4 @@ class DragonicPressure():
 
 if __name__ == '__main__':
     eff = DragonicPressure()
-    eff.effect(int(input("Monstruos en Campo: ")),int(input("Monstruos en Mano: ")),int(input("Monstruos destruidos: ")),int(input("Monstruos nvl <=4 en GY: ")))
+    eff.effect()
