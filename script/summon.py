@@ -183,6 +183,24 @@ class Summon():
             self._sacrifice1()
         elif (int(monster['level']) >= 7):
             self._sacrifice2()
+        
+        # 1. Elegir al monstruo
+        # 2. Si nvl monstruo <= 4 ir a (7)
+        # 3. Si nvl monstruo == 5 o 6 ir a (5)
+        # 4. Si nvl monstruo >= 7 ir a (6)
+        # 5. Tributar un monstruo, luego ir a (7)
+        # 6. Tributar dos monstruos, luego ir a (7)
+        # 7. Invoca al monstruo (añadiéndole los atributos: invocación normal, invocado este turno, cantidad de ataques posibles, no puede cambiar de posición este turno
+    
+    def normalSummonFaceDown(self, monster):
+        # 1. Elegir al monstruo
+        # 2. Si nvl monstruo <= 4 ir a (7)
+        # 3. Si nvl monstruo == 5 o 6 ir a (5)
+        # 4. Si nvl monstruo >= 7 ir a (6)
+        # 5. Tributar un monstruo, luego ir a (7)
+        # 6. Tributar dos monstruos, luego ir a (7)
+        # 7. Invoca al monstruo (añadiéndole los atributos: invocación normal boca abajo, invocado este turno, cantidad de ataques posibles, no puede cambiar de posición este turno
+        pass
     
 
     def specialSummon(self):
