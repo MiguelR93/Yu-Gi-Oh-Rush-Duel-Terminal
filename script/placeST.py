@@ -1,4 +1,5 @@
 import script.duel as duel
+import script.activeEff as activeEff
 
 
 def placeSTLoop(playerTurn, position, placeST):
@@ -35,11 +36,13 @@ def placeSTLoop(playerTurn, position, placeST):
                     continue
                 else:
                     playerTurn[3][placeST]['position'] = position
-                    if position == 'set':
-                        playerTurn[3][placeST]['set this turn?'] = 'yes'
                     print(playerTurn[3][placeST]) # imprime el estado de la s/t
                     playerTurn[sTZonePosition + 9] = playerTurn[3][placeST] # pone la s/t
                     playerTurn[3].remove(playerTurn[3][placeST]) # quita de la mano a la s/t
+                    if position == 'set':
+                        playerTurn[3][placeST]['set this turn?'] = 'yes'
+                    elif position == 'active':
+                        activeEff.activeEff(playerTurn, sTZonePosition + 9)
                     break
             except IndexError:
                 print('Valor equivocado')
