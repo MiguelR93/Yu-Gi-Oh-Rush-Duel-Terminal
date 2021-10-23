@@ -168,3 +168,54 @@ def isThereMonstersInHand(playerTurn, mainPhaseOptions):
         pass
     # else:
     #     input("No tienes monstruos para invocar [Presiona Enter para continuar]")
+
+
+class Summon():
+
+    def __init__(self):
+        pass
+    
+    def normalSummon(self, monster):
+        # Recuerda indicar la posición de invocación
+        if int(monster['level']) <= 4:
+            self._summonLoop()
+        elif (int(monster['level']) > 4) and (int(monster['level']) < 7):
+            self._sacrifice1()
+        elif (int(monster['level']) >= 7):
+            self._sacrifice2()
+    
+
+    def specialSummon(self):
+        # Recuerda indicar la posición de invocación
+        self._summonLoop()
+    
+
+    def maximumSummon(self):
+        # si hay monstruos en el campos, se van al GY
+        # la pieza derecha del maximum debe ir en la zona de monstruo respectiva
+        self._summonLoop()
+        self._summonLoop()
+        self._summonLoop()        
+
+
+    def fusionSummon(self):
+        # envía materiales del campo al cementerio
+        self._summonLoop()
+
+    def _sacrifice1(self):
+        print('Safrifica un monstruo')
+        self._summonLoop()
+    
+    def _sacrifice2(self):
+        print('Sacrifica dos monstruos')
+        self._summonLoop()
+    
+    def _summonLoop(self):
+        print('Elige donde irá el monstruo')
+        print('El monstruo se invocó!')
+        
+
+# Zona de prueba
+if __name__ == '__main__':
+    summon = Summon()
+    summon.normalSummon({'id': '2', 'name': 'Gravity Press Dragon', 'cardType': 'MONSTER', 'text': '[Requirement] You can send 1 card from your hand to the GY.\n[Effect] Choose 1 face-up monster your opponent controls. It loses 700 ATK/DEF until the end of this turn.', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '6', 'attack': '1500', 'defense': '1000', 'frontier': '[effect]', 'effect': 'none'})
