@@ -48,14 +48,14 @@ def mainPhase(playerTurn):
                 # summon.normalSummon(playerTurn, 'Attack')
                 # elige al monstruo a invocar:
                 # print(f"elegiste invocar!")
-                for a,i in enumerate(playerTurn[3]):
+                for a,i in enumerate(playerTurn.hand):
                     print(f"{a}: {i.cardType}")
                 duel.littleSleep()
                 #escribes el número del monstruo:
                 try:
                     elElegido = int(input("Tu elección: "))
-                    if 'MONSTER' in playerTurn[3][elElegido].cardType:
-                        playerTurn[3][elElegido].normalSummon()
+                    if 'MONSTER' in playerTurn.hand[elElegido].cardType:
+                        playerTurn.hand[elElegido].normalSummon()
                     else:
                         raise IndexError
                     duel.littleSleep()

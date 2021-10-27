@@ -22,6 +22,7 @@ class Monster(card.Card):
         self.summonedThisTurn = True
         self.canAttackThisTurn = 1
 
+
     def normalSummon(self):
         pass
         if self.level <= 4:

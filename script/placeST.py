@@ -78,7 +78,7 @@ def setSpellTrap(playerTurn, position):
 
 def isThereSpellTrapInHand(playerTurn, mainPhaseOptions):
     COUNTER = 0
-    for i in playerTurn[3]:
+    for i in playerTurn.hand:
         if ('SPELL' in i.cardType) or ('TRAP' in i.cardType):
             COUNTER += 1
     if COUNTER >= 1:

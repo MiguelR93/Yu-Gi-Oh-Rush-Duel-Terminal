@@ -59,8 +59,8 @@ def openDeck():
 
     
     # print(deckResult)
-    for i in deckResult:
-        print(vars(i), end=',\n')
+    # for i in deckResult:
+    #     print(vars(i), end=',\n')
         # print(i, end=',\n')
 
     return deckResult

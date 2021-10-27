@@ -35,10 +35,10 @@ def summonLoop(playerTurn, summonAMonster, summonKind, position):
                     duel.littleSleep()
                     continue
                 else:
-                    # playerTurn[3][summonAMonster]['position'], playerTurn[3][summonAMonster]['summonKind'], playerTurn[3][summonAMonster]['summoned this turn?'], playerTurn[3][summonAMonster]['can change its position?'], playerTurn[3][summonAMonster]['attacksCounter'] = position, summonKind, 'yes', 'no', 1 # incluir esto en la clase monster.py
-                    print(playerTurn[3][summonAMonster]) # imprime el estado del monstruo
-                    playerTurn[monsterZonePosition+6] = playerTurn[3][summonAMonster] # pone el monstruo de la mano en el campo
-                    playerTurn[3].remove(playerTurn[3][summonAMonster]) # quita de la mano al monstruo invocado
+                    # playerTurn.hand[summonAMonster]['position'], playerTurn.hand[summonAMonster]['summonKind'], playerTurn.hand[summonAMonster]['summoned this turn?'], playerTurn.hand[summonAMonster]['can change its position?'], playerTurn.hand[summonAMonster]['attacksCounter'] = position, summonKind, 'yes', 'no', 1 # incluir esto en la clase monster.py
+                    print(playerTurn.hand[summonAMonster]) # imprime el estado del monstruo
+                    playerTurn[monsterZonePosition+6] = playerTurn.hand[summonAMonster] # pone el monstruo de la mano en el campo
+                    playerTurn.hand.remove(playerTurn.hand[summonAMonster]) # quita de la mano al monstruo invocado
                     break
             except IndexError:
                 print('Valor equivocado')
@@ -122,13 +122,13 @@ def sacrifice1(playerTurn, summonAMonster, position):
 def normalSummon(playerTurn, position):
     try:
         summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
-        if 'MONSTER' not in playerTurn[3][summonAMonster].cardType: # Cuando lo que se elige no es un monstruo
+        if 'MONSTER' not in playerTurn.hand[summonAMonster].cardType: # Cuando lo que se elige no es un monstruo
             print('Eso no es un monstruo')
             duel.littleSleep()
-        elif int(playerTurn[3][summonAMonster].level) <= 4: # Cuando lo que se elige es un monstruo nvl<=4
-            # print(f"\nNivel del monstruo: {playerTurn[3][summonAMonster].level}\n")
+        elif int(playerTurn.hand[summonAMonster].level) <= 4: # Cuando lo que se elige es un monstruo nvl<=4
+            # print(f"\nNivel del monstruo: {playerTurn.hand[summonAMonster].level}\n")
             summonLoop(playerTurn, summonAMonster, 'Normal Summon', position)
-        elif int(playerTurn[3][summonAMonster].level) <=6:
+        elif int(playerTurn.hand[summonAMonster].level) <=6:
             if duel.ocupiedMonsterZones() < 1:
                 print("No cuentas con monstruos suficientes")
                 duel.littleSleep()
@@ -138,7 +138,7 @@ def normalSummon(playerTurn, position):
                 # print("entramos a sacrificar")
                 # input()
                 sacrifice1(playerTurn, summonAMonster, position)
-        elif int(playerTurn[3][summonAMonster].level) >= 7:
+        elif int(playerTurn.hand[summonAMonster].level) >= 7:
             if duel.ocupiedMonsterZones() < 2:
                 print("No cuentas con monstruos suficientes")
                 duel.littleSleep()
@@ -158,7 +158,7 @@ def normalSummon(playerTurn, position):
 
 def isThereMonstersInHand(playerTurn, mainPhaseOptions):
     COUNTER = 0
-    for i in playerTurn[3]:
+    for i in playerTurn.hand:
         if 'MONSTER' in i.cardType:
             COUNTER += 1
     if COUNTER >= 1:
