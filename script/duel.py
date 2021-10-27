@@ -1,5 +1,8 @@
 import random, copy, time, os
 import script.turn as turn
+import script.openDeck as openDeck
+import script.monster as monster
+
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
 
 # Variables ----------------
@@ -14,19 +17,19 @@ player = [
         # {'id': '3', 'name': 'Fire Guardian', 'cardType': 'MONSTER', 'text': 'The gatekeeper guarding the path to the Fire Dragon Kingdom. Those who cannot withstand its blazing breath are not qualified to go any further.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '6', 'attack': '2100', 'defense': '400', 'frontier': '[normal]'},
         # {'id': '4', 'name': 'Dragon Knight of Darkness', 'cardType': 'MONSTER', 'text': 'A dragon knight who leads the dark army. His merciless strikes are without equal. The evil sword he wields consumes the souls of his enemies, continuing to grow.', 'attribute': 'DARK', 'type': 'Dragon', 'level': '5', 'attack': '1600', 'defense': '1100', 'frontier': '[normal]'},
         
-        {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
-        {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
+        # {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
+        # {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
         # {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
         # {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
+        # {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
 
-        {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
-        {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
-        {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
-        {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
-        {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
+        # {'id': '5', 'name': 'Dragolite', 'cardType': 'MONSTER', 'text': 'It came from an underground mineral vein. It keeps fighting using the energy of an unknown ore as a power source. Its super hard hitting blows are simply outstanding!', 'attribute': 'EARTH', 'type': 'Dragon', 'level': '4', 'attack': '1500', 'defense': '0', 'frontier': '[normal]'},
+        # {'id': '6', 'name': 'Twin-Edge Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: This card can make a second attack this turn.', 'attribute': 'LIGHT', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '0', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '7', 'name': "Dragon's Priestess", 'cardType': 'MONSTER', 'text': "A young priestess from the bloodline of an ancient dragon. She offers her prayers daily for the peace of her tribe. It's said that her clear eyes can change the future of those they lay upon.", 'attribute': 'WATER', 'type': 'Dragon', 'level': '3', 'attack': '1100', 'defense': '100', 'frontier': '[normal]'},
+        # {'id': '8', 'name': 'Dragon Bat', 'cardType': 'MONSTER', 'text': "A mysterious organism, researchers are still split over whether it's a bird or a beast. A flock of these flying together appears sort of draconian, so maybe it's a dragon.", 'attribute': 'DARK', 'type': 'Dragon', 'level': '3', 'attack': '1000', 'defense': '400', 'frontier': '[normal]'},
+        # {'id': '9', 'name': 'Phoenix Dragon', 'cardType': 'MONSTER', 'text': '[Requirement]: You can send 1 card from your hand to the GY.\n[Effect]: Add 1 monster (Level 5 or higher Dragon) from your GY to your hand.', 'attribute': 'FIRE', 'type': 'Dragon', 'level': '2', 'attack': '500', 'defense': '500', 'frontier': '[effect]', 'effect': 'none'},
+        # {'id': '10', 'name': 'Palm-Sized Drago', 'cardType': 'MONSTER', 'text': "A tiny dragon that loves peace. It's very used to people and will come close if you toss it some nuts. Apparently the ring hanging on its neck has some amazing secret.", 'attribute': 'WIND', 'type': 'Dragon', 'level': '1', 'attack': '0', 'defense': '1400', 'frontier': '[normal]'},
 
         # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
         # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
@@ -34,16 +37,16 @@ player = [
         # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-        # # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        # # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        # # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        # # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
-        # # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
-        # # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
-        # # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
-        # # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
+        # {'id': '11', 'name': 'Dragonic Pressure', 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'},
+        # {'id': '12', 'name': "Fire Dragon's Heatflash", 'cardType': 'SPELL', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement]: If you control a face-up monster (Dragon).\n[Effect]: Destroy 1 Spell/Trap your opponent controls.'},
+        # {'id': '13', 'name': 'Dragon Encounter', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': '[Requirement] When your opponent Normal or Special Summons a monster(s).\n[Effect] Special Summon 1 monster (Dragon) from your hand.'},
+        # {'id': '14', 'name': 'Counteroffensive Dragonstrike', 'cardType': 'TRAP', 'text': 'none', 'icon': 'normal', 'effect': "[Requirement] When a monster (Dragon) you control is destroyed by battle with an opponent's attacking monster, send 1 card from your hand to the GY.\n[Effect] Destroy 1 monster your opponent controls."},
 
 
        ], # 1 = "deck"
@@ -75,7 +78,7 @@ def shuffleDeck(playerDeck):
 
 
 def fromFieldToGY(monster, howCameHere):
-    monster['position'], monster['summonKind'], monster['summoned this turn?'], monster['can change its position?'], monster['attacksCounter'], monster['cameHereAs'] = None, None, None, None, None, howCameHere
+    monster.position, monster['summonKind'], monster['summoned this turn?'], monster['can change its position?'], monster['attacksCounter'], monster['cameHereAs'] = None, None, None, None, None, howCameHere
 
 
 def turnStarts():
@@ -98,7 +101,8 @@ def victory():
 def ocupiedMonsterZones(playerTurn): # convertir en anónima
     COUNTER = 0
     for i in playerTurn[7:10]:
-        if len(i) > 0:
+        # if len(i) > 0:
+        if type(i) == 'script.monsterNormal.MonsterNormal':
             COUNTER += 1
     return COUNTER
 
@@ -111,42 +115,51 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     print(f"Rival LP: {max(players['p2'][0],0)}")
     print(f"Deck rival: {len(players['p2'][1])}") # deck
     print(f"Cartas en mano rival: {len(players['p2'][3])}") # mano
+    
     # ----v OPONENT'S HAND
     for i,a in enumerate(players['p2'][3]):
-        if 'level' in players['p2'][3][i]:
-            print(f"{i}: {players['p2'][3][i]['name']}| Nvl: {players['p2'][3][i]['level']} ATK/{players['p2'][3][i]['attack']} DEF/{players['p2'][3][i]['defense']}")
+        if players['p2'][3][i].cardType == 'MONSTER':
+            print(f"{i}: {players['p2'][3][i].name}| Nvl: {players['p2'][3][i].level} ATK/{players['p2'][3][i].attack} DEF/{players['p2'][3][i].defense}")
         else:
-            print(f"{i}: {players['p2'][3][i]['name']} | {players['p2'][3][i]['cardType']} | {players['p2'][3][i]['icon']}")
+            print(f"{i}: {players['p2'][3][i].name} | {players['p2'][3][i].cardType} | {players['p2'][3][i]['icon']}")
     # ----^ OPONENT'S HAND
+
     print(f"Cartas en GY rival: {len(players['p2'][4])}")
     print("\nCampo oponente:")
     # s/t
     for i in players['p2'][12:9:-1]:
         if len(i) > 0:
-            print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
+            print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
         else:
             print(i,end="   ")
     print("\n")
     # monstruos
     for i in players['p2'][9:6:-1]:
         if len(i) > 0:
-            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}",sep="//", end="   ")
+            print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n\nTu campo:")
     # monstruos
     for i in players['p1'][7:10]:
         # if type(i) == dict:
-        #     print(i['name'], end="   ")
-        if len(i) > 0:
-            print(f"{i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']} | puede cambiar de posición: {i['can change its position?']} | Veces que puede atacar: {i['attacksCounter']}",sep="//", end="   ")
+        #     print(i.name, end="   ")
+        # print(type(i))
+        # if len(i) > 0:
+        if isinstance(i, monster.Monster):
+        # if (type(i) == 'script.monsterNormal.MonsterNormal') or (type(i) == 'script.monsterEffect as monsterEffect'):
+        # if isinstance(i, monster): # mejorar para sustituir al de arriba
+            # print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | puede cambiar de posición: {i['can change its position?']} | Veces que puede atacar: {i['attacksCounter']}",sep="//", end="   ")
+            print(f"{i.name} | Nivel: {i.level} ATK/{i.attack} DEF/{i.defense}",sep="//", end="   ")
+            # print('bien :)')
         else:
             print(i, end="   ")
+            # print('mal :C')
     print("\n")
     # s/t
     for i in players['p1'][10:13]:
         if len(i) > 0:
-            print(f"{i['name']} | {i['cardType']} | Posición: {i['position']}",sep="//", end="   ")
+            print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
         else:
             print(i,end="   ")
     # Tu campo:
@@ -157,10 +170,11 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     # imprimiendo la mano:
     print(f"Tu mano: {len(players['p1'][3])}")
     for i,a in enumerate(players['p1'][3]):
-        if 'level' in players['p1'][3][i]:
-            print(f"{i}: {players['p1'][3][i]['name']}| Nvl: {players['p1'][3][i]['level']} ATK/{players['p1'][3][i]['attack']} DEF/{players['p1'][3][i]['defense']}")
+        # if 'level' in players['p1'][3][i]:
+        if players['p1'][3][i].cardType == 'MONSTER':
+            print(f"{i}: {players['p1'][3][i].name}| Nvl: {players['p1'][3][i].level} ATK/{players['p1'][3][i].attack} DEF/{players['p1'][3][i].defense}")
         else:
-            print(f"{i}: {players['p1'][3][i]['name']} | {players['p1'][3][i]['cardType']} | {players['p1'][3][i]['icon']}")
+            print(f"{i}: {players['p1'][3][i].name} | {players['p1'][3][i].cardType} | {players['p1'][3][i]['icon']}")
 
 
 def littleSleep(): time.sleep(0)
@@ -178,6 +192,9 @@ def gameStart():
     # # print both deck status
     # printHandAndDeckCards()
     # global players
+
+    players['p1'][1] = openDeck.openDeck()
+    players['p2'][1] = openDeck.openDeck()
 
     players['p1'][13], players['p2'][13] = "Jugador", "COM"
     players['p2'][15], players['p1'][15] = players['p1'], players['p2']

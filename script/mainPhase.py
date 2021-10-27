@@ -50,12 +50,10 @@ def mainPhase(playerTurn):
                 summon.normalSummon(playerTurn, 'Defense Face-Down')
             elif actionInMP == 3:
                 placeST.setSpellTrap(playerTurn, 'active')
-                pass
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
                 placeST.setSpellTrap(playerTurn, 'set')
-                pass
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:
