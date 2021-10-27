@@ -121,7 +121,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
         if players['p2'][3][i].cardType == 'MONSTER':
             print(f"{i}: {players['p2'][3][i].name}| Nvl: {players['p2'][3][i].level} ATK/{players['p2'][3][i].attack} DEF/{players['p2'][3][i].defense}")
         else:
-            print(f"{i}: {players['p2'][3][i].name} | {players['p2'][3][i].cardType} | {players['p2'][3][i]['icon']}")
+            print(f"{i}: {players['p2'][3][i].name} | {players['p2'][3][i].cardType} | {players['p2'][3][i].icon}")
     # ----^ OPONENT'S HAND
 
     print(f"Cartas en GY rival: {len(players['p2'][4])}")
@@ -174,10 +174,10 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
         if players['p1'][3][i].cardType == 'MONSTER':
             print(f"{i}: {players['p1'][3][i].name}| Nvl: {players['p1'][3][i].level} ATK/{players['p1'][3][i].attack} DEF/{players['p1'][3][i].defense}")
         else:
-            print(f"{i}: {players['p1'][3][i].name} | {players['p1'][3][i].cardType} | {players['p1'][3][i]['icon']}")
+            print(f"{i}: {players['p1'][3][i].name} | {players['p1'][3][i].cardType} | {players['p1'][3][i].icon}")
 
 
-def littleSleep(): time.sleep(0)
+def littleSleep(): time.sleep(1)
 
 
 def printHandAndDeckCards():

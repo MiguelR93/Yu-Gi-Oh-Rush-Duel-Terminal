@@ -45,7 +45,27 @@ def mainPhase(playerTurn):
             actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
             if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
-                summon.normalSummon(playerTurn, 'Attack')
+                # summon.normalSummon(playerTurn, 'Attack')
+                # elige al monstruo a invocar:
+                # print(f"elegiste invocar!")
+                for a,i in enumerate(playerTurn[3]):
+                    print(f"{a}: {i.cardType}")
+                duel.littleSleep()
+                #escribes el número del monstruo:
+                try:
+                    elElegido = int(input("Tu elección: "))
+                    if 'MONSTER' in playerTurn[3][elElegido].cardType:
+                        playerTurn[3][elElegido].normalSummon()
+                    else:
+                        raise IndexError
+                    duel.littleSleep()
+                except IndexError:
+                    print('Valor equivocado')
+                    # input()
+                    duel.littleSleep()
+                except ValueError:
+                    print('Debes ingresar un número')
+                    duel.littleSleep()
             elif actionInMP == 2:
                 summon.normalSummon(playerTurn, 'Defense Face-Down')
             elif actionInMP == 3:

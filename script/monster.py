@@ -9,10 +9,31 @@ class Monster(card.Card):
         super().__init__(id, name, cardType, text)
         self.attribute = attribute
         self.type = type
-        self.level = level
+        self.level = int(level)
         self.attack = attack
         self.defense = defense
         self.frontier = frontier
+        
+        # # nuevos atributos: -------
+        # self._normalSummonAble = True
+        # self._setAble = True
+        # self._specialSummonAble = True
+        self.position = None # debe ingresarlo el usuario al invocarlo
+        self.summonedThisTurn = True
+        self.canAttackThisTurn = 1
 
-    def normalSummon():
+    def normalSummon(self):
+        pass
+        if self.level <= 4:
+            print("Felicidades, invocaste un monstruo de nvl 4 o menor!")
+        elif self.level > 4 and self.level < 7:
+            print("Felicidades, invocaste un monstruo de nvl 5 o 6!")
+        else:
+            print("Felicidades, invocaste un monstruo de nvl 7 o mayor!")
+
+    
+    def declareAttack(self):
+        pass
+    
+    def changePosition(self):
         pass
