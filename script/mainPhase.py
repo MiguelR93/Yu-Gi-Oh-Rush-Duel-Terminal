@@ -46,7 +46,7 @@ def mainPhase(playerTurn):
 
             if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
                 # summon.normalSummon(playerTurn, 'Attack')
-                playerTurn.normalSummon('normalSummon', 'attackPosition')
+                playerTurn.normalSummon('attackPosition')
                 duel.littleSleep()
             elif actionInMP == 2:
                 summon.normalSummon(playerTurn, 'Defense Face-Down')

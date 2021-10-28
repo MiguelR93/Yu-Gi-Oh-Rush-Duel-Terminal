@@ -77,7 +77,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     # monstruos
     for i in players['p2'].playerMonsterZones:
         if len(i) > 0:
-            print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense}",sep="//", end="   ")
+            print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | Invocado Este turno: {i.summonedThisTurn} | Ataques: {i.canAttackThisTurn} | Posición: {i.position}| Tipo de Invocación: {i.summonKind}",sep="//", end="   ")
         else:
             print(i, end="   ")
     print("\n\nTu campo:")
@@ -91,7 +91,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
         # if (type(i) == 'script.monsterNormal.MonsterNormal') or (type(i) == 'script.monsterEffect as monsterEffect'):
         # if isinstance(i, monster): # mejorar para sustituir al de arriba
             # print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | puede cambiar de posición: {i['can change its position?']} | Veces que puede atacar: {i['attacksCounter']}",sep="//", end="   ")
-            print(f"{i.name} | Nivel: {i.level} ATK/{i.attack} DEF/{i.defense}",sep="//", end="   ")
+            print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | Invocado Este turno: {i.summonedThisTurn} | Ataques: {i.canAttackThisTurn} | Posición: {i.position}| Tipo de Invocación: {i.summonKind}",sep="//", end="   ")
             # print('bien :)')
         else:
             print(i, end="   ")
@@ -116,7 +116,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
             print(f"{i}: {players['p1'].hand[i].name}| Nvl: {players['p1'].hand[i].level} ATK/{players['p1'].hand[i].attack} DEF/{players['p1'].hand[i].defense}")
         else:
             print(f"{i}: {players['p1'].hand[i].name} | {players['p1'].hand[i].cardType} | {players['p1'].hand[i].icon}")
-    print(f"Esto es aparte: \n LMZ: {players['p1'].leftMonsterCardZone}\n CMZ: {players['p1'].centerMonsterCardZone}\n RMZ: {players['p1'].rightMonsterCardZone}")
+    # print(f"Esto es aparte: \n LMZ: {players['p1'].leftMonsterCardZone}\n CMZ: {players['p1'].centerMonsterCardZone}\n RMZ: {players['p1'].rightMonsterCardZone}\n AMZ: {players['p1'].playerMonsterZones}")
 
 def littleSleep(): time.sleep(1)
 
