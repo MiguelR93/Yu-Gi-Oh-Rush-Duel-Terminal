@@ -23,18 +23,18 @@ class Monster(card.Card):
         self.canAttackThisTurn = 1
 
 
-    def normalSummon(self):
-        pass
-        if self.level <= 4:
-            print("Felicidades, invocaste un monstruo de nvl 4 o menor!")
-        elif self.level > 4 and self.level < 7:
-            print("Felicidades, invocaste un monstruo de nvl 5 o 6!")
-        else:
-            print("Felicidades, invocaste un monstruo de nvl 7 o mayor!")
+    # def normalSummon(self):
+    #     pass
+    #     if self.level <= 4:
+    #         print("Felicidades, invocaste un monstruo de nvl 4 o menor!")
+    #     elif self.level > 4 and self.level < 7:
+    #         print("Felicidades, invocaste un monstruo de nvl 5 o 6!")
+    #     else:
+    #         print("Felicidades, invocaste un monstruo de nvl 7 o mayor!")
 
     
-    def declareAttack(self):
-        pass
+    # def declareAttack(self):
+    #     pass
     
-    def changePosition(self):
-        pass
+    # def changePosition(self):
+    #     pass
