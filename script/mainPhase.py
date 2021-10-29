@@ -49,13 +49,13 @@ def mainPhase(playerTurn):
                 playerTurn.normalSummon('attackPosition')
                 duel.littleSleep()
             elif actionInMP == 2:
-                summon.normalSummon(playerTurn, 'Defense Face-Down')
+                playerTurn.normalSummon('Defense Face-Down')
             elif actionInMP == 3:
-                placeST.setSpellTrap(playerTurn, 'active')
+                playerTurn.setSpellTrap('active')
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
-                placeST.setSpellTrap(playerTurn, 'set')
+                playerTurn.setSpellTrap('set')
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:

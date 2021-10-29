@@ -52,6 +52,7 @@ class Player():
             self.deck.remove(self.deck[0]) # quita del deck la carta añadida a la mano
           
     ### MAIN PHASE ---------------------------
+    ### Monsters
     def normalSummon(self, position):
         if self.counterMonsterInHand() < 1:
             print('No hay monstruos para invocar')
@@ -60,8 +61,7 @@ class Player():
             # print('A invocar!')
             for a,i in enumerate(self.hand):
                 if 'MONSTER' in i.cardType:
-                    print(f"{a}: {i.name}")
-                    
+                    print(f"{a}: {i.name}")                    
             try:
                 summonAMonster = int(input("ingresa el índice del monstruo (el número a su izquierda): "))
                 if 'MONSTER' not in self.hand[summonAMonster].cardType: # Cuando lo que se elige no es un monstruo
@@ -69,22 +69,16 @@ class Player():
                 elif int(self.hand[summonAMonster].level) <= 4: # Cuando lo que se elige es un monstruo nvl<=4
                     # print(f"\nNivel del monstruo: {self.hand[summonAMonster].level}\n")
                     self.summonLoop('normalSummon',  position, summonAMonster)
-
-
-
-
                 elif (self.hand[summonAMonster].level == 5) or (self.hand[summonAMonster].level == 6):
                     if self.counterMonsterInMyField() < 1:
                         print("No cuentas con monstruos suficientes")
                         duel.littleSleep()
                     else:
-                        self.sacrifice1('tributeSummon', position, summonAMonster)
-                
+                        self.sacrifice1('tributeSummon', position, summonAMonster)                
                 elif self.hand[summonAMonster].level >= 7:
                     if self.counterMonsterInMyField() < 2:
                         print("No cuentas con monstruos suficientes")
                         duel.littleSleep()
-
                     else:
                         self.sacrifice2('tributeSummon', position, summonAMonster)
             except IndexError:
@@ -92,7 +86,6 @@ class Player():
             except ValueError:
                 print('Debes ingresar un número')
             duel.littleSleep()
-            # input()
 
 
     def counterMonsterInHand(self):
@@ -194,31 +187,9 @@ class Player():
                             continue
                         elif ocupado == 2:
                             break
-                        # if summonKind == 'tribute Summon':
-                        #     print("Zona ocupada, elige otra")
-                        #     duel.littleSleep()
-                        #     continue
-                        # else:
-                        #     ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
-                        #     if ocupado == 1:
-                        #         continue
-                        #     elif ocupado == 2:
-                        #         break
                     elif type(self.playerMonsterZones[monsterZonePosition]) == list:
-                        # if monsterZonePosition == 0:
-                        #     self.leftMonsterCardZone = self.hand[summonAMonster]
-                        # elif monsterZonePosition == 1:
-                        #     self.centerMonsterCardZone = self.hand[summonAMonster]
-                        # elif monsterZonePosition == 2:
-                        #     self.rightMonsterCardZone = self.hand[summonAMonster]
-                        # else:
-                        #     print("No.")
-                        #     duel.littleSleep()
-                        #     continue
-
                         self.playerMonsterZones[monsterZonePosition] = self.hand[summonAMonster] # pone el monstruo de la mano en el campo
                         self.hand.remove(self.hand[summonAMonster]) # quita de la mano al monstruo invocado
-
                         self.playerMonsterZones[monsterZonePosition].position = position
                         self.playerMonsterZones[monsterZonePosition].summonKind = summonKind
                         break
@@ -228,7 +199,6 @@ class Player():
                         continue
                 except IndexError:
                     print('Valor equivocado')
-                    # input()
                     duel.littleSleep()
                     continue
                 except ValueError:
@@ -236,6 +206,8 @@ class Player():
                     duel.littleSleep()
                     continue
 
+
+    ### ST
 
     ### BATTLE PHASE ---------------------------
     ### END PHASE ---------------------------
