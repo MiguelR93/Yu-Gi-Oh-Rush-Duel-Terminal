@@ -54,7 +54,7 @@ class Player():
     ### MAIN PHASE ---------------------------
     ### Monsters
     def normalSummon(self, position):
-        if self.counterMonsterInHand() < 1:
+        if self.counterCardTypeInHand('MONSTER') < 1:
             print('No hay monstruos para invocar')
             duel.littleSleep()
         else:
@@ -88,10 +88,10 @@ class Player():
             duel.littleSleep()
 
 
-    def counterMonsterInHand(self):
+    def counterCardTypeInHand(self, chosenCardType):
         COUNTER = 0
         for i in self.hand:
-            if 'MONSTER' in i.cardType:
+            if chosenCardType in i.cardType:
                 COUNTER += 1
         return COUNTER
     
@@ -221,7 +221,7 @@ if __name__ == '__main__':
     # print(mito.name)
     # print(mito.oponent)
     # print(mito.lp)
-    # print(mito.counterMonsterInHand())
+    # print(mito.counterCardTypeInHand())
     # print(mito.hand)
     # mito.normalSummon()
-    mito.counterMonsterInHand()
+    mito.counterCardTypeInHand()
