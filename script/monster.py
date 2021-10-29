@@ -10,8 +10,8 @@ class Monster(card.Card):
         self.attribute = attribute
         self.type = type
         self.level = int(level)
-        self.attack = attack
-        self.defense = defense
+        self.attack = int(attack)
+        self.defense = int(defense)
         self.frontier = frontier
         
         # # nuevos atributos: -------

@@ -80,7 +80,7 @@ def mainPhase(playerTurn):
                     battlePhase.battlePhase(playerTurn)
                     break
             elif actionInMP == 11:
-                endPhase.endPhase(playerTurn)
+                playerTurn.endPhase()
                 break
             else:
                 raise ValueError

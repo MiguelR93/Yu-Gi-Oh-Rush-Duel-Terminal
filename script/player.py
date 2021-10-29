@@ -73,29 +73,20 @@ class Player():
 
 
 
-                # elif int(self.hand[summonAMonster].level) <=6:
-                #     if self.counterMonsterInMyField() < 1:
-                #         print("No cuentas con monstruos suficientes")
-                #         duel.littleSleep()
-                #         # input()
-                #     else:
-                #         # mostrar los monstruos a sacrificar
-                #         # print("entramos a sacrificar")
-                #         # input()
+                elif (self.hand[summonAMonster].level == 5) or (self.hand[summonAMonster].level == 6):
+                    if self.counterMonsterInMyField() < 1:
+                        print("No cuentas con monstruos suficientes")
+                        duel.littleSleep()
+                    else:
+                        self.sacrifice1('tributeSummon', position, summonAMonster)
+                
+                elif self.hand[summonAMonster].level >= 7:
+                    if self.counterMonsterInMyField() < 2:
+                        print("No cuentas con monstruos suficientes")
+                        duel.littleSleep()
 
-                #         # pass
-                #         self.sacrifice1(summonAMonster, position)
-                # elif int(self.hand[summonAMonster].level) >= 7:
-                #     if self.counterMonsterInMyField() < 2:
-                #         print("No cuentas con monstruos suficientes")
-                #         duel.littleSleep()
-                #     else:
-                # #         # mostrar los monstruos a sacrificar
-                # #         # print("entramos a sacrificar")
-                # #         # input()
-                        
-                #         pass
-                #         # sacrifice1(self, summonAMonster, position)
+                    else:
+                        self.sacrifice2('tributeSummon', position, summonAMonster)
             except IndexError:
                 print('Valor equivocado')
             except ValueError:
@@ -120,19 +111,74 @@ class Player():
         return COUNTER
 
 
+    def sacrifice1(self, summonKind, position, summonAMonster):
+        print("Monstruos en campo\n")
+        for a,i in enumerate(self.playerMonsterZones):
+            if type(i) != list:
+                print(f"{a}: {i.name}")
+        try:
+            chosen = int(input("Elige el monstruos a sacrificar:"))
+            self.gy.append(self.playerMonsterZones[chosen]) # envía al gy
+            self.playerMonsterZones[chosen] = [] # quita del campo al monstruo sacrificado
+            self.summonLoop('tribute Summon', position, summonAMonster)
+        except IndexError:
+            print('Valor equivocado')
+            # input()
+            duel.littleSleep()
+        except ValueError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+
+
+    def sacrifice2(self, summonKind, position, summonAMonster):    
+        while True:
+            duel.littleSleep()
+            print("\nMonstruos en campo:")
+            tributeAble = []
+            for i,a in enumerate(self.playerMonsterZones):
+                if type(a) != list:
+                    print(f"{i}: {a.name}")
+                    tributeAble.append(i)
+            choosed = []
+            tributed = int(input("Elige el primer monstruo a sacrificar: "))
+            if tributed not in tributeAble:
+                print("No es un valor válido")
+                duel.littleSleep()
+                continue
+            choosed.append(tributed)
+            try:
+                print("Elige el segundo monstruo a sacrificar o vuelve a elegir al primero para cambiarlo: ")
+                tributed2 = int(input())
+                if tributed2 == choosed[0]:
+                    continue
+                elif tributed2 not in tributeAble:
+                    print("No es un valor válido")
+                    duel.littleSleep()
+                elif tributed2 != choosed[0]:
+                    tributeAble.append(tributed2)
+                    break
+                    duel.littleSleep()
+            except IndexError:
+                print('Valor equivocado')
+                continue
+                duel.littleSleep()
+            except ValueError:
+                print('Debes ingresar un número')
+                continue
+                duel.littleSleep()
+        self.gy.append(self.playerMonsterZones[tributed])
+        self.playerMonsterZones[tributed] = []
+        self.gy.append(self.playerMonsterZones[tributed2])
+        self.playerMonsterZones[tributed2] = []
+        self.summonLoop('tribute Summon', position, summonAMonster)    
+
+
     def summonLoop(self, summonKind, position, summonAMonster):
-        # OCUPIED_MONSTER_ZONE_COUNTER = 0
-        # for i in self.playerMonsterZones:
-        #     if (type(i) != list): # si i es un monstruo:
-        #         OCUPIED_MONSTER_ZONE_COUNTER += 1
-                
-        # if OCUPIED_MONSTER_ZONE_COUNTER > 2:
         if self.counterMonsterInMyField() > 2:
             print("No hay zonas disponibles")
             duel.littleSleep()
         else:
             while True:
-                # duel.littleSleep()
                 try:
                     monstersZones = ["0: zona Izquierda", "1: zona central", "2: zona derecha"]
                     print('\nEn dónde quieres ponerlo?')
@@ -190,6 +236,11 @@ class Player():
                     duel.littleSleep()
                     continue
 
+
+    ### BATTLE PHASE ---------------------------
+    ### END PHASE ---------------------------
+    def endPhase(self):
+        pass
 
 
 ## Zona de pruebas
