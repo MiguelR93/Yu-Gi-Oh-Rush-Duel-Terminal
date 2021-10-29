@@ -300,6 +300,9 @@ class Player():
                     continue
 
     ### BATTLE PHASE ---------------------------
+
+
+
     ### END PHASE ---------------------------
     def endPhase(self):
         print("Entramos!")

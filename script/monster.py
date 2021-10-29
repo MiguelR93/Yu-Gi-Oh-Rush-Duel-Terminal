@@ -22,6 +22,7 @@ class Monster(card.Card):
         self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
         self.summonedThisTurn = None
         self.canAttackThisTurn = 1
+        self.canChangeItsPosition = True
 
 
     # def normalSummon(self):
