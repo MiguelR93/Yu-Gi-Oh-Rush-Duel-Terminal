@@ -51,11 +51,11 @@ def mainPhase(playerTurn):
             elif actionInMP == 2:
                 playerTurn.normalSummon('Defense Face-Down')
             elif actionInMP == 3:
-                playerTurn.setSpellTrap('active')
+                playerTurn.placeSpellTrap('active')
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
-                playerTurn.setSpellTrap('set')
+                playerTurn.placeSpellTrap('set')
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:

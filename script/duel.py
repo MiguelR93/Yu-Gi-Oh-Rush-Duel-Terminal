@@ -2,6 +2,7 @@ import random, copy, time, os
 import script.turn as turn
 import script.openDeck as openDeck
 import script.monster as monster
+import script.spellTrap as spellTrap
 import script.player as player
 
 
@@ -69,14 +70,14 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     print("\nCampo oponente:")
     # s/t
     for i in players['p2'].playerSTZones:
-        if len(i) > 0:
+        if isinstance(i, spellTrap.SpellTrap):
             print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
         else:
             print(i,end="   ")
     print("\n")
     # monstruos
     for i in players['p2'].playerMonsterZones:
-        if len(i) > 0:
+        if isinstance(i, monster.Monster):
             print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | Invocado Este turno: {i.summonedThisTurn} | Ataques: {i.canAttackThisTurn} | Posición: {i.position}| Tipo de Invocación: {i.summonKind}",sep="//", end="   ")
         else:
             print(i, end="   ")
@@ -99,7 +100,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     print("\n")
     # s/t
     for i in players['p1'].playerSTZones:
-        if len(i) > 0:
+        if isinstance(i, spellTrap.SpellTrap):
             print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
         else:
             print(i,end="   ")

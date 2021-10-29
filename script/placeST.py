@@ -56,7 +56,7 @@ def placeSTLoop(playerTurn, position, placeST):
                 continue
 
 
-def setSpellTrap(playerTurn, position):
+def placeSpellTrap(playerTurn, position):
     try:
         placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
         if 'MONSTER' in playerTurn[3][placeST].cardType: # Cuando lo que se elige es un monstruo y no debería serlo

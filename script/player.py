@@ -1,4 +1,6 @@
 import script.duel as duel
+import script.monster as monster
+import script.spellTrap as spellTrap
 
 
 class Player():
@@ -92,6 +94,14 @@ class Player():
         COUNTER = 0
         for i in self.hand:
             if chosenCardType in i.cardType:
+                COUNTER += 1
+        return COUNTER
+    
+
+    def counterSTInMyField(self):
+        COUNTER = 0
+        for i in self.playerSTZones:
+            if type(i) != list:
                 COUNTER += 1
         return COUNTER
     
@@ -208,6 +218,85 @@ class Player():
 
 
     ### ST
+    def placeSpellTrap(self, position):
+        try:
+            placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
+            if 'MONSTER' in self.hand[placeST].cardType: # Cuando lo que se elige es un monstruo y no debería serlo
+                print('Eso no es una magia/trampa')
+                duel.littleSleep()
+            elif ('TRAP' in self.hand[placeST].cardType) and (position == 'active'):
+                print("No puedes activar una trampa desde tu mano")
+                duel.littleSleep()
+            else:
+                self.placeSTLoop(position, placeST)
+        except IndexError:
+            print('Valor equivocado')
+            # input()
+            duel.littleSleep()
+        except ValueError:
+            print('Debes ingresar un número')
+            duel.littleSleep()
+
+
+    def placeSTLoop(self, position, placeST):
+        # sTZoneCounter = 0
+        # for i in self.playerSTZones:
+        #     if isinstance(i, spellTrap.SpellTrap):
+        #         sTZoneCounter += 1
+        # if sTZoneCounter > 2:
+        #     print("No hay zonas disponibles")
+        #     duel.littleSleep()
+        if self.counterSTInMyField() > 2:
+            print("No hay zonas disponibles")
+            duel.littleSleep()
+
+
+        else:
+            while True:
+                # duel.duelStatus(playerTurn)
+                try:
+                    sTZones = ["0: zona Izquierda", "1: zona central", "2: zona derecha"]
+                    print('\nEn dónde quieres ponerlo?')
+                    for a,i in enumerate(self.playerSTZones):
+                        if type(i) == list:
+                            print(sTZones[a])
+                    sTZonePosition = int(input("\nEscribe el número a la izquierda: "))
+                    if type(self.playerSTZones[sTZonePosition]) != list:
+                        # print("Zona ocupada, elige otra")
+                        # duel.littleSleep()
+                        # continue
+                        # else:
+                        ocupado = int(input("Esa zona está ocupada!\nQuieres elegir otra?\n1: sí\n2: no\n"))
+                        if ocupado == 1:
+                            continue
+                        elif ocupado == 2:
+                            break
+                    elif (sTZonePosition > 3) or (sTZonePosition < 0):
+                        print("No es una zona de magia/trampa")
+                        duel.littleSleep()
+                        continue
+                    else:
+                        self.hand[placeST].position = position # incluir en la clase
+                        # print(self.hand[placeST]) # imprime el estado de la s/t
+                        self.playerSTZones[sTZonePosition] = self.hand[placeST] # pone la s/t
+                        self.hand.remove(self.hand[placeST]) # quita de la mano a la s/t
+                        if position == 'set':
+                            self.hand[placeST].placedThisTurn = True # incluir en la clase
+                            pass
+                        elif position == 'active':
+                            print("Activo una Magia!")
+                            duel.littleSleep()
+                            # activeEff.activeEff(playerTurn, sTZonePosition)
+                        break
+                except IndexError:
+                    print('Valor equivocado')
+                    # input()
+                    duel.littleSleep()
+                    continue
+                except ValueError:
+                    print('Debes ingresar un número')
+                    duel.littleSleep()
+                    continue
 
     ### BATTLE PHASE ---------------------------
     ### END PHASE ---------------------------

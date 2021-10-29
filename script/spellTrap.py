@@ -10,3 +10,7 @@ class SpellTrap(card.Card):
         super().__init__(id, name, cardType, text)
         self.icon = icon
         self.effect = effect
+
+        # # nuevos atributos: -------
+        self.position = None # [active, set]
+        self.placedThisTurn = None
