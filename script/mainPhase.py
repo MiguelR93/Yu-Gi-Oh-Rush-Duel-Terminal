@@ -80,6 +80,8 @@ def mainPhase(playerTurn):
                     battlePhase.battlePhase(playerTurn)
                     break
             elif actionInMP == 11:
+                # print("Fin del turno")
+                # duel.littleSleep()
                 playerTurn.endPhase()
                 break
             else:

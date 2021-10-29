@@ -71,7 +71,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     # s/t
     for i in players['p2'].playerSTZones:
         if isinstance(i, spellTrap.SpellTrap):
-            print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
+            print(f"{i.name} | {i.cardType} | Posición: {i.position} | Colocada este turno: {i.placedThisTurn}",sep="//", end="   ")
         else:
             print(i,end="   ")
     print("\n")
@@ -101,7 +101,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     # s/t
     for i in players['p1'].playerSTZones:
         if isinstance(i, spellTrap.SpellTrap):
-            print(f"{i.name} | {i.cardType} | Posición: {i.position}",sep="//", end="   ")
+            print(f"{i.name} | {i.cardType} | Posición: {i.position} | Colocada este turno: {i.placedThisTurn}",sep="//", end="   ")
         else:
             print(i,end="   ")
     # Tu campo:

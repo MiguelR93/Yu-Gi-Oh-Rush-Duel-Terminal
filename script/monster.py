@@ -20,7 +20,7 @@ class Monster(card.Card):
         # self._specialSummonAble = True
         self.position = None # [attack, defense face-down, defense face-up]
         self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
-        self.summonedThisTurn = True
+        self.summonedThisTurn = None
         self.canAttackThisTurn = 1
 
 

@@ -202,6 +202,7 @@ class Player():
                         self.hand.remove(self.hand[summonAMonster]) # quita de la mano al monstruo invocado
                         self.playerMonsterZones[monsterZonePosition].position = position
                         self.playerMonsterZones[monsterZonePosition].summonKind = summonKind
+                        self.playerMonsterZones[monsterZonePosition].summonedThisTurn = True
                         break
                     else:
                         print("No es una zona de monstruo")
@@ -281,7 +282,7 @@ class Player():
                         self.playerSTZones[sTZonePosition] = self.hand[placeST] # pone la s/t
                         self.hand.remove(self.hand[placeST]) # quita de la mano a la s/t
                         if position == 'set':
-                            self.hand[placeST].placedThisTurn = True # incluir en la clase
+                            self.playerSTZones[sTZonePosition].placedThisTurn = True # incluir en la clase
                             pass
                         elif position == 'active':
                             print("Activo una Magia!")
@@ -301,7 +302,26 @@ class Player():
     ### BATTLE PHASE ---------------------------
     ### END PHASE ---------------------------
     def endPhase(self):
-        pass
+        print("Entramos!")
+        # print(self.playerSTZones)
+        duel.littleSleep()
+        for a,i in enumerate(self.playerMonsterZones):
+            # print("Ciclo de monstruos")
+            # print(f"{a}: {i.name}")
+        #     duel.littleSleep()
+            if (type(i) != list) and (self.playerMonsterZones[a].summonedThisTurn == True):
+                # print("Se cumplio para el monstruo")
+                self.playerMonsterZones[a].summonedThisTurn = False
+        # print("Terminamos con los monstruos")
+        # duel.littleSleep()
+
+        for a,i in enumerate(self.playerSTZones):
+        #     print("Ciclo de ST")
+            if (type(i) != list) and (self.playerSTZones[a].placedThisTurn == True):
+        #         print("Se cumplio para la ST")
+                self.playerSTZones[a].placedThisTurn = False
+        # print("Terminamos con las ST")
+        # duel.littleSleep()
 
 
 ## Zona de pruebas
