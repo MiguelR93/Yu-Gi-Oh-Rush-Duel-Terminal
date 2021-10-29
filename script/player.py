@@ -305,7 +305,7 @@ class Player():
 
     ### END PHASE ---------------------------
     def endPhase(self):
-        print("Entramos!")
+        # print("Entramos!")
         # print(self.playerSTZones)
         duel.littleSleep()
         for a,i in enumerate(self.playerMonsterZones):
