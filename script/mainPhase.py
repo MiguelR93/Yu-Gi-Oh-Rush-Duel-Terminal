@@ -84,6 +84,16 @@ def mainPhase(playerTurn):
                 # duel.littleSleep()
                 playerTurn.endPhase()
                 break
+            elif actionInMP == 12:
+                print(f"Hay {playerTurn.cardsInPlayerArea(playerTurn.hand)} en tu mano")
+                print(f"Hay {playerTurn.cardsInPlayerArea(playerTurn.deck)} en tu deck")
+                print(f"Hay {playerTurn.cardsInPlayerArea(playerTurn.gy)} en tu gy")
+                duel.littleSleep()
+            elif actionInMP == 13:
+                print(f"Hay {playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')} monstruos en tu mano")
+                print(f"Hay {playerTurn.typeCardInPlayerArea(playerTurn.hand, 'TRAP')} trampas en tu mano")
+                print(f"Hay {playerTurn.typeCardInPlayerArea(playerTurn.hand, 'SPELL')} magias en tu mano")
+                duel.littleSleep()
             else:
                 raise ValueError
         except ValueError:

@@ -32,6 +32,21 @@ class Player():
         self.victoryStatus = True # 14
         self.oponent = oponent # 15
 
+
+    ### Tools ---------------------------
+    def cardsInPlayerArea(self, PlayerArea):
+        # print('hola')
+        return len(PlayerArea)
+
+    
+    def typeCardInPlayerArea(self, PlayerArea, typeCardSearched):
+        COUNTER = 0
+        for i in PlayerArea:
+            if typeCardSearched in i.cardType:
+                COUNTER += 1
+        return COUNTER
+
+
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
         if self.cardsInHand() >= 5:
