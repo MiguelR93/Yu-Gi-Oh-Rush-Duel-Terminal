@@ -38,12 +38,14 @@ class Player():
         random.shuffle(self.deck)
 
 
-    def typeCardInPlayerArea(self, PlayerArea, typeCardSearched):
+    def typeCardInPlayerArea(self, PlayerArea, cardTypeSearched):
         COUNTER = 0
-        for i in self.PlayerArea:
-            if i.typeCard == typeCardSearched:
+        for i in PlayerArea:
+            if i.cardType == cardTypeSearched:
                 COUNTER += 1
-        return COUNTER
+        # return COUNTER
+        print(COUNTER)
+        duel.littleSleep()
 
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
