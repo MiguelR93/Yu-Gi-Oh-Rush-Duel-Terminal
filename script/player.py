@@ -41,11 +41,11 @@ class Player():
     def typeCardInPlayerArea(self, PlayerArea, cardTypeSearched):
         COUNTER = 0
         for i in PlayerArea:
-            if i.cardType == cardTypeSearched:
+            if (type(i) != list) and (i.cardType == cardTypeSearched):
                 COUNTER += 1
-        # return COUNTER
-        print(COUNTER)
-        duel.littleSleep()
+        return COUNTER
+        # print(COUNTER)
+        # duel.littleSleep()
 
     ### DRAW PHASE ---------------------------
     def drawPhase(self):

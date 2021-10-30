@@ -33,13 +33,13 @@ def currentlyTurn():
     return TURNSCOUNTER
 
 
-def ocupiedMonsterZones(playerTurn): # convertir en anónima
-    COUNTER = 0
-    for i in playerTurn.playerMonsterZones:
-        # if len(i) > 0:
-        if type(i) == 'script.monsterNormal.MonsterNormal':
-            COUNTER += 1
-    return COUNTER
+# def ocupiedMonsterZones(playerTurn): # convertir en anónima
+#     COUNTER = 0
+#     for i in playerTurn.playerMonsterZones:
+#         # if len(i) > 0:
+#         if type(i) == 'script.monsterNormal.MonsterNormal':
+#             COUNTER += 1
+#     return COUNTER
 
 
 def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo, cementerio de ambos jugadores
