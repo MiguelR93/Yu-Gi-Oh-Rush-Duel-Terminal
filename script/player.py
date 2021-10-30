@@ -4,33 +4,33 @@ import script.spellTrap as spellTrap
 
 
 class Player():
-    def __init__(self, deck, extraDeck, hand, gy, excavated, fieldSpellCardZone, leftMonsterCardZone, centerMonsterCardZone, rightMonsterCardZone, leftSTCardZone, centerSTCardZone, rightSTCardZone, name, oponent):
+    def __init__(self, name):
         self.lp = 8000 # 00
-        self.deck = deck # 01
-        self.extraDeck = extraDeck # 02
-        self.hand = hand # 03
-        self.gy = gy # 04
-        self.excavated = excavated # 05
-        self.fieldSpellCardZone = fieldSpellCardZone # 06
+        self.deck = [] # 01
+        self.extraDeck = [] # 02
+        self.hand = [] # 03
+        self.gy = [] # 04
+        self.excavated = [] # 05
+        self.fieldSpellCardZone = None # 06
         # self.leftMonsterCardZone = leftMonsterCardZone # 07
         # self.centerMonsterCardZone = centerMonsterCardZone # 08
         # self.rightMonsterCardZone = rightMonsterCardZone # 09
         self.playerMonsterZones = [
-            leftMonsterCardZone, # 07
-            centerMonsterCardZone, # 08
-            rightMonsterCardZone, # 09
+            None, # 07
+            None, # 08
+            None, # 09
             ]
         # self.leftSTCardZone = leftSTCardZone # 10
         # self.centerSTCardZone = centerSTCardZone # 11
         # self.rightSTCardZone = rightSTCardZone # 12
         self.playerSTZones = [
-            leftSTCardZone,  # 10
-            centerSTCardZone,  # 11
-            rightSTCardZone # 12
+            None,  # 10
+            None,  # 11
+            None # 12
             ]
         self.name = name # 13
         self.victoryStatus = True # 14
-        self.oponent = oponent # 15
+        self.oponent = None # 15
 
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
@@ -300,9 +300,12 @@ class Player():
                     continue
 
     ### BATTLE PHASE ---------------------------
+
+
+
     ### END PHASE ---------------------------
     def endPhase(self):
-        print("Entramos!")
+        # print("Entramos!")
         # print(self.playerSTZones)
         duel.littleSleep()
         for a,i in enumerate(self.playerMonsterZones):
@@ -326,7 +329,7 @@ class Player():
 
 ## Zona de pruebas
 if __name__ == '__main__':
-    mito = Player([], [], [], [], [], [], [], [], [], [], [], [], 'Jugador', None)
+    mito = Player('Jugador')
     # print(mito.name)
     # print(mito.oponent)
     # print(mito.lp)
