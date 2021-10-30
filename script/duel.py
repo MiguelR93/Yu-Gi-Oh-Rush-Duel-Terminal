@@ -23,19 +23,14 @@ def victory():
     else:
         return True
 
-# def shuffleDeck(playerDeck):
-#     random.shuffle(playerDeck)
-
 
 def turnStarts():
     global TURNSCOUNTER
     TURNSCOUNTER += 1
 
 
-def currentlyTurn(): # is it necesary?
+def currentlyTurn():
     return TURNSCOUNTER
-
-
 
 
 def ocupiedMonsterZones(playerTurn): # convertir en anónima

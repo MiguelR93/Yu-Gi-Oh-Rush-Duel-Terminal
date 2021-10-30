@@ -38,6 +38,13 @@ class Player():
         random.shuffle(self.deck)
 
 
+    def typeCardInPlayerArea(self, PlayerArea, typeCardSearched):
+        COUNTER = 0
+        for i in self.PlayerArea:
+            if i.typeCard == typeCardSearched:
+                COUNTER += 1
+        return COUNTER
+
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
         if self.cardsInHand() >= 5:
