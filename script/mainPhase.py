@@ -84,6 +84,8 @@ def mainPhase(playerTurn):
                 # duel.littleSleep()
                 playerTurn.endPhase()
                 break
+            elif actionInMP == 12:
+                playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')
             else:
                 raise ValueError
         except ValueError:
