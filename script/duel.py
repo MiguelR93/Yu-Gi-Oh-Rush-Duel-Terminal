@@ -7,29 +7,13 @@ import script.player as player
 
 
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
-players = {
-    # 'p1': None, # el jugador
-    #     'p2': None # la computadora
-}
-
 TURNSCOUNTER = 0
+players = {}
+
 
 # Duel tools ----------------
-def shuffleDeck(playerDeck):
-    random.shuffle(playerDeck)
+def littleSleep(): time.sleep(1)
 
-
-def fromFieldToGY(monster, howCameHere):
-    monster.position, monster['summonKind'], monster['summoned this turn?'], monster['can change its position?'], monster['attacksCounter'], monster['cameHereAs'] = None, None, None, None, None, howCameHere
-
-
-def turnStarts():
-    global TURNSCOUNTER
-    TURNSCOUNTER += 1
-
-
-def currentlyTurn():
-    return TURNSCOUNTER
 
 def victory():
     if players['p1'].victoryStatus == False:
@@ -38,6 +22,20 @@ def victory():
         return False
     else:
         return True
+
+# def shuffleDeck(playerDeck):
+#     random.shuffle(playerDeck)
+
+
+def turnStarts():
+    global TURNSCOUNTER
+    TURNSCOUNTER += 1
+
+
+def currentlyTurn(): # is it necesary?
+    return TURNSCOUNTER
+
+
 
 
 def ocupiedMonsterZones(playerTurn): # convertir en anónima
@@ -119,7 +117,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
             print(f"{i}: {players['p1'].hand[i].name} | {players['p1'].hand[i].cardType} | {players['p1'].hand[i].icon}")
     # print(f"Esto es aparte: \n LMZ: {players['p1'].leftMonsterCardZone}\n CMZ: {players['p1'].centerMonsterCardZone}\n RMZ: {players['p1'].rightMonsterCardZone}\n AMZ: {players['p1'].playerMonsterZones}")
 
-def littleSleep(): time.sleep(1)
+
 
 
 def printHandAndDeckCards():
@@ -137,8 +135,8 @@ def printHandAndDeckCards():
 # Game start! ----------------
 def gameStart():
     # inicializando jugadores:
-    mito = player.Player(openDeck.openDeck(), [], [], [], [], [], [], [], [], [], [], [], 'Jugador', None)
-    com = player.Player(openDeck.openDeck(), [], [], [], [], [], [], [], [], [], [], [], 'COM', mito)
+    mito = player.Player(openDeck.openDeck(), 'Jugador')
+    com = player.Player(openDeck.openDeck(), 'COM')
     mito.oponent = com
     players['p1'] = mito
     players['p2'] = com
@@ -146,8 +144,8 @@ def gameStart():
 
     # Game start ------
     # shuffle both players' deck
-    shuffleDeck(players['p1'].deck)
-    shuffleDeck(players['p2'].deck)
+    players['p1'].shuffleDeck()
+    players['p2'].shuffleDeck()
 
     # Each player draw until have 4 cards in hand
     for i in players:
@@ -158,6 +156,7 @@ def gameStart():
         # # print both deck status
         # printHandAndDeckCards()
 
+    # game loop
     while victory():
         for i in players:
             # littleSleep()

@@ -1,36 +1,42 @@
+import random
 import script.duel as duel
 import script.monster as monster
 import script.spellTrap as spellTrap
 
 
 class Player():
-    def __init__(self, deck, extraDeck, hand, gy, excavated, fieldSpellCardZone, leftMonsterCardZone, centerMonsterCardZone, rightMonsterCardZone, leftSTCardZone, centerSTCardZone, rightSTCardZone, name, oponent):
+    def __init__(self, deck, name):
         self.lp = 8000 # 00
         self.deck = deck # 01
-        self.extraDeck = extraDeck # 02
-        self.hand = hand # 03
-        self.gy = gy # 04
-        self.excavated = excavated # 05
-        self.fieldSpellCardZone = fieldSpellCardZone # 06
+        self.extraDeck = [] # 02
+        self.hand = [] # 03
+        self.gy = [] # 04
+        self.excavated = [] # 05
+        self.fieldSpellCardZone = [] # 06
         # self.leftMonsterCardZone = leftMonsterCardZone # 07
         # self.centerMonsterCardZone = centerMonsterCardZone # 08
         # self.rightMonsterCardZone = rightMonsterCardZone # 09
         self.playerMonsterZones = [
-            leftMonsterCardZone, # 07
-            centerMonsterCardZone, # 08
-            rightMonsterCardZone, # 09
+            [], # 07
+            [], # 08
+            [], # 09
             ]
         # self.leftSTCardZone = leftSTCardZone # 10
         # self.centerSTCardZone = centerSTCardZone # 11
         # self.rightSTCardZone = rightSTCardZone # 12
         self.playerSTZones = [
-            leftSTCardZone,  # 10
-            centerSTCardZone,  # 11
-            rightSTCardZone # 12
+            [],  # 10
+            [],  # 11
+            [] # 12
             ]
         self.name = name # 13
         self.victoryStatus = True # 14
-        self.oponent = oponent # 15
+        self.oponent = None # 15
+
+
+    def shuffleDeck(self):
+        random.shuffle(self.deck)
+
 
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
