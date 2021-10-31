@@ -133,6 +133,7 @@ def gameStart():
     mito = player.Player(openDeck.openDeck(), 'Jugador')
     com = player.Player(openDeck.openDeck(), 'COM')
     mito.oponent = com
+    com.oponent = mito
     players['p1'] = mito
     players['p2'] = com
 
