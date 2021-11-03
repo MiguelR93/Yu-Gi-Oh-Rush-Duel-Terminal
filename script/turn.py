@@ -13,9 +13,9 @@ def turn(playerTurn):
     duel.duelStatus(playerTurn)
     duel.littleSleep()
     # drawPhase.drawPhase(playerTurn)
-    if mainPhase.mainPhase(playerTurn) == 'End Phase':
-        playerTurn.drawPhase()
-    # endPhase.endPhase(playerTurn)
+    playerTurn.drawPhase()
+
+    mainPhase.mainPhase(playerTurn)
     duel.littleSleep()
 
     

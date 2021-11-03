@@ -241,7 +241,7 @@ def battlePhase(playerTurn):
                 # return 'End Phase'
                 # print("seguimos en BP?")
                 # duel.littleSleep()
-                # break
+                break
             else:
                 raise ValueError
         except ValueError:
