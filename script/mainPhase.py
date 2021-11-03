@@ -84,6 +84,9 @@ def mainPhase(playerTurn):
                 # print("Fin del turno")
                 # duel.littleSleep()
                 playerTurn.endPhase()
+                # return 'End Phase'
+                # print("seguimos en MP?")
+                # duel.littleSleep()
                 break
             # elif actionInMP == 12:
             #     playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')

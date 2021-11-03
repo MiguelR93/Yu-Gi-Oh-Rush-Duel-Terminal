@@ -5,10 +5,10 @@ import script.card as card
 
 class Monster(card.Card):
     
-    def __init__(self, id, name, cardType, attribute, type, level, attack, defense, frontier, text):
+    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text):
         super().__init__(id, name, cardType, text)
         self.attribute = attribute
-        self.type = type
+        self.typeMonster = typeMonster
         self.level = int(level)
         self.attack = int(attack)
         self.defense = int(defense)
@@ -22,7 +22,7 @@ class Monster(card.Card):
         self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
         self.summonedThisTurn = None
         self.canAttackThisTurn = 1
-        self.canChangeItsPosition = True
+        self.canChangeItsPosition = None
 
 
     # def normalSummon(self):

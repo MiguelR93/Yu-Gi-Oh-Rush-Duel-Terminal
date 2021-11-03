@@ -218,6 +218,7 @@ class Player():
                         self.playerMonsterZones[monsterZonePosition].position = position
                         self.playerMonsterZones[monsterZonePosition].summonKind = summonKind
                         self.playerMonsterZones[monsterZonePosition].summonedThisTurn = True
+                        self.playerMonsterZones[monsterZonePosition].canChangeItsPosition = False
                         break
                     else:
                         print("No es una zona de monstruo")
@@ -303,6 +304,10 @@ class Player():
                             print("Activo una Magia!")
                             duel.littleSleep()
                             # activeEff.activeEff(playerTurn, sTZonePosition)
+                        if self.playerSTZones[sTZonePosition].cardType == 'TRAP':
+                            self.playerSTZones[sTZonePosition].canBeActivatedThisTurn = False
+                        else:
+                            self.playerSTZones[sTZonePosition].canBeActivatedThisTurn = True
                         break
                 except IndexError:
                     print('Valor equivocado')
@@ -322,24 +327,35 @@ class Player():
     def endPhase(self):
         # print("Entramos!")
         # print(self.playerSTZones)
-        duel.littleSleep()
-        for a,i in enumerate(self.playerMonsterZones):
-            # print("Ciclo de monstruos")
-            # print(f"{a}: {i.name}")
-        #     duel.littleSleep()
-            if (type(i) != list) and (self.playerMonsterZones[a].summonedThisTurn == True):
-                # print("Se cumplio para el monstruo")
-                self.playerMonsterZones[a].summonedThisTurn = False
-        # print("Terminamos con los monstruos")
         # duel.littleSleep()
+        # for a,i in enumerate(self.playerMonsterZones):
+        #     # print("Ciclo de monstruos")
+        #     # print(f"{a}: {i.name}")
+        # #     duel.littleSleep()
+        #     if (type(i) != list) and (self.playerMonsterZones[a].summonedThisTurn == True):
+        #         # print("Se cumplio para el monstruo")
+        #         self.playerMonsterZones[a].summonedThisTurn = False
+        # # print("Terminamos con los monstruos")
+        # # duel.littleSleep()
 
-        for a,i in enumerate(self.playerSTZones):
-        #     print("Ciclo de ST")
-            if (type(i) != list) and (self.playerSTZones[a].placedThisTurn == True):
-        #         print("Se cumplio para la ST")
-                self.playerSTZones[a].placedThisTurn = False
-        # print("Terminamos con las ST")
-        # duel.littleSleep()
+        # for a,i in enumerate(self.playerSTZones):
+        # #     print("Ciclo de ST")
+        #     if (type(i) != list) and (self.playerSTZones[a].placedThisTurn == True):
+        # #         print("Se cumplio para la ST")
+        #         self.playerSTZones[a].placedThisTurn = False
+        # # print("Terminamos con las ST")
+        # # duel.littleSleep()
+
+        for i in self.playerMonsterZones:
+            if (type(i) != list) and (i.cardType == 'MONSTER'):
+                i.summonedThisTurn = False
+                i.canAttackThisTurn = 1
+                i.canChangeItsPosition = True
+        
+        for i in self.playerSTZones:
+            if (type(i) != list) and ((i.cardType == 'SPELL') or ((i.cardType == 'TRAP'))):
+                i.placedThisTurn = False
+                i.canBeActivatedThisTurn = True
 
 
 ## Zona de pruebas

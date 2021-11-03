@@ -14,3 +14,4 @@ class SpellTrap(card.Card):
         # # nuevos atributos: -------
         self.position = None # [active, set]
         self.placedThisTurn = None
+        self.canBeActivatedThisTurn = None

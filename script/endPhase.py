@@ -1,22 +1,26 @@
-import random, copy, time
-import script.duel as duel
-import script.summon as summon
-import script.placeST as placeST
-import script.battlePhase as battlePhase
-import script.mainPhase as mainPhase
+# import random, copy, time
+# import script.duel as duel
+# import script.summon as summon
+# import script.placeST as placeST
+# import script.battlePhase as battlePhase
+# import script.mainPhase as mainPhase
 
 
-def changingValuesInMonsters(playerTurn):
-    for i in playerTurn[7:10]: 
-        if (len(i) > 0) and ('MONSTER' in i['cardType']):
-            # i['summoned this turn?'], i['can change its position?'] = 'no', 'yes'
-            i['summoned this turn?'], i['can change its position?'], i['attacksCounter'] = 'no', 'yes', 1
-            # print(i['attacksCounter'])
-            # print(i)
-            # input("presiona enter")
-            # while i['attacksCounter'] < 1:
-            #     i['attacksCounter'] += 1
+# def statusReset(playerTurn):
+#     # must reset status of cards like attack o change their position
+#     for i in playerTurn.playerMonsterZones:
+#         if (type(i) != []) and (i.cardType == 'MONSTER'):
+#             i.summonedThisTurn = False
+#             i.canAttackThisTurn = 1
+#             i.canChangeItsPosition = True
+    
+#     for i in playerTurn.playerSTZones:
+#         if (type(i) != []) and ((i.cardType == 'SPELL') or ((i.cardType == 'TRAP'))):
+#             i.placedThisTurn = False
+#             i.canBeActivatedThisTurn = True
 
 
-def endPhase(playerTurn):
-    changingValuesInMonsters(playerTurn)
+
+# def endPhase(playerTurn):
+#     # this is the last must happen:
+#     statusReset(playerTurn)
