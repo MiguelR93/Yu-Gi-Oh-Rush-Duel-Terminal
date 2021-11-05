@@ -9,7 +9,10 @@ import csv
 
 
 def openDeck():
-    exampleFile = open('../deck/lukeDeck.csv')
+    try:
+        exampleFile = open('deck/lukeDeck.csv')
+    except FileNotFoundError:
+        exampleFile = open('../deck/lukeDeck.csv')
     exampleReader = csv.reader(exampleFile)
     exampleData = list(exampleReader)
     deckOrigin = list(exampleData[1:])
