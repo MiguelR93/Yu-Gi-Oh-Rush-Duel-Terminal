@@ -34,7 +34,8 @@ def mainPhase(playerTurn):
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
-        if (duel.ocupiedMonsterZones(playerTurn) >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
+        # if (playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
+        if (playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
             for i in mainPhaseOptions[7:10]:
                 print(i)
         if duel.currentlyTurn() > 1:
@@ -45,29 +46,31 @@ def mainPhase(playerTurn):
             actionInMP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
             if actionInMP == 1: # Invocar un monstruo de forma normal (Ataque boca arriba o Defensa boca abajo)
-                summon.normalSummon(playerTurn, 'Attack')
+                # summon.normalSummon(playerTurn, 'Attack')
+                playerTurn.normalSummon('attackPosition')
+                duel.littleSleep()
             elif actionInMP == 2:
-                summon.normalSummon(playerTurn, 'Defense Face-Down')
+                playerTurn.normalSummon('Defense Face-Down')
             elif actionInMP == 3:
-                placeST.setSpellTrap(playerTurn, 'active')
+                playerTurn.placeSpellTrap('active')
             elif actionInMP == 4:
                 pass
             elif actionInMP == 5:
-                placeST.setSpellTrap(playerTurn, 'set')
+                playerTurn.placeSpellTrap('set')
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'attackToDefense')
             elif actionInMP == 8:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
             elif actionInMP == 9:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
@@ -78,8 +81,15 @@ def mainPhase(playerTurn):
                     battlePhase.battlePhase(playerTurn)
                     break
             elif actionInMP == 11:
-                endPhase.endPhase(playerTurn)
+                # print("Fin del turno")
+                # duel.littleSleep()
+                playerTurn.endPhase()
+                # return 'End Phase'
+                # print("seguimos en MP?")
+                # duel.littleSleep()
                 break
+            # elif actionInMP == 12:
+            #     playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')
             else:
                 raise ValueError
         except ValueError:

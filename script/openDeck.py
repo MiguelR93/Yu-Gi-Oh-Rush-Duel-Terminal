@@ -1,12 +1,23 @@
-import monsterNormal, monsterEffect, spellTrap, csv
+import script.monsterNormal as monsterNormal
+import script.monsterEffect as monsterEffect
+import script.spellTrap as spellTrap
+import csv
 
-exampleFile = open('lukeDeck.csv')
-exampleReader = csv.reader(exampleFile)
-exampleData = list(exampleReader)
-deckOrigin = list(exampleData[1:])
-deckResult = []
+# import monsterNormal
+# import monsterEffect
+# import spellTrap
 
-if __name__ == '__main__':
+
+def openDeck():
+    try:
+        exampleFile = open('deck/lukeDeck.csv')
+    except FileNotFoundError:
+        exampleFile = open('../deck/lukeDeck.csv')
+    exampleReader = csv.reader(exampleFile)
+    exampleData = list(exampleReader)
+    deckOrigin = list(exampleData[1:])
+    deckResult = []
+
     for i in deckOrigin:
         if "normal" in i[8]:
             newObject = monsterNormal.MonsterNormal(
@@ -50,6 +61,13 @@ if __name__ == '__main__':
             deckResult.append(newObject)
 
     
-    print(deckResult)
-    for i in deckResult:
-        print(vars(i), end=',\n')
+    # print(deckResult)
+    # for i in deckResult:
+    #     print(vars(i), end=',\n')
+        # print(i, end=',\n')
+
+    return deckResult
+
+
+if __name__ == '__main__':
+    openDeck()

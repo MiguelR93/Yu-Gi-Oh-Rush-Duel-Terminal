@@ -4,14 +4,21 @@ import script.duel as duel
 import script.mainPhase as mainPhase
 import script.battlePhase as battlePhase
 # import drawPhase
+import script.player as player
+import script.endPhase as endPhase
+
 
 def turn(playerTurn):
     duel.turnStarts()
     duel.duelStatus(playerTurn)
     duel.littleSleep()
-    drawPhase.drawPhase(playerTurn)
+    # drawPhase.drawPhase(playerTurn)
+    playerTurn.drawPhase()
+
     mainPhase.mainPhase(playerTurn)
     duel.littleSleep()
+
+    
 
 
 # zona de prueba ------

@@ -35,12 +35,13 @@ def placeSTLoop(playerTurn, position, placeST):
                     duel.littleSleep()
                     continue
                 else:
-                    playerTurn[3][placeST]['position'] = position
+                    # playerTurn[3][placeST]['position'] = position # incluir en la clase
                     print(playerTurn[3][placeST]) # imprime el estado de la s/t
                     playerTurn[sTZonePosition + 9] = playerTurn[3][placeST] # pone la s/t
                     playerTurn[3].remove(playerTurn[3][placeST]) # quita de la mano a la s/t
                     if position == 'set':
-                        playerTurn[3][placeST]['set this turn?'] = 'yes'
+                        # playerTurn[3][placeST]['set this turn?'] = 'yes' # incluir en la clase
+                        pass
                     elif position == 'active':
                         activeEff.activeEff(playerTurn, sTZonePosition + 9)
                     break
@@ -55,13 +56,13 @@ def placeSTLoop(playerTurn, position, placeST):
                 continue
 
 
-def setSpellTrap(playerTurn, position):
+def placeSpellTrap(playerTurn, position):
     try:
         placeST = int(input("ingresa el índice de la magia/trampa (el número a su izquierda): "))
-        if 'MONSTER' in playerTurn[3][placeST]['cardType']: # Cuando lo que se elige es un monstruo y no debería serlo
+        if 'MONSTER' in playerTurn[3][placeST].cardType: # Cuando lo que se elige es un monstruo y no debería serlo
             print('Eso no es una magia/trampa')
             duel.littleSleep()
-        elif ('TRAP' in playerTurn[3][placeST]['cardType']) and (position == 'active'):
+        elif ('TRAP' in playerTurn[3][placeST].cardType) and (position == 'active'):
             print("No puedes activar una trampa desde tu mano")
             duel.littleSleep()
         else:
@@ -77,8 +78,8 @@ def setSpellTrap(playerTurn, position):
 
 def isThereSpellTrapInHand(playerTurn, mainPhaseOptions):
     COUNTER = 0
-    for i in playerTurn[3]:
-        if ('SPELL' in i['cardType']) or ('TRAP' in i['cardType']):
+    for i in playerTurn.hand:
+        if ('SPELL' in i.cardType) or ('TRAP' in i.cardType):
             COUNTER += 1
     if COUNTER >= 1:
         # normalSummon()
