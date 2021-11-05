@@ -51,7 +51,7 @@ class Player():
     def typeMonsterInPlayerArea(self, PlayerArea, monsterTypeSearched):
         COUNTER = 0
         for i in PlayerArea:
-            if (type(i) != list) and (i.cardType == 'MONSTER') and (i.typeMonster == monsterTypeSearched:
+            if (type(i) != list) and (i.cardType == 'MONSTER') and (i.typeMonster == monsterTypeSearched):
                 COUNTER += 1
         return COUNTER
 
@@ -65,7 +65,7 @@ class Player():
     def typeCardInPlayerArea(self, PlayerArea, typeCardSearched):
         COUNTER = 0
         for i in PlayerArea:
-            if typeCardSearched in i.cardType:
+            if (type(i) != list) and (typeCardSearched in i.cardType):
                 COUNTER += 1
         return COUNTER
 
