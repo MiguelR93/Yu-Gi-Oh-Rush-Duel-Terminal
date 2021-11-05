@@ -1,8 +1,8 @@
 import random
 import script.duel as duel
-import script.monster as monster
-import script.spellTrap as spellTrap
-
+# import script.monster as monster
+# import script.spellTrap as spellTrap
+import script.card as card
 
 class Player():
     def __init__(self, deck, name):

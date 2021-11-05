@@ -47,8 +47,6 @@ class MonsterNormal(Monster):
 
 
 class MonsterEffect(Monster):
-    effect = CardEffect("")
-
     def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text, effect):
         super().__init__(id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text)
         self.effect = effect
