@@ -1,4 +1,4 @@
-class CardEffect:
+class CardEffect():
     effect = str
 
     def __init__(self, effect):

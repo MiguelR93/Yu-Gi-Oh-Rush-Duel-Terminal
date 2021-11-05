@@ -1,4 +1,4 @@
-class Card:
+class Card():
     # id = int
     # name = str
     # cardType = str
