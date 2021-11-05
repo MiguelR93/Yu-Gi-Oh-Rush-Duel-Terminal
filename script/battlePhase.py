@@ -13,8 +13,8 @@ battlePhaseOptions = [
 
 def canChangeItsPosition(playerTurn):
     CHANGEABLE = 0
-    for i in playerTurn[7:10]: 
-        if (len(i) > 0) and (i['can change its position?'] == 'yes'):
+    for i in playerTurn.playerMonsterZones: 
+        if (type(i) != list) and (i.canChangeItsPosition == 'yes'):
             CHANGEABLE += 1
     return CHANGEABLE
 
@@ -25,31 +25,31 @@ def changeBattlePosition(playerTurn, changePosition):
         CHANGEABLE = 0
         if changePosition == 'attackToDefense':
             print("\n\n\nMonstruos que pueden cambiar su posición de ataque a defensa:")        
-            for i,a in enumerate(playerTurn[7:10]):            
-                if (len(a) > 0) and (('yes' in a['can change its position?']) and ('Attack' in a['position'])):
-                    print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+            for i,a in enumerate(playerTurn.playerMonsterZones):            
+                if (type(a) != list) and ((True in a.canChangeItsPosition) and ('Attack' in a.position)):
+                    print(f"{i}: {a.name}| Nvl: {a.level} ATK/{a.attack} DEF/{a.defense} | Posición: {a.position}")
                     CHANGEABLE += 1
         elif changePosition != 'attackToDefense':
             print("\n\n\nMonstruos que pueden cambiar su posición de defensa a ataque :")        
-            for i,a in enumerate(playerTurn[7:10]):            
-                if (len(a) > 0) and (('yes' in a['can change its position?']) and ('Attack' not in a['position'])):
-                    print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+            for i,a in enumerate(playerTurn.playerMonsterZones):            
+                if (type(a) != list) and ((True in a.canChangeItsPosition) and ('Attack' not in a.position)):
+                    print(f"{i}: {a.name}| Nvl: {a.level} ATK/{a.attack} DEF/{a.defense} | Posición: {a.position}")
                     CHANGEABLE += 1
         
         if CHANGEABLE == 0:
             break
         
         try:
-            chosed = int(input("\nElige un monstruo para cambiar de posición:\n")) + 7
-            if (len(playerTurn[chosed]) == 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
+            chosed = int(input("\nElige un monstruo para cambiar de posición:\n"))
+            if (len(playerTurn.playerMonsterZones[chosed]) == 0) or ('MONSTER' not in playerTurn.playerMonsterZones[chosed].cardType): # Cuando lo que se elige no es un monstruo
                 raise IndexError
             else:
-                if (changePosition == 'attackToDefense') and (playerTurn[chosed]['can change its position?'] == 'yes'):
-                    playerTurn[chosed]['position'] = 'Defense Face-Up'
-                    playerTurn[chosed]['can change its position?'] = 'no'
-                elif (changePosition != 'attackToDefense') and (playerTurn[chosed]['can change its position?'] == 'yes'):
-                    playerTurn[chosed]['position'] = 'Attack'
-                    playerTurn[chosed]['can change its position?'] = 'no'
+                if (changePosition == 'attackToDefense') and (playerTurn.playerMonsterZones[chosed].canChangeItsPosition == 'yes'):
+                    playerTurn.playerMonsterZones[chosed].position = 'Defense Face-Up'
+                    playerTurn.playerMonsterZones[chosed].canChangeItsPosition = 'no'
+                elif (changePosition != 'attackToDefense') and (playerTurn.playerMonsterZones[chosed].canChangeItsPosition == 'yes'):
+                    playerTurn.playerMonsterZones[chosed].position = 'Attack'
+                    playerTurn.playerMonsterZones[chosed].canChangeItsPosition = 'no'
                 break
         except IndexError:
             print('Valor equivocado')
@@ -65,71 +65,71 @@ def changeBattlePosition(playerTurn, changePosition):
 
 def monsterCanAttack(playerTurn):
     COUNTER = 0
-    for i in playerTurn[7:10]:
-        if (len(i) > 0) and (i['attacksCounter'] > 0):
+    for i in playerTurn.playerMonsterZones:
+        if (type(i) != list) and (i.canAttackThisTurn > 0):
             COUNTER += 1
     return COUNTER 
 
 def monsterAttacked(playerTurn, chosed):
-    playerTurn[chosed]['attacksCounter'] -= 1
+    playerTurn.playerMonsterZones[chosed].canAttackThisTurn -= 1
 
 
 def directAttack(playerTurn, chosed):
-    # print(f"Esto debería ser LP rival: {playerTurn[15][0]}")
-    # print(playerTurn[15][0] - int(playerTurn[chosed]['attack']))
-    playerTurn[15][0] -= int(playerTurn[chosed]['attack'])
+    # print(f"Esto debería ser LP rival: {playerTurn.oponent.lp}")
+    # print(playerTurn.oponent.lp - int(playerTurn.playerMonsterZones[chosed].attack))
+    playerTurn.oponent.lp -= int(playerTurn.playerMonsterZones[chosed].attack)
     monsterAttacked(playerTurn, chosed)
-    if playerTurn[0] <= 0:
-        playerTurn[14] = False
-    elif playerTurn[15][0] <= 0:
-        playerTurn[15][14] = False
+    if playerTurn.lp <= 0:
+        playerTurn.victoryStatus = False
+    elif playerTurn.oponent.lp <= 0:
+        playerTurn.oponent.victoryStatus = False
 
 
 def damage(playerTurn, chosed, target):
     print("Aquí calculamos el daño")
-    if playerTurn[15][target]['position'] == 'Attack':
-        if int(playerTurn[chosed]['attack']) == int(playerTurn[15][target]['attack']):
+    if playerTurn.oponent.playerMonsterZones[target].position == 'Attack':
+        if int(playerTurn.playerMonsterZones[chosed].attack) == int(playerTurn.oponent.playerMonsterZones[target].attack):
             print("ambos se destruyen")
             # mi monstruo se va al GY
-            playerTurn[4].append(playerTurn[chosed])
-            playerTurn[chosed] = []
+            playerTurn[4].append(playerTurn.playerMonsterZones[chosed])
+            playerTurn.playerMonsterZones[chosed] = []
             # el monstruo oponente se va al GY
-            duel.fromFieldToGY(playerTurn[15][target], 'Destroyed by Battle')
-            playerTurn[15][4].append(playerTurn[15][target])
-            playerTurn[15][target] = []
-        elif int(playerTurn[chosed]['attack']) > int(playerTurn[15][target]['attack']):
+            duel.fromFieldToGY(playerTurn.oponent.playerMonsterZones[target], 'Destroyed by Battle')
+            playerTurn.oponent.gy.append(playerTurn.oponent.playerMonsterZones[target])
+            playerTurn.oponent.playerMonsterZones[target] = []
+        elif int(playerTurn.playerMonsterZones[chosed].attack) > int(playerTurn.oponent.playerMonsterZones[target].attack):
             print("Mi monstruo sigue en pie, el tuyo se va")
-            lp = int(playerTurn[chosed]['attack']) - int(playerTurn[15][target]['attack'])
-            playerTurn[15][0] -= lp
+            lp = int(playerTurn.playerMonsterZones[chosed].attack) - int(playerTurn.oponent.playerMonsterZones[target].attack)
+            playerTurn.oponent.lp -= lp
             # el monstruo oponente se va al GY
-            duel.fromFieldToGY(playerTurn[15][target], 'Destroyed by Battle')
-            playerTurn[15][4].append(playerTurn[15][target])
-            playerTurn[15][target] = []
+            duel.fromFieldToGY(playerTurn.oponent.playerMonsterZones[target], 'Destroyed by Battle')
+            playerTurn.oponent.gy.append(playerTurn.oponent.playerMonsterZones[target])
+            playerTurn.oponent.playerMonsterZones[target] = []
 
             monsterAttacked(playerTurn, chosed)
-        elif int(playerTurn[chosed]['attack']) < int(playerTurn[15][target]['attack']):
+        elif int(playerTurn.playerMonsterZones[chosed].attack) < int(playerTurn.oponent.playerMonsterZones[target].attack):
             print("Mi monstruo se va, el tuyo sigue en pie")
-            lp = int(playerTurn[15][target]['attack']) - int(playerTurn[chosed]['attack'])
-            playerTurn[0] -= lp
+            lp = int(playerTurn.oponent.playerMonsterZones[target].attack) - int(playerTurn.playerMonsterZones[chosed].attack)
+            playerTurn.lp -= lp
             # mi monstruo se va al GY
-            playerTurn[4].append(playerTurn[chosed])
-            playerTurn[chosed] = []
+            playerTurn[4].append(playerTurn.playerMonsterZones[chosed])
+            playerTurn.playerMonsterZones[chosed] = []
     else:
-        if int(playerTurn[chosed]['attack']) == int(playerTurn[15][target]['defense']):
+        if int(playerTurn.playerMonsterZones[chosed].attack) == int(playerTurn.oponent.playerMonsterZones[target].defense):
             print("ninguno se destruye")
             print("en defensa >:V")
             duel.littleSleep()
-        elif int(playerTurn[chosed]['attack']) > int(playerTurn[15][target]['defense']):
+        elif int(playerTurn.playerMonsterZones[chosed].attack) > int(playerTurn.oponent.playerMonsterZones[target].defense):
             print("Mi monstruo sigue en pie, el tuyo se va")
             print("en defensa >:V")
             # el monstruo oponente se va al GY
-            playerTurn[15][4].append(playerTurn[15][target])
-            playerTurn[15][target] = []
-        elif int(playerTurn[chosed]['attack']) < int(playerTurn[15][target]['defense']):
+            playerTurn.oponent.gy.append(playerTurn.oponent.playerMonsterZones[target])
+            playerTurn.oponent.playerMonsterZones[target] = []
+        elif int(playerTurn.playerMonsterZones[chosed].attack) < int(playerTurn.oponent.playerMonsterZones[target].defense):
             print("Mi monstruo se va, el tuyo sigue en pie")
             print("en defensa >:V")
-            lp = int(playerTurn[15][target]['defense']) - int(playerTurn[chosed]['attack'])
-            playerTurn[0] -= lp
+            lp = int(playerTurn.oponent.playerMonsterZones[target].defense) - int(playerTurn.playerMonsterZones[chosed].attack)
+            playerTurn.lp -= lp
         monsterAttacked(playerTurn, chosed)
 
 
@@ -137,23 +137,23 @@ def attackOnMonster(playerTurn, chosed):
     # debe permitir escoger un monstruo oponente como objetivo. Si lo que se escoge no es un monstruo, debe dar la opción de volver a escoger. También debe dar la opción de cancelar la declaración de ataque
     while True:
         print("Debería imprimir monstruos oponentes")
-        for a,i in enumerate(playerTurn[15][7:10]):
-            if len(i) > 0:
-                print(f"{a}: {i['name']} | Posición: {i['position']}| Nivel: {i['level']} ATK/{i['attack']} DEF/{i['defense']}", end="\n")
+        for a,i in enumerate(playerTurn.oponent.playerMonsterZones):
+            if type(i) != list:
+                print(f"{a}: {i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense}", end="\n")
             # else:
             #     print(i, end="   ")
             # print(i,end="\n")
         # duel.littleSleep()
         # input()
         try:
-            target = int(input("Elige un objetivo:\n")) + 7
-            if (len(playerTurn[15][target]) == 0) or ('MONSTER' not in playerTurn[15][target]['cardType']):
+            target = int(input("Elige un objetivo:\n"))
+            if (type(playerTurn.oponent.playerMonsterZones[target]) == list) or ('MONSTER' not in playerTurn.oponent.playerMonsterZones[target].cardType):
                 # raise IndexError
                 print("no hay un monstruo aquí")
                 duel.littleSleep()
-            elif playerTurn[15][target]['position'] == 'Defense Face-Down':
+            elif playerTurn.oponent.playerMonsterZones[target].position == 'Defense Face-Down':
                 print("El monstruo en defensa se voltea")
-                playerTurn[15][target]['position'] = 'Defense Face-Up'
+                playerTurn.oponent.playerMonsterZones[target].position = 'Defense Face-Up'
                 damage(playerTurn, chosed, target)
                 break
             else:
@@ -173,25 +173,33 @@ def attackOnMonster(playerTurn, chosed):
 
 def declareAttack(playerTurn):
     # print(f"13: {playerTurn[13]}")
-    # print(f"15: {playerTurn[15]}")   
+    # print(f"15: {playerTurn.oponent}")   
     try:
-        chosed = int(input("\nElige un monstruo para atacar:\n")) + 7
-        # print(playerTurn[chosed]['cardType'])
-        # print(len(playerTurn[chosed]), playerTurn[chosed])
+        chosed = int(input("\nElige un monstruo para atacar:\n"))
+        # print(playerTurn.playerMonsterZones[chosed].cardType)
+        # print(len(playerTurn.playerMonsterZones[chosed]), playerTurn.playerMonsterZones[chosed])
         # duel.littleSleep()
-        if (len(playerTurn[chosed]) == 0) or ('MONSTER' not in playerTurn[chosed]['cardType']): # Cuando lo que se elige no es un monstruo
+        if (type(playerTurn.playerMonsterZones[chosed]) == list) or ('MONSTER' not in playerTurn.playerMonsterZones[chosed].cardType): # Cuando lo que se elige no es un monstruo
+            print("Error")
             raise IndexError
             duel.littleSleep()
-        elif playerTurn[chosed]['attacksCounter'] < 1:
+        elif playerTurn.playerMonsterZones[chosed].canAttackThisTurn < 1:
             print("Este monstruo no puede atacar")
-        elif playerTurn[chosed]['position'] != 'Attack':
+            duel.littleSleep()
+        elif playerTurn.playerMonsterZones[chosed].position != 'attackPosition':
             print("Este monstruo no puede atacar")
-        elif duel.ocupiedMonsterZones(playerTurn[15]) <= 0:
+            duel.littleSleep()
+        # elif duel.ocupiedMonsterZones(playerTurn.oponent) <= 0:
+        # elif playerTurn.oponent.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER') <= 0:
+        elif playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER') <= 0:
+            # print(f"monstruos en el campo oponente: {playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER')}")
             print("puedes atacar directo!")
             duel.littleSleep()
             directAttack(playerTurn, chosed)
         else:
             attackOnMonster(playerTurn, chosed)
+            print("ahora, atacaremos a un monstruo!")
+            duel.littleSleep()
 
 
     except IndexError:
@@ -207,24 +215,32 @@ def battlePhase(playerTurn):
     # activatingAnEff()
     while duel.victory():
         duel.duelStatus(playerTurn)
-        print("\n\n\nMonstruos que pueden atacar:")        
-        for i,a in enumerate(playerTurn[7:10]):            
-            if (len(a) > 0) and (('Attack' in a['position']) and (a['attacksCounter'] > 0)):
-                print(f"{i}: {a['name']}| Nvl: {a['level']} ATK/{a['attack']} DEF/{a['defense']} | Posición: {a['position']}")
+        print("\n\n\nMonstruos que pueden atacar:")   
+        COUNTER_MONSTER_CAN_ATTACK = 0     
+        for i,a in enumerate(playerTurn.playerMonsterZones):            
+            if (type(a) != list) and (('attackPosition' in a.position) and (a.canAttackThisTurn > 0)):
+                print(f"{i}: {a.name}| Nvl: {a.level} ATK/{a.attack} DEF/{a.defense} | Posición: {a.position}")
+                COUNTER_MONSTER_CAN_ATTACK += 1
         
 
         print(battlePhaseOptions[0])
-        if (duel.ocupiedMonsterZones(playerTurn) > 0) and (monsterCanAttack(playerTurn) > 0):
+        if (playerTurn.counterMonsterInMyField() > 0) and (monsterCanAttack(playerTurn) > 0):
             print(battlePhaseOptions[1])
         print(battlePhaseOptions[2])
 
         try:
             actionInBP = int(input("\nEscribe el número a la izquierda de la acción que quieres realizar: "))
 
-            if actionInBP == 1 and duel.ocupiedMonsterZones(playerTurn) > 0:
+            if actionInBP == 1 and COUNTER_MONSTER_CAN_ATTACK > 0:
                 declareAttack(playerTurn)
+            elif actionInBP == 1 and COUNTER_MONSTER_CAN_ATTACK <= 0:
+                print("No cuentas con monstruos para atacar")
             elif actionInBP == 2:
-                endPhase.endPhase(playerTurn)
+                # endPhase.endPhase(playerTurn)
+                playerTurn.endPhase()
+                # return 'End Phase'
+                # print("seguimos en BP?")
+                # duel.littleSleep()
                 break
             else:
                 raise ValueError

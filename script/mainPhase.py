@@ -34,7 +34,8 @@ def mainPhase(playerTurn):
         print(mainPhaseOptions[0])
         summon.isThereMonstersInHand(playerTurn, mainPhaseOptions)
         placeST.isThereSpellTrapInHand(playerTurn, mainPhaseOptions)
-        if (duel.ocupiedMonsterZones(playerTurn) >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
+        # if (playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
+        if (playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') >= 1) and (battlePhase.canChangeItsPosition(playerTurn) >= 1):
             for i in mainPhaseOptions[7:10]:
                 print(i)
         if duel.currentlyTurn() > 1:
@@ -59,17 +60,17 @@ def mainPhase(playerTurn):
             elif actionInMP == 6:
                 pass
             elif actionInMP == 7:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'attackToDefense')
             elif actionInMP == 8:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
             elif actionInMP == 9:
-                if duel.ocupiedMonsterZones(playerTurn) < 1:
+                if playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') < 1:
                     raise ValueError
                 else:
                     battlePhase.changeBattlePosition(playerTurn, 'defenseFDToAttack')
@@ -83,7 +84,12 @@ def mainPhase(playerTurn):
                 # print("Fin del turno")
                 # duel.littleSleep()
                 playerTurn.endPhase()
+                # return 'End Phase'
+                # print("seguimos en MP?")
+                # duel.littleSleep()
                 break
+            # elif actionInMP == 12:
+            #     playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')
             else:
                 raise ValueError
         except ValueError:
