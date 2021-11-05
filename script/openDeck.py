@@ -1,7 +1,9 @@
-import script.monsterNormal as monsterNormal
-import script.monsterEffect as monsterEffect
-import script.spellTrap as spellTrap
+# import script.monsterNormal as monsterNormal
+# import script.monsterEffect as monsterEffect
+# import script.spellTrap as spellTrap
 import csv
+
+import script.card as card
 
 # import monsterNormal
 # import monsterEffect
@@ -20,7 +22,7 @@ def openDeck():
 
     for i in deckOrigin:
         if "normal" in i[8]:
-            newObject = monsterNormal.MonsterNormal(
+            newObject = card.MonsterNormal(
                 i[0],
                 i[1],
                 i[2],
@@ -35,7 +37,7 @@ def openDeck():
             deckResult.append(newObject)
 
         if "effect" in i[8]:
-            newObject = monsterEffect.MonsterEffect(
+            newObject = card.MonsterEffect(
                 i[0],
                 i[1],
                 i[2],
@@ -50,7 +52,7 @@ def openDeck():
             )
             deckResult.append(newObject)
         if ("SPELL" in i[2]) or ("TRAP" in i[2]):
-            newObject = spellTrap.SpellTrap(
+            newObject = card.SpellTrap(
                 i[0],
                 i[1],
                 i[2],

@@ -1,5 +1,5 @@
-class CardEffect():
-    effect = str
+# class CardEffect():
+#     effect = str
 
-    def __init__(self, effect):
-        self.effect = effect
+#     def __init__(self, effect):
+#         self.effect = effect

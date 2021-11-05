@@ -1,9 +1,10 @@
 import random, copy, time, os
 import script.turn as turn
 import script.openDeck as openDeck
-import script.monster as monster
-import script.spellTrap as spellTrap
+# import script.monster as monster
+# import script.spellTrap as spellTrap
 import script.player as player
+import script.card as card
 
 
 # contiene los elementos del juego: jugadores, turnos, contador de LP y condiciones de victoria
@@ -63,14 +64,14 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     print("\nCampo oponente:")
     # s/t
     for i in players['p2'].playerSTZones:
-        if isinstance(i, spellTrap.SpellTrap):
+        if isinstance(i, card.SpellTrap):
             print(f"{i.name} | {i.cardType} | Posición: {i.position} | Colocada este turno: {i.placedThisTurn}",sep="//", end="   ")
         else:
             print(i,end="   ")
     print("\n")
     # monstruos
     for i in players['p2'].playerMonsterZones:
-        if isinstance(i, monster.Monster):
+        if isinstance(i, card.Monster):
             print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | Invocado Este turno: {i.summonedThisTurn} | Ataques: {i.canAttackThisTurn} | Posición: {i.position}| Tipo de Invocación: {i.summonKind}",sep="//", end="   ")
         else:
             print(i, end="   ")
@@ -81,7 +82,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
         #     print(i.name, end="   ")
         # print(type(i))
         # if len(i) > 0:
-        if isinstance(i, monster.Monster):
+        if isinstance(i, card.Monster):
         # if (type(i) == 'script.monsterNormal.MonsterNormal') or (type(i) == 'script.monsterEffect as monsterEffect'):
         # if isinstance(i, monster): # mejorar para sustituir al de arriba
             # print(f"{i.name} | Posición: {i.position}| Nivel: {i.level} ATK/{i.attack} DEF/{i.defense} | puede cambiar de posición: {i['can change its position?']} | Veces que puede atacar: {i['attacksCounter']}",sep="//", end="   ")
@@ -93,7 +94,7 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     print("\n")
     # s/t
     for i in players['p1'].playerSTZones:
-        if isinstance(i, spellTrap.SpellTrap):
+        if isinstance(i, card.SpellTrap):
             print(f"{i.name} | {i.cardType} | Posición: {i.position} | Colocada este turno: {i.placedThisTurn}",sep="//", end="   ")
         else:
             print(i,end="   ")

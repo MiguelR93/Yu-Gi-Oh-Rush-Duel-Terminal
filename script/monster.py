@@ -1,28 +1,28 @@
-import script.card as card
+# import script.card as card
 
 # import card
 
 
-class Monster(card.Card):
+# class Monster(card.Card):
     
-    def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text):
-        super().__init__(id, name, cardType, text)
-        self.attribute = attribute
-        self.typeMonster = typeMonster
-        self.level = int(level)
-        self.attack = int(attack)
-        self.defense = int(defense)
-        self.frontier = frontier
+#     def __init__(self, id, name, cardType, attribute, typeMonster, level, attack, defense, frontier, text):
+#         super().__init__(id, name, cardType, text)
+#         self.attribute = attribute
+#         self.typeMonster = typeMonster
+#         self.level = int(level)
+#         self.attack = int(attack)
+#         self.defense = int(defense)
+#         self.frontier = frontier
         
-        # # nuevos atributos: -------
-        # self._normalSummonAble = True
-        # self._setAble = True
-        # self._specialSummonAble = True
-        self.position = None # [attack, defense face-down, defense face-up]
-        self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
-        self.summonedThisTurn = None
-        self.canAttackThisTurn = 1
-        self.canChangeItsPosition = None
+#         # # nuevos atributos: -------
+#         # self._normalSummonAble = True
+#         # self._setAble = True
+#         # self._specialSummonAble = True
+#         self.position = None # [attack, defense face-down, defense face-up]
+#         self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
+#         self.summonedThisTurn = None
+#         self.canAttackThisTurn = 1
+#         self.canChangeItsPosition = None
 
 
     # def normalSummon(self):
