@@ -47,6 +47,14 @@ class Player():
         # print(COUNTER)
         # duel.littleSleep()
 
+    
+    def typeMonsterInPlayerArea(self, PlayerArea, monsterTypeSearched):
+        COUNTER = 0
+        for i in PlayerArea:
+            if (type(i) != list) and (i.cardType == 'MONSTER') and (i.typeMonster == monsterTypeSearched:
+                COUNTER += 1
+        return COUNTER
+
     ### DRAW PHASE ---------------------------
     def drawPhase(self):
         if self.cardsInHand() >= 5:
