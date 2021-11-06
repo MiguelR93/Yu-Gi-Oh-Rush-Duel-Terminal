@@ -1,8 +1,4 @@
 class Card():
-    # id = int
-    # name = str
-    # cardType = str
-    # text = str
 
     def __init__(self, id, name, cardType, text):
         self.id = id
@@ -30,9 +26,6 @@ class Monster(Card):
         self.frontier = frontier
         
         # # nuevos atributos: -------
-        # self._normalSummonAble = True
-        # self._setAble = True
-        # self._specialSummonAble = True
         self.position = None # [attack, defense face-down, defense face-up]
         self.summonKind = None # [normalSummon, set, tributeSummon, specialSummon]
         self.summonedThisTurn = None

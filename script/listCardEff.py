@@ -1,63 +1,13 @@
-# -------
 def counterMonsterInField(playerTurn):
-    # print('Contando a los monstruos en campo')
-    # COUNTER = 0
-    # for i in playerTurn[15][9:6:-1]:
-    #     if (len(i) > 0) and (i.cardType == 'MONSTER'):
-    #         COUNTER += 1
-    # for i in playerTurn[7:10]:
-    #     if (len(i) > 0) and (i.cardType == 'MONSTER'):
-    #         COUNTER += 1
-    # return COUNTER
 
     return playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') + playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER')
 
 
 def counterDragonInHand(playerTurn):
-    # print('Contando a los dragones en mano')
-    # # print(playerTurn)
-    # # return playerTurn
-
-    # # 1. Contar los monstruos en la mano del jugador que son tipo dragón
-    # COUNTER = 0
-    # for i in playerTurn.hand:
-    #     if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon'):
-    #         COUNTER += 1
-    # return COUNTER
-
     return playerTurn.typeMonsterInPlayerArea(playerTurn.hand, 'Dragon')
 
 
 def sendDragonInHandToGY(playerTurn):
-    # print('Enviando monstruos de mano a GY')
-    # # Debe permitir elegir monstruos tipo dragón en mano para descartarlos como costo
-    # for a,i in enumerate(playerTurn[3]):
-    #     if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon'):
-    #         print(f"{a}: {i.name}")
-    
-    # choosed = []
-    # while len(choosed) < 3:
-    #     try:
-    #         monster = int(input("Escribe el número a la izquierda: "))
-    #         if monster not in choosed:
-    #             choosed.append(monster)
-    #         elif monster in choosed:
-    #             choosed.remove(monster)
-    #         else:
-    #             raise IndexError
-    #     except IndexError:
-    #         print('Valor equivocado')
-    #         continue
-    #         duel.littleSleep()
-    #     except ValueError:
-    #         print('Debes ingresar un número')
-    #         continue
-    
-    # for i in choosed:
-    #     playerTurn.gy.append[i]
-    #     playerTurn[3].remove(i)
-
-
     for a,i in enumerate(playerTurn.hand):
         if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon'):
             print(f"{a}: {i.name}")
@@ -104,8 +54,6 @@ def counterMonsterDestroyed(playerTurn):
 
 def counterMonsterDragonNvlFourOrLessInGY(playerTurn):
     print('Contando monstruos de nvl <= 4 en GY')
-    # print(playerTurn)
-    # return playerTurn
     COUNTER = 0
     if len(playerTurn.gy) > 0:
         for i in playerTurn.gy:

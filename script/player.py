@@ -1,7 +1,5 @@
 import random
 import script.duel as duel
-# import script.monster as monster
-# import script.spellTrap as spellTrap
 import script.card as card
 
 class Player():
@@ -13,21 +11,15 @@ class Player():
         self.gy = [] # 04
         self.excavated = [] # 05
         self.fieldSpellCardZone = [] # 06
-        # self.leftMonsterCardZone = leftMonsterCardZone # 07
-        # self.centerMonsterCardZone = centerMonsterCardZone # 08
-        # self.rightMonsterCardZone = rightMonsterCardZone # 09
         self.playerMonsterZones = [
-            [], # 07
-            [], # 08
-            [], # 09
+            [], # 07 leftMonsterCardZone
+            [], # 08 centerMonsterCardZone
+            [], # 09 rightMonsterCardZone
             ]
-        # self.leftSTCardZone = leftSTCardZone # 10
-        # self.centerSTCardZone = centerSTCardZone # 11
-        # self.rightSTCardZone = rightSTCardZone # 12
         self.playerSTZones = [
-            [],  # 10
-            [],  # 11
-            [] # 12
+            [],  # 10 leftSTCardZone
+            [],  # 11 centerSTCardZone
+            [] # 12 rightSTCardZone
             ]
         self.name = name # 13
         self.victoryStatus = True # 14

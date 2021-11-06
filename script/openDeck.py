@@ -1,14 +1,5 @@
-# import script.monsterNormal as monsterNormal
-# import script.monsterEffect as monsterEffect
-# import script.spellTrap as spellTrap
 import csv
-
 import script.card as card
-
-# import monsterNormal
-# import monsterEffect
-# import spellTrap
-
 
 def openDeck():
     try:

@@ -1,8 +1,6 @@
 import random, copy, time, os
 import script.turn as turn
 import script.openDeck as openDeck
-# import script.monster as monster
-# import script.spellTrap as spellTrap
 import script.player as player
 import script.card as card
 
