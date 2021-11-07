@@ -3,6 +3,8 @@ import script.listCardEff as listCardEff
 
 class DragonicPressure(card.SpellTrap):
     # NOTA: LA CARTA SE ENVÍA AL GY INCLUSO SI EL EFF NO SE RESUELVE Y ADEMÁS CUENTA COMO ESTUVIERA EN LA MANO
+    # NOTA: LA CARTA DEBE PASAR DE LA MANO AL CAMPO Y LUEGO ACTIVAR SU EFF, DESPUÉS SER ENVIADA AL GY
+    # NOTA: SUMMONLOOP FUNCIONA CON CARTAS DE LA MANO, CAMBIAR ESO
     def __init__(self, id, name, cardType, icon, effect, text):
         super().__init__(id, name, cardType, icon, effect, text)
 
@@ -18,8 +20,13 @@ class DragonicPressure(card.SpellTrap):
         if (listCardEff.counterMonsterInField(playerTurn) > 0) and (listCardEff.counterDragonInHand(playerTurn) >= 3):
             listCardEff.sendDragonInHandToGY(playerTurn)
             # destroyAllMonsterInField()
-            listCardEff.counterMonsterDestroyed(playerTurn)
+        #     listCardEff.counterMonsterDestroyed(playerTurn)
+        # else:
+        #     print("No puedes activar esta carta!")
+        # if (listCardEff.counterMonsterDestroyed(playerTurn) > 0) and (listCardEff.counterMonsterDragonNvlFourOrLessInGY(playerTurn) >= 1):
+            # listCardEff.specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn)
+            destroyed = listCardEff.counterMonsterDestroyed(playerTurn)
+            if (destroyed > 0) and (listCardEff.counterMonsterDragonNvlFourOrLessInGY(playerTurn) > 0):
+                listCardEff.specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn)
         else:
             print("No puedes activar esta carta!")
-        if (listCardEff.counterMonsterDestroyed(playerTurn) > 0) and (listCardEff.counterMonsterDragonNvlFourOrLessInGY(playerTurn) >= 1):
-            listCardEff.specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn)

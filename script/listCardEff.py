@@ -66,6 +66,7 @@ def counterMonsterDestroyed(playerTurn):
             playerTurn.gy.append(i)
             i = []
             COUNTER += 1
+    print(f"Los monstruos destruidos son: {COUNTER}")
     return COUNTER
 
 
@@ -82,6 +83,7 @@ def counterMonsterDragonNvlFourOrLessInGY(playerTurn):
 def specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn):
     print('Invocando desde el GY')
     # hace una invocación especial en posición de defensa
+    print(playerTurn.gy)
     if len(playerTurn.gy) > 0:
         for a,i in enumerate(playerTurn.gy):
             if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon') and (int(i.level) <= 4):
@@ -92,7 +94,7 @@ def specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn):
             summonAMonster = int(input("Elige el monstruo a invocar:\n"))
             if 'MONSTER' not in playerTurn.gy[summonAMonster].cardType: # Cuando lo que se elige no es un monstruo
                     print('Eso no es un monstruo')
-            elif int(playerTurn.hand[summonAMonster].level) <= 4:
+            elif int(playerTurn.gy[summonAMonster].level) <= 4:
                 playerTurn.summonLoop('specialSummon',  'defense face-up', summonAMonster)
                 break
         except IndexError:
