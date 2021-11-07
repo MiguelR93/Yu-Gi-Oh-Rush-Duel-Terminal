@@ -106,9 +106,9 @@ def duelStatus(playerTurn): # imprime el estado del duelo: LP, deck, mano, campo
     for i,a in enumerate(players['p1'].hand):
         # if 'level' in players['p1'].hand[i]:
         if players['p1'].hand[i].cardType == 'MONSTER':
-            print(f"{i}: {players['p1'].hand[i].name}| Nvl: {players['p1'].hand[i].level} ATK/{players['p1'].hand[i].attack} DEF/{players['p1'].hand[i].defense}")
+            print(f"{i}: {players['p1'].hand[i].name}| Nvl: {players['p1'].hand[i].level} ATK/{players['p1'].hand[i].attack} DEF/{players['p1'].hand[i].defense} | {a}")
         else:
-            print(f"{i}: {players['p1'].hand[i].name} | {players['p1'].hand[i].cardType} | {players['p1'].hand[i].icon}")
+            print(f"{i}: {players['p1'].hand[i].name} | {players['p1'].hand[i].cardType} | {players['p1'].hand[i].icon} | {a}")
     # print(f"Esto es aparte: \n LMZ: {players['p1'].leftMonsterCardZone}\n CMZ: {players['p1'].centerMonsterCardZone}\n RMZ: {players['p1'].rightMonsterCardZone}\n AMZ: {players['p1'].playerMonsterZones}")
 
 

@@ -1,9 +1,10 @@
 import script.duel as duel
 
 def counterMonsterInField(playerTurn):
-
-    return playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') + playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER')
-
+    print("Contando monstruos en campo")
+    counter =  playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') + playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER')
+    print(f"Hay: {counter} monstruos en campo")
+    return counter
 
 def counterDragonInHand(playerTurn):
     return playerTurn.typeMonsterInPlayerArea(playerTurn.hand, 'Dragon')
@@ -16,6 +17,7 @@ def sendDragonInHandToGY(playerTurn):
     
     choosed = []
     while len(choosed) < 3:
+        print(f"{choosed}, {len(choosed)}")
         try:
             monster = int(input("Escribe el número a la izquierda: "))
             if monster not in choosed:
@@ -85,20 +87,3 @@ def specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn):
         except ValueError:
             print('Debes ingresar un número')
         duel.littleSleep()
-
-
-# Card's Effects -------
-def DragonicPressure(playerTurn):
-# TEXT: 'effect': '[Requirement]: Send 3 monsters (Dragon) from your hand to the GY.\n[Effect]: Destroy all monsters on the field. If a monster is destroyed by this effect, you can Special Summon 1 monster (Level 4 or lower Dragon) from your GY to your field in face-up Defense Position.'
-
-# 1. CONDICIÓN: A) Debe evaluar si hay monstruos en el campo; B) Debe evaluar si el jugador tiene al menos 3 dragones en mano; RESULTADO: Debe destruir los monstruos del campo (si es que hay alguno) y contar si destruyó alguno
-# 2 CONDICIÓN: A) haber destruido al menos un monstruo con este efecto; B) ver si hay algún monstruo de nvl <= 4 en GY del jugador; RESULTADO: el jugador elige un monstruo nvl <= 4 de su GY y lo invoca en posición de defensa boca arriba
-
-    counterMonsterInField(playerTurn)
-    counterDragonInHand(playerTurn)
-    if (counterMonsterInField(playerTurn) > 0) and (counterDragonInHand(playerTurn) >= 3):
-        sendDragonInHandToGY(playerTurn)
-        # destroyAllMonsterInField()
-        counterMonsterDestroyed(playerTurn)
-    if (counterMonsterDestroyed(playerTurn) > 0) and (counterMonsterDragonNvlFourOrLessInGY(playerTurn) >= 1):
-        specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn)

@@ -97,8 +97,10 @@ def mainPhase(playerTurn):
                 try:
                     activa = int(input("escribe el número de la carta"))
                     playerTurn.hand[activa].cardEffect(playerTurn)
+                    # print(playerTurn.hand[activa])
                 except AttributeError:
-                    print(f"Elegiste: {activa.name} ")
+                    print(f"Elegiste: {playerTurn.hand[activa].name} ")
+                duel.littleSleep()
             else:
                 raise ValueError
         except ValueError:
