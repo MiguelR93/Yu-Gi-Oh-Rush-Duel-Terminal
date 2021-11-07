@@ -14,7 +14,7 @@ def openDeck():
     deckResult = []
 
     for i in deckOrigin:
-        if "11" in i[0]:
+        if "Dragonic Pressure" in i[1]:
             newObject = cardsEffects.DragonicPressure(
                 i[0],
                 i[1],
@@ -25,7 +25,7 @@ def openDeck():
             )
             deckResult.append(newObject)
 
-        if "normal" in i[8]:
+        elif "normal" in i[8]:
             newObject = card.MonsterNormal(
                 i[0],
                 i[1],
@@ -40,7 +40,7 @@ def openDeck():
             )
             deckResult.append(newObject)
 
-        if "effect" in i[8]:
+        elif "effect" in i[8]:
             newObject = card.MonsterEffect(
                 i[0],
                 i[1],
@@ -56,7 +56,7 @@ def openDeck():
             )
             deckResult.append(newObject)
             
-        if ("SPELL" in i[2]) or ("TRAP" in i[2]):
+        elif ("SPELL" in i[2]) or ("TRAP" in i[2]):
             newObject = card.SpellTrap(
                 i[0],
                 i[1],
