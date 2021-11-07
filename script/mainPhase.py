@@ -95,7 +95,7 @@ def mainPhase(playerTurn):
                 for a,i in enumerate(playerTurn.hand):
                     print(f"{a}: {i.name}")
                 try:
-                    activa = int(input("escribe el número de la carta"))
+                    activa = int(input("escribe el número de la carta:\n"))
                     playerTurn.hand[activa].cardEffect(playerTurn)
                     # print(playerTurn.hand[activa])
                 except AttributeError:

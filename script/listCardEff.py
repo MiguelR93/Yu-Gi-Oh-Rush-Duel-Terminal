@@ -29,14 +29,27 @@ def sendDragonInHandToGY(playerTurn):
         except IndexError:
             print('Valor equivocado')
             continue
-            duel.littleSleep()
         except ValueError:
             print('Debes ingresar un número')
             continue
+        duel.littleSleep()
     
+    toRemove = []
     for i in choosed:
+        # print(i)
+        # playerTurn.gy.append(playerTurn.hand[i])
+        # playerTurn.hand.remove(playerTurn.hand[i])
+        # duel.littleSleep()
+        
+        toRemove.append(playerTurn.hand[i])
+    
+    for i in toRemove:
+        # print(i)
         playerTurn.gy.append(i)
         playerTurn.hand.remove(i)
+    
+    #temporales:
+    # print(f"En el cementerio... {playerTurn.gy}")
 
 
 def counterMonsterDestroyed(playerTurn):
@@ -44,12 +57,12 @@ def counterMonsterDestroyed(playerTurn):
     # cada ciclo debe ver si hay un monstruo en la zona de monstruo respectiva, luego debe añadirlo al GY, removerlo del campo, y añadir 1 al contador de monstruos destruidos
     COUNTER = 0
     for i in playerTurn.oponent.playerMonsterZones:
-        if (len(i) > 0) and (i.cardType == 'MONSTER'):
+        if (type(i) != list) and (i.cardType == 'MONSTER'):
             playerTurn.oponent.gy.append(i)
             i = []
             COUNTER += 1
     for i in playerTurn.playerMonsterZones:
-        if (len(i) > 0) and (i.cardType == 'MONSTER'):
+        if (type(i) != list) and (i.cardType == 'MONSTER'):
             playerTurn.gy.append(i)
             i = []
             COUNTER += 1
