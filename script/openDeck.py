@@ -1,5 +1,7 @@
 import csv
 import script.card as card
+import script.rush.cardsEffects as cardsEffects
+# # from script.rush import *
 
 def openDeck():
     try:
@@ -12,6 +14,17 @@ def openDeck():
     deckResult = []
 
     for i in deckOrigin:
+        if "11" in i[0]:
+            newObject = cardsEffects.DragonicPressure(
+                i[0],
+                i[1],
+                i[2],
+                i[3],
+                i[4],
+                i[5]
+            )
+            deckResult.append(newObject)
+
         if "normal" in i[8]:
             newObject = card.MonsterNormal(
                 i[0],
@@ -42,6 +55,7 @@ def openDeck():
                 i[10]
             )
             deckResult.append(newObject)
+            
         if ("SPELL" in i[2]) or ("TRAP" in i[2]):
             newObject = card.SpellTrap(
                 i[0],

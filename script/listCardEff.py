@@ -1,3 +1,5 @@
+import script.duel as duel
+
 def counterMonsterInField(playerTurn):
 
     return playerTurn.typeCardInPlayerArea(playerTurn.playerMonsterZones, 'MONSTER') + playerTurn.typeCardInPlayerArea(playerTurn.oponent.playerMonsterZones, 'MONSTER')
@@ -57,7 +59,7 @@ def counterMonsterDragonNvlFourOrLessInGY(playerTurn):
     COUNTER = 0
     if len(playerTurn.gy) > 0:
         for i in playerTurn.gy:
-            if (i.cardType == 'MONSTER') and ((i.typeMonster == 'Dragon') and (int(i.level) <= 4):
+            if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon') and (int(i.level) <= 4):
                 COUNTER += 1
     return COUNTER
 
@@ -67,13 +69,13 @@ def specialSummonDragonNvlFourOrLessFromGYInDFU(playerTurn):
     # hace una invocación especial en posición de defensa
     if len(playerTurn.gy) > 0:
         for a,i in enumerate(playerTurn.gy):
-            if (i.cardType == 'MONSTER') and ((i.typeMonster == 'Dragon') and (int(i.level) <= 4):
+            if (i.cardType == 'MONSTER') and (i.typeMonster == 'Dragon') and (int(i.level) <= 4):
                 print(f"{a}: {i.name}")
     
     while True:
         try:
             summonAMonster = int(input("Elige el monstruo a invocar:\n"))
-            if 'MONSTER' not in playerTurn.gy[chosenMonster].cardType: # Cuando lo que se elige no es un monstruo
+            if 'MONSTER' not in playerTurn.gy[summonAMonster].cardType: # Cuando lo que se elige no es un monstruo
                     print('Eso no es un monstruo')
             elif int(playerTurn.hand[summonAMonster].level) <= 4:
                 playerTurn.summonLoop('specialSummon',  'defense face-up', summonAMonster)

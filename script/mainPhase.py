@@ -40,6 +40,8 @@ def mainPhase(playerTurn):
                 print(i)
         if duel.currentlyTurn() > 1:
             print(mainPhaseOptions[10])
+        if playerTurn.typeCardInPlayerArea(playerTurn.hand, "SPELL") > 0:
+            print("Activar un efecto de magia en mano? [escribe 12]")
         print(mainPhaseOptions[11])
 
         try:
@@ -88,8 +90,15 @@ def mainPhase(playerTurn):
                 # print("seguimos en MP?")
                 # duel.littleSleep()
                 break
-            # elif actionInMP == 12:
-            #     playerTurn.typeCardInPlayerArea(playerTurn.hand, 'MONSTER')
+            elif actionInMP == 12:
+                print("Debería mostar una lista de cartas en mano que sean magias")
+                for a,i in enumerate(playerTurn.hand):
+                    print(f"{a}: {i.name}")
+                try:
+                    activa = int(input("escribe el número de la carta"))
+                    playerTurn.hand[activa].cardEffect(playerTurn)
+                except AttributeError:
+                    print(f"Elegiste: {activa.name} ")
             else:
                 raise ValueError
         except ValueError:
